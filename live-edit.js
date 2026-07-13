@@ -119,6 +119,26 @@
     return false;
   }
 
+  /* Dọn tàn dư của các bộ editor cũ (ví dụ trang Marketing từng có sẵn):
+     nút kéo resize, gợi ý, lớp edit-mode... để không lẫn vào bản tải xuống.
+     Vô hại với các trang không có (selector không khớp thì bỏ qua). */
+  function cleanForeignEditors(root) {
+    root = root || document;
+    root.querySelectorAll('.resize-handle,.resize-hint,#editbar,.editbar').forEach(function (n) {
+      n.remove();
+    });
+    root.querySelectorAll('.block-editable,.is-resizing').forEach(function (el) {
+      el.classList.remove('block-editable', 'is-resizing');
+    });
+    root.querySelectorAll('[data-store-key][contenteditable]').forEach(function (el) {
+      el.removeAttribute('contenteditable');
+    });
+    root.querySelectorAll('.edit-mode').forEach(function (el) {
+      el.classList.remove('edit-mode');
+    });
+    if (root.classList) root.classList.remove('edit-mode');
+  }
+
   function insideSkipped(el) {
     var p = el;
     while (p && p !== document.body) {
@@ -134,6 +154,7 @@
     var all = document.body.querySelectorAll(TEXT_TAGS.join(','));
     all.forEach(function (el) {
       if (el.hasAttribute('data-le-editable')) return;
+      if (el.hasAttribute('contenteditable')) return;   // chừa phần tử editable gốc của trang
       if (TEXT_TAGS.indexOf(el.tagName) === -1) return;
       if (!hasDirectText(el)) return;
       if (insideSkipped(el)) return;
@@ -186,6 +207,7 @@
   /* --------------------------- BẢN NHÁP -------------------------------- */
   function getContentHTML() {
     var clone = document.body.cloneNode(true);
+    cleanForeignEditors(clone);
     clone.querySelectorAll('[data-le-ui]').forEach(function (n) { n.remove(); });
     clone.querySelectorAll('[data-le-editable]').forEach(function (el) {
       el.removeAttribute('contenteditable');
@@ -234,6 +256,7 @@
 
     // Nhân bản toàn bộ trang rồi dọn sạch phần công cụ
     var docClone = document.documentElement.cloneNode(true);
+    cleanForeignEditors(docClone);
     docClone.querySelectorAll('[data-le-ui]').forEach(function (n) { n.remove(); });
     docClone.querySelectorAll('[data-le-editable]').forEach(function (el) {
       el.removeAttribute('contenteditable');
@@ -286,6 +309,7 @@
   });
 
   /* ------------------------------ KHỞI ĐỘNG --------------------------- */
+  cleanForeignEditors(document);   // dọn tàn dư editor cũ trước khi chụp bản gốc
   takeSnapshot();
   offerDraftRestore();
   console.log('%c Live Edit đã sẵn sàng ', 'background:#2563eb;color:#fff;padding:2px 6px;border-radius:4px');

@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tuyển dụng Điều hành · Meetup Travel</title>
+<meta name="description" content="Đội Điều hành Meetup Travel: Nhân viên Điều hành Tour (Junior) và Thực tập sinh Điều hành Tour, thị trường tiếng Anh và tiếng Pháp, tại Hà Nội. Từ búp măng non tới lũy tre làng, có mạng lưới đối tác có sẵn, đội hỗ trợ 24/7.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Charmonman:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#2fb0a8; --brand-deep:#1f8f89;
+    --rice-lit:#8fc856; --rice:#5c9e30; --rice-deep:#39751f;
+    --paddy:#245f27; --paddy-dark:#17431d; --paddy-ink:#123a19;
+    --tre-lit:#78b238; --tre:#4f882c; --tre-shade:#376627; --tre-deep:#21491d;
+    --tre-node:#c2d98a;
+    --gold:#d59a30; --gold-deep:#ac7a1c; --gold-lite:#eecf8a;
+    --paper:#f0efe1; --paper-2:#f8f7ec; --paper-3:#e7e6d3;
+    --ink:#18321d; --ink-2:#37543c; --muted:#6a8570; --faint:#9bb39f;
+    --line:#d8e6c6; --line-2:#c8dbb0; --cloud:#fff;
+    --r-xl:28px; --r-lg:22px; --r:18px; --r-sm:13px; --r-pill:999px;
+    --sh-sm:0 1px 3px rgba(20,50,25,.07);
+    --sh:0 4px 12px rgba(20,50,25,.07), 0 18px 40px rgba(20,50,25,.10);
+    --sh-lg:0 34px 70px rgba(20,50,25,.18);
+    --sh-gold:0 18px 44px rgba(232,178,58,.34);
+    --sh-green:0 14px 34px rgba(39,105,42,.28);
+  }
+  *{box-sizing:border-box;}
+  html,body{overflow-x:hidden;max-width:100%;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Be Vietnam Pro',system-ui,sans-serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;}
+  body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.6;
+    background-image:radial-gradient(circle at 18% 26%, rgba(103,173,51,.07), transparent 42%),radial-gradient(circle at 82% 68%, rgba(47,176,168,.06), transparent 44%);}
+  h1,h2,h3,h4{margin:0;line-height:1.12;letter-spacing:-.02em;font-weight:800;text-wrap:balance;}
+  a{color:inherit;text-decoration:none;}
+  p{margin:0 0 1.05em;text-wrap:pretty;}
+  img,svg{max-width:100%;}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 26px;width:100%;}
+  section[id]{scroll-margin-top:80px;}
+  :focus-visible{outline:2.5px solid var(--brand);outline-offset:3px;border-radius:6px;}
+
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--tre-shade);margin-bottom:20px;}
+  .eyebrow::before{content:"";width:30px;height:12px;flex:none;background:no-repeat left center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 13'%3E%3Cpath d='M2 10 Q9 3 15 9 Q18 4 21 8 Q26 3 32 9' fill='none' stroke='%23ac7a1c' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E");}
+  .eyebrow.on-dark{color:var(--tre-lit);}
+  .eyebrow.on-dark::before{background:no-repeat left center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 13'%3E%3Cpath d='M2 10 Q9 3 15 9 Q18 4 21 8 Q26 3 32 9' fill='none' stroke='%23eecf8a' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E");}
+  .hand{font-family:'Charmonman',cursive;font-weight:700;color:var(--gold-deep);font-size:22px;line-height:1.2;display:block;margin-bottom:6px;}
+
+  /* leaves drifting */
+  .leafdrift{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;}
+  .leafdrift .lf{position:absolute;animation:leaffloat 13s ease-in-out infinite;}
+  @keyframes leaffloat{0%{transform:translate(0,0) rotate(-6deg);}50%{transform:translate(-14px,-16px) rotate(6deg);}100%{transform:translate(0,0) rotate(-6deg);}}
+
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:14px 26px;border-radius:var(--r-pill);font-weight:600;font-size:15px;border:1.5px solid transparent;cursor:pointer;position:relative;overflow:hidden;font-family:inherit;transition:transform .16s ease,box-shadow .16s ease,background .16s ease,color .16s ease;}
+  .btn--primary{background:var(--tre-shade);color:#fff;box-shadow:var(--sh-green);}
+  .btn--primary:hover{transform:translateY(-2px);box-shadow:0 20px 40px rgba(39,105,42,.36);}
+  .btn--primary::after{content:"";position:absolute;top:0;left:-120%;width:55%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);transform:skewX(-18deg);}
+  .btn--primary:hover::after{animation:swipe .7s ease;}
+  @keyframes swipe{to{left:150%;}}
+  .btn--gold{background:linear-gradient(135deg,#f6c94f,#e3a52c);color:#3a2708;box-shadow:0 8px 26px rgba(227,165,44,.55);}
+  .btn--gold:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(232,178,58,.52);}
+  .btn--gold::after{content:"";position:absolute;top:0;left:-130%;width:52%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-18deg);animation:ctashine 5s ease-in-out infinite;}
+  @keyframes ctashine{0%,62%{left:-130%}82%{left:150%}100%{left:150%}}
+  .btn--ghost{background:rgba(255,255,255,.5);border-color:var(--tre-shade);color:var(--tre-shade);}
+  .btn--ghost:hover{background:var(--tre-shade);color:#fff;}
+  .btn--onDark{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.32);color:#fff;backdrop-filter:blur(6px);}
+  .btn--onDark:hover{background:rgba(255,255,255,.24);}
+  .btn--sm{padding:10px 18px;font-size:14px;}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:60;background:rgba(238,244,226,.82);backdrop-filter:blur(14px) saturate(1.3);border-bottom:1px solid var(--line);}
+  .nav{display:flex;align-items:center;gap:24px;max-width:1140px;margin:0 auto;padding:13px 26px;position:relative;}
+  .brand{font-weight:800;font-size:20px;color:var(--paddy);display:inline-flex;align-items:center;gap:8px;}
+  .brand-logo{height:30px;width:auto;display:block;transition:transform .2s ease;}
+  .brand:hover .brand-logo{transform:scale(1.04);}
+  .nav__links{display:flex;gap:22px;margin-left:auto;font-weight:500;font-size:14.5px;color:var(--ink-2);}
+  .nav__links a{position:relative;}
+  .nav__links a::after{content:"";position:absolute;left:0;right:100%;bottom:-4px;height:2px;background:var(--gold-deep);border-radius:2px;transition:right .26s ease;}
+  .nav__links a:hover::after{right:0;}
+  .nav__links a:hover{color:var(--tre-shade);}
+  .nav__menu{display:none;background:none;border:none;font-size:22px;cursor:pointer;color:var(--paddy);}
+  .progress{position:absolute;left:0;bottom:-1px;height:2.5px;width:0;background:linear-gradient(90deg,var(--tre),var(--gold));transition:width .1s linear;}
+
+  /* ===== HERO · rừng tre thật, ảnh nền ===== */
+  .hero{position:relative;overflow:hidden;background:#0f2b12;min-height:640px;display:flex;align-items:center;}
+  .hero__photo{position:absolute;inset:0;z-index:0;
+    background-image:
+      radial-gradient(120% 80% at 78% 12%, rgba(120,178,56,.28), transparent 60%),
+      radial-gradient(90% 70% at 10% 90%, rgba(18,60,25,.5), transparent 70%),
+      linear-gradient(160deg,#1f5230 0%,#163f22 44%,#0e2c15 100%);}
+  .hero__grove{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:auto;z-index:1;pointer-events:none;}
+  .hero__grove .gstalk{transform-box:fill-box;transform-origin:50% 100%;animation:gsway 7s ease-in-out infinite alternate;}
+  @keyframes gsway{from{transform:rotate(-.8deg);}to{transform:rotate(1deg);}}
+  .hero__inner{position:relative;z-index:3;max-width:1140px;margin:0 auto;padding:96px 26px 128px;width:100%;}
+  .hero__badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#eaf4dd;font-size:12.5px;font-weight:700;letter-spacing:.03em;padding:7px 15px;border-radius:var(--r-pill);margin-bottom:24px;backdrop-filter:blur(6px);}
+  .hero__badge .dot{width:7px;height:7px;border-radius:50%;background:var(--tre-lit);animation:pulse 2s infinite;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(120,178,56,.5);}70%{box-shadow:0 0 0 8px rgba(120,178,56,0);}100%{box-shadow:0 0 0 0 rgba(120,178,56,0);}}
+  .hero h1{font-family:'Lora',serif;font-size:clamp(36px,5.6vw,60px);font-weight:700;line-height:1.06;letter-spacing:-.01em;margin-bottom:22px;color:#fbf8ec;max-width:800px;text-shadow:0 4px 26px rgba(0,0,0,.32);}
+  .hero h1 .accent{color:var(--tre-lit);position:relative;white-space:nowrap;font-style:italic;}
+  .hero__sub{font-size:19px;color:#e2ecd7;margin-bottom:32px;max-width:600px;line-height:1.62;text-shadow:0 2px 14px rgba(0,0,0,.3);}
+  .hero__ctas{display:flex;gap:12px;flex-wrap:wrap;}
+  .hero__trust{margin-top:30px;display:flex;align-items:center;gap:15px;flex-wrap:wrap;color:#dce8d2;font-size:14px;}
+  .trustbadge{display:inline-flex;align-items:center;gap:13px;background:linear-gradient(150deg,#fffdf5,#f5e5bf);border:1px solid #efe0b8;padding:8px 18px 8px 16px;border-radius:14px;box-shadow:0 16px 36px rgba(0,0,0,.36),0 0 0 3px rgba(232,165,42,.22),inset 0 1px 0 rgba(255,255,255,.9);}
+  .trustbadge .tb-score{font-family:'Lora',serif;font-weight:700;font-size:37px;line-height:.92;color:#b0740f;text-shadow:0 1px 0 rgba(255,255,255,.65);}
+  .trustbadge .tb-sep{width:1.5px;align-self:stretch;margin:4px 0;border-radius:2px;background:linear-gradient(180deg,transparent,#e2cd93,transparent);}
+  .trustbadge .tb-col{display:flex;flex-direction:column;gap:3px;line-height:1;}
+  .trustbadge .tb-stars{color:#e89a1c;letter-spacing:3px;font-size:15px;}
+  .trustbadge .tb-src{font-size:11.5px;color:#7c6a41;font-weight:600;letter-spacing:.2px;}
+  .trustbadge .tb-src b{color:#2c2410;font-weight:800;}
+  .hero__trust .tb-note{font-size:13px;color:#c6d8bd;}
+  @media(max-width:640px){.hero{min-height:0;}.hero__inner{padding:60px 20px 76px;}.hero__photo{background-position:center,bottom,64% 30%;}}
+
+  /* Field divider (nối cảnh) */
+  .divider{line-height:0;margin:0;}
+  .divider svg{display:block;width:100%;height:58px;}
+  .divider--field svg{height:86px;}
+  @media(max-width:640px){.divider svg{height:38px;}.divider--field svg{height:52px;}}
+
+  /* Section base */
+  .section{padding:92px 0;position:relative;}
+  .head{max-width:720px;margin:0 auto 50px;text-align:center;}
+  .head .eyebrow{justify-content:center;}
+  .head h2{font-family:'Lora',serif;font-size:clamp(28px,3.8vw,42px);font-weight:700;letter-spacing:-.01em;margin-bottom:16px;}
+  .head p.lead{color:var(--muted);margin:0;font-size:18px;}
+  @media(max-width:640px){.section{padding:60px 0;}}
+
+  /* ===== Nói thật · truth cards ===== */
+  .truths{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1000px;margin:0 auto;}
+  .truth{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r-lg);padding:26px;box-shadow:var(--sh-sm);}
+  .truth h3{font-size:16.5px;margin-bottom:10px;line-height:1.3;}
+  .truth>p{color:var(--muted);font-size:14.5px;margin:0 0 16px;}
+  .truth .flip{display:flex;gap:9px;align-items:flex-start;font-size:13.5px;color:var(--tre-shade);font-weight:600;line-height:1.5;padding-top:14px;border-top:1px dashed var(--line-2);}
+  .truth .flip svg{flex:none;width:17px;height:17px;margin-top:1px;color:var(--gold-deep);}
+  .shiftnote{margin:30px auto 0;max-width:660px;text-align:center;font-size:14.5px;color:var(--ink-2);text-wrap:balance;}
+  .bigquote{font-family:'Lora',serif;font-style:italic;font-weight:600;font-size:24px;text-align:center;max-width:660px;margin:36px auto 0;color:var(--ink);line-height:1.55;text-wrap:balance;}
+  .bigquote span{color:var(--gold-deep);font-style:normal;white-space:nowrap;}
+
+  /* ===== CÂU CHUYỆN · cây tre lớn dần ===== */
+  .storyblock{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r-xl);box-shadow:var(--sh);padding:60px 52px;max-width:980px;margin:0 auto;position:relative;overflow:hidden;}
+  .storyblock__hint{text-align:center;font-family:'Lora',serif;font-style:italic;color:var(--tre-shade);font-size:15px;margin-bottom:36px;}
+  .acts{position:relative;max-width:720px;margin:0 auto;}
+  .acts__rail{position:absolute;left:132px;top:6px;bottom:6px;width:3px;background:repeating-linear-gradient(var(--line-2) 0 6px, transparent 6px 12px);transform:translateX(-50%);}
+  .acts__fill{position:absolute;left:132px;top:6px;width:3px;height:0;background:linear-gradient(180deg,var(--tre),var(--gold));transform:translateX(-50%);transition:height .15s linear;border-radius:3px;box-shadow:0 0 10px rgba(120,178,56,.5);}
+  .act{position:relative;padding:0 0 46px 176px;}
+  .act:last-child{padding-bottom:0;}
+  .act__month{position:absolute;left:0;top:4px;width:104px;text-align:right;font-weight:800;font-size:14.5px;color:var(--tre-shade);line-height:1.3;}
+  .act__stage{position:absolute;left:132px;top:-6px;width:52px;height:52px;transform:translateX(-50%);z-index:1;border-radius:50%;display:flex;align-items:flex-end;justify-content:center;border:2.5px solid var(--tre-node);box-shadow:0 4px 12px rgba(20,50,25,.24);filter:grayscale(.4) opacity(.55);transition:filter .5s ease,transform .5s ease;background:radial-gradient(circle at 50% 30%,#eef6df,#d6e8bf);overflow:hidden;}
+  .act__stage svg{width:74%;height:88%;display:block;}
+  .act.lit .act__stage{filter:none;transform:translateX(-50%) scale(1.12);}
+  .act h3{font-size:21px;margin-bottom:12px;padding-top:6px;}
+  .act p{font-family:'Lora',Georgia,serif;font-size:16.5px;line-height:1.8;color:var(--ink-2);}
+  .act p:last-child{margin-bottom:0;}
+  .milestone{max-width:720px;margin:38px auto 0;padding:28px 32px;border-radius:var(--r-lg);background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:#3a2708;display:flex;align-items:center;gap:24px;box-shadow:var(--sh-gold);}
+  .milestone .big{display:flex;align-items:baseline;gap:6px;flex:none;}
+  .milestone b{font-size:52px;font-weight:800;letter-spacing:-.04em;line-height:1;}
+  .milestone span{font-size:15.5px;line-height:1.5;font-weight:500;}
+  @media(max-width:640px){.storyblock{padding:36px 22px;}.acts__rail,.acts__fill{left:20px;}.act{padding:0 0 36px 52px;}.act__month{position:static;width:auto;text-align:left;margin-bottom:8px;display:block;}.act__stage{left:20px;top:0;width:42px;height:42px;}}
+
+  /* ===== Chân dung persona ===== */
+  .personagrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1000px;margin:0 auto;}
+  .pcard{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r-lg);padding:26px;box-shadow:var(--sh-sm);position:relative;}
+  .pcard .pnum{position:absolute;top:18px;right:20px;font-family:'Lora',serif;font-style:italic;font-size:26px;color:var(--line-2);font-weight:700;}
+  .pcard h3{font-size:16.5px;margin-bottom:10px;padding-right:32px;line-height:1.3;}
+  .pcard p{color:var(--muted);font-size:14.5px;margin:0;}
+  .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:30px;}
+  .chip{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:var(--r-pill);background:#fff;border:1.5px solid var(--line-2);font-size:13.5px;font-weight:700;color:var(--ink);}
+
+  /* ===== Band tối · lũy tre chạng vạng ===== */
+  .band{position:relative;overflow:hidden;color:#eafae6;padding:96px 0;
+    background:radial-gradient(90% 120% at 15% 10%, rgba(60,111,38,.5), transparent 60%),linear-gradient(160deg,#1a4a24,#0c2713);}
+  .band__grove{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.5;pointer-events:none;}
+  .band .leafdrift{z-index:1;}
+  .band .wrap{position:relative;z-index:2;max-width:880px;text-align:center;}
+  .band .eyebrow{justify-content:center;}
+  .band .quote{font-family:'Lora',Georgia,serif;font-style:italic;font-weight:600;font-size:29px;line-height:1.5;margin:0 0 34px;}
+  .band .quote span{color:var(--tre-lit);font-style:normal;}
+  .principle{max-width:760px;margin:26px auto 0;text-align:center;font-size:15px;line-height:1.6;color:#dbeee0;background:rgba(255,255,255,.07);border:1px solid rgba(238,207,138,.32);border-radius:14px;padding:14px 22px;text-wrap:balance;}
+  .principle b{color:var(--gold-lite);font-weight:800;}
+  .beliefs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;text-align:left;}
+  .belief{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--r);padding:22px;}
+  .belief b{display:block;font-size:11px;letter-spacing:.12em;color:var(--gold-lite);margin-bottom:8px;}
+  .belief p{margin:0;font-size:14.5px;color:#d6e8cf;line-height:1.55;}
+  @media(max-width:768px){.beliefs{grid-template-columns:1fr;}.band .quote{font-size:22px;}}
+
+  /* ===== Vì sao · advantages ===== */
+  .trio{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1000px;margin:0 auto 20px;}
+  .trio-card{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r-lg);padding:26px;box-shadow:var(--sh-sm);text-align:center;}
+  .trio-card .tnum{display:block;font-family:'Lora',serif;font-style:italic;color:var(--gold-deep);font-size:14px;margin-bottom:8px;}
+  .trio-card .tbig{display:block;font-family:'Lora',serif;font-weight:700;font-size:34px;color:var(--tre-shade);margin-bottom:4px;}
+  .trio-card h3{font-size:16.5px;margin-bottom:8px;}
+  .trio-card p{color:var(--muted);font-size:14px;margin:0;}
+  .advpanel{max-width:1000px;margin:0 auto 16px;background:linear-gradient(155deg,var(--paddy-dark),#0e2109);color:#fff;border-radius:var(--r-lg);padding:32px 34px;box-shadow:var(--sh);}
+  .advpanel h3{font-size:19px;margin-bottom:6px;color:#fff;}
+  .advpanel p.sub{color:#cfe0bd;font-size:14.5px;margin:0 0 18px;}
+  .advpanel ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:11px 22px;}
+  .advpanel li{font-size:14.5px;line-height:1.5;color:#e6efd8;display:flex;gap:10px;}
+  .advpanel .ck{flex:none;color:var(--gold-lite);font-weight:800;}
+  .advpanel--light{background:var(--paper-2);color:var(--ink);border:1px solid var(--line);box-shadow:var(--sh-sm);}
+  .advpanel--light h3{color:var(--ink);} .advpanel--light p.sub{color:var(--muted);}
+  .advpanel--light li{color:var(--ink-2);} .advpanel--light .ck{color:var(--tre);}
+  .advpanel__cta{margin-top:20px;padding-top:18px;border-top:1px solid var(--line);}
+  @media(max-width:860px){.trio{grid-template-columns:1fr;}.advpanel ul{grid-template-columns:1fr;}}
+
+  /* ===== Thu nhập ===== */
+  .income{max-width:820px;margin:0 auto;background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r-xl);padding:44px 46px;box-shadow:var(--sh-lg);}
+  .income h3{font-size:20px;text-align:center;margin-bottom:6px;}
+  .income h3 .n{font-family:'Lora',serif;font-style:italic;color:var(--tre-shade);font-weight:700;}
+  .income .note{text-align:center;color:var(--muted);font-size:14.5px;max-width:560px;margin:0 auto 30px;}
+  .gauge{position:relative;height:16px;border-radius:10px;background:var(--paper-3);overflow:visible;margin-bottom:12px;}
+  .gfill{position:absolute;left:0;top:0;bottom:0;border-radius:10px;width:0;transition:width 1.4s cubic-bezier(.4,0,.2,1);}
+  #gaugeBase{background:linear-gradient(90deg,var(--tre),var(--tre-shade));z-index:2;}
+  #gaugeOte{background:repeating-linear-gradient(90deg,rgba(213,154,48,.4),rgba(213,154,48,.4) 8px,rgba(213,154,48,.18) 8px,rgba(213,154,48,.18) 16px);z-index:1;}
+  .gco{position:absolute;top:50%;left:0;transform:translate(-50%,-50%);width:26px;height:34px;transition:left 1.4s cubic-bezier(.4,0,.2,1);filter:drop-shadow(0 3px 6px rgba(20,50,25,.3));}
+  .gmarks{display:flex;justify-content:space-between;font-size:11.5px;font-weight:700;color:var(--faint);margin-bottom:26px;}
+  .gmarks b{color:var(--gold-deep);}
+  .gsplit{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
+  .gsplit span{font-size:13px;font-weight:600;color:var(--ink-2);background:var(--paper-3);border:1px solid var(--line);border-radius:var(--r-pill);padding:7px 14px;}
+  .gsplit span b{color:var(--tre-shade);}
+  @media(max-width:640px){.income{padding:30px 24px;}}
+
+  /* ===== Lộ trình · búp măng tới lũy tre (ẢNH THẬT) ===== */
+  .mission{max-width:760px;margin:0 auto 56px;text-align:center;}
+  .mission h2{font-family:'Lora',serif;font-size:clamp(26px,3.4vw,36px);margin-bottom:16px;font-weight:700;}
+  .mission h2 span{color:var(--tre-shade);}
+  .mission p{color:var(--ink-2);font-size:16.5px;text-wrap:balance;}
+  @media(max-width:720px){.mission p br.tri{display:none;}}
+  .mission hr{border:none;border-top:1px dashed var(--line-2);margin:22px auto;width:120px;}
+  .mission .mfoot{font-size:15px;color:var(--muted);margin:0;}
+  .ladder{display:grid;grid-template-columns:repeat(5,1fr);align-items:start;gap:10px;max-width:1080px;margin:0 auto;padding:0 4px;position:relative;}
+  .ladder::before{content:"";position:absolute;left:10%;right:10%;top:65px;height:2px;background:var(--line-2);border-radius:2px;z-index:0;}
+  .rung{display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:1;}
+  .rung__photo{width:130px;height:130px;border-radius:50%;overflow:hidden;border:3px solid var(--tre-node);box-shadow:0 12px 26px rgba(20,50,25,.28);flex:none;background:radial-gradient(circle at 50% 26%,#eef6df,#cfe3b4);margin-bottom:18px;display:flex;align-items:flex-end;justify-content:center;}
+  .rung__photo svg{width:76%;height:90%;display:block;}
+  .rung:nth-child(5) .rung__photo{border-color:var(--gold);}
+  .rung .lv{display:flex;align-items:center;justify-content:center;min-height:14px;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:7px;}
+  .rung h3{display:flex;align-items:center;justify-content:center;min-height:38px;font-size:14.5px;margin-bottom:6px;line-height:1.25;}
+  .rung p{font-size:12.5px;color:var(--muted);margin:0;line-height:1.5;max-width:170px;}
+  .ladder-note{text-align:center;font-size:14px;color:var(--muted);margin-top:36px;max-width:640px;margin-left:auto;margin-right:auto;}
+  @media(max-width:860px){
+    .ladder{grid-template-columns:1fr;gap:22px;}
+    .ladder::before{left:36px;right:auto;top:0;bottom:0;width:2px;height:auto;}
+    .rung{display:grid;grid-template-columns:74px 1fr;column-gap:16px;align-items:center;justify-items:start;text-align:left;}
+    .rung__photo{width:74px;height:74px;margin-bottom:0;grid-row:1/4;}
+    .rung .lv{min-height:0;justify-content:flex-start;margin-bottom:4px;}
+    .rung h3{display:block;min-height:0;margin-bottom:4px;}
+    .rung p{max-width:none;}
+  }
+
+  /* ===== Jobs ===== */
+  .jobfilter{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:0 auto 34px;}
+  .jobfilter__btn{font-family:inherit;font-size:14.5px;font-weight:600;color:var(--ink-2);background:var(--paper-2);border:1.5px solid var(--line-2);border-radius:var(--r-pill);padding:9px 18px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:transform .16s ease,background .16s ease,color .16s ease,border-color .16s ease;}
+  .jobfilter__btn span{font-size:12px;font-weight:800;min-width:20px;height:20px;padding:0 6px;border-radius:var(--r-pill);background:var(--paper-3);color:var(--tre-shade);display:inline-flex;align-items:center;justify-content:center;}
+  .jobfilter__btn:hover{border-color:var(--tre);color:var(--tre-shade);transform:translateY(-2px);}
+  .jobfilter__btn.is-active{background:var(--tre-shade);color:#fff;border-color:var(--tre-shade);box-shadow:var(--sh-green);}
+  .jobfilter__btn.is-active span{background:rgba(255,255,255,.24);color:#fff;}
+  .joblist{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:1000px;margin:0 auto;align-items:stretch;}
+  .job{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh-sm);overflow:hidden;position:relative;height:100%;display:flex;flex-direction:column;transition:box-shadow .2s ease,border-color .2s ease,transform .2s ease;}
+  .job::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;z-index:1;background:linear-gradient(90deg,var(--tre),var(--gold-deep));}
+  .job[open]{grid-column:1/-1;box-shadow:var(--sh);border-color:var(--line-2);}
+  .job:not([open]):hover{transform:translateY(-4px);box-shadow:var(--sh);border-color:var(--tre);}
+  .job__sum{list-style:none;cursor:pointer;padding:26px 28px;display:block;}
+  .job__sum::-webkit-details-marker{display:none;}
+  .job:not([open]) .job__sum{flex:1;display:flex;flex-direction:column;}
+  .job__head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px;}
+  .job__dept{display:block;font-size:11.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:6px;}
+  .job__titles h3{font-size:21px;line-height:1.2;font-family:'Lora',serif;}
+  .job__toggle{flex:none;width:30px;height:30px;border-radius:50%;background:var(--paper-3);color:var(--tre-shade);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;transition:transform .25s ease,background .2s ease;}
+  .job[open] .job__toggle{transform:rotate(45deg);background:var(--tre-shade);color:#fff;}
+  .job__chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;min-height:66px;align-content:flex-start;}
+  .job__chip{font-size:12.5px;font-weight:600;color:var(--ink-2);background:var(--paper-3);border:1px solid var(--line-2);border-radius:var(--r-pill);padding:5px 12px;}
+  .job__chip--pay{color:var(--tre-shade);background:#eef6df;border-color:#cfe6b3;font-weight:700;}
+  .job__summary{color:var(--muted);font-size:15px;line-height:1.6;margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:72px;}
+  .job:not([open]) .job__foot{margin-top:auto;padding-top:12px;font-weight:700;font-size:14px;color:var(--tre-shade);}
+  .job__detail{padding:4px 28px 28px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:6px 30px;}
+  .job__seg{padding-top:22px;}
+  .job__seg--full{grid-column:1/-1;}
+  .job__seg h4{font-size:12.5px;font-weight:800;letter-spacing:.02em;text-transform:uppercase;color:var(--tre-shade);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+  .job__seg h4 svg{width:15px;height:15px;flex:none;}
+  .job__subh{font-size:13.5px;font-weight:700;color:var(--ink);margin:12px 0 6px;}
+  .job__list{margin:0;padding-left:0;list-style:none;}
+  .job__list li{position:relative;padding-left:20px;font-size:14.5px;line-height:1.6;color:var(--ink-2);margin-bottom:7px;}
+  .job__list li::before{content:"";position:absolute;left:1px;top:8px;width:8px;height:8px;border-radius:2px;transform:rotate(45deg);background:linear-gradient(135deg,var(--tre-lit),var(--tre));}
+  .job__list--loc li::before{background:var(--gold);}
+  .job__meta-line{font-size:14px;color:var(--ink-2);line-height:1.6;margin:0 0 8px;}
+  .job__meta-line b{color:var(--ink);}
+  .job__ladder{font-weight:700;color:var(--paddy);background:var(--paper-3);border:1px dashed var(--line-2);border-radius:var(--r);padding:12px 16px;font-size:14.5px;margin:0 0 10px;}
+  .job__steps{margin:0;padding-left:20px;color:var(--ink-2);font-size:14px;line-height:1.7;}
+  .hireflow{grid-column:1/-1;margin-top:10px;background:var(--paper-3);border:1px solid var(--line);border-radius:var(--r-lg);padding:20px 22px 22px;}
+  .hireflow__lab{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:14px;}
+  .hireflow__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+  .round{background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:14px 16px;box-shadow:var(--neu-up-sm);}
+  .round b{display:block;font-size:10.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:7px;}
+  .round p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.5;}
+  @media(max-width:920px){.hireflow__grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:560px){.hireflow__grid{grid-template-columns:1fr;}}
+  .job__apply{grid-column:1/-1;margin-top:10px;padding:24px 28px;border-radius:var(--r-lg);background:linear-gradient(150deg,var(--paddy),#0f4020);color:#fff;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:26px;flex-wrap:wrap;box-shadow:var(--sh-sm);}
+  .job__apply::after{content:"";position:absolute;right:-30px;bottom:-30px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(232,178,58,.22),transparent 70%);pointer-events:none;}
+  .job__apply>div{position:relative;z-index:1;flex:1;min-width:250px;}
+  .job__apply-lab{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-lite);margin-bottom:10px;}
+  .job__apply-line{margin:0 0 12px;font-size:15px;color:#eafae6;line-height:1.55;}
+  .job__apply-line a{color:#fff;font-weight:700;text-decoration:underline;text-underline-offset:2px;}
+  .job__apply-code{display:inline-block;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.18);padding:9px 15px;border-radius:11px;font-size:13.5px;color:#fdf5df;font-weight:600;line-height:1.4;}
+  .job__apply .btn{position:relative;z-index:1;flex:none;}
+  @media(max-width:920px){.joblist{grid-template-columns:1fr;}.job[open]{grid-column:auto;}.job__detail{grid-template-columns:1fr;}.job__apply{flex-direction:column;align-items:flex-start;}}
+
+  /* ===== Offices ===== */
+  .offices{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:840px;margin:0 auto;}
+  a.office{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r-lg);padding:28px;display:grid;grid-template-columns:46px 1fr;gap:16px;box-shadow:var(--sh-sm);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;}
+  a.office:hover{transform:translateY(-4px);box-shadow:var(--sh);border-color:var(--tre);}
+  .office__ic{width:46px;height:46px;border-radius:13px;background:var(--paper-3);color:var(--paddy);display:flex;align-items:center;justify-content:center;}
+  .office h3{font-size:18px;margin-bottom:5px;} .office p{color:var(--muted);font-size:15px;margin:0 0 8px;line-height:1.5;}
+  .office__go{font-size:13.5px;font-weight:700;color:var(--tre-shade);display:inline-flex;gap:6px;align-items:center;transition:gap .2s ease;}
+  a.office:hover .office__go{gap:11px;}
+  @media(max-width:640px){.offices{grid-template-columns:1fr;}}
+
+  /* ===== CTA cuối ===== */
+  .ctaend{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:36px;flex-wrap:wrap;background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r-xl);padding:44px 46px;box-shadow:var(--sh-lg);}
+  .ctaend h2{font-family:'Lora',serif;font-size:clamp(24px,3vw,32px);margin-bottom:10px;font-weight:700;}
+  .ctaend p{color:var(--muted);font-size:15.5px;margin:0;max-width:440px;}
+  .ctaend .col{display:flex;flex-direction:column;align-items:flex-start;gap:12px;flex:none;}
+  .ctaend .mail{font-size:13.5px;color:var(--muted);}
+  .ctaend .mail a{color:var(--tre-shade);font-weight:700;}
+  @media(max-width:640px){.ctaend{padding:32px 26px;flex-direction:column;align-items:flex-start;}}
+
+  /* Footer */
+  /* ===== FOOTER (mobile-first) ===== */
+  footer{background:#0f3319;color:#9dbaa4;padding:0 0 30px;overflow:hidden;}
+  .footer__inner,.footer__meta{max-width:1140px;margin:0 auto;width:100%;padding-left:clamp(18px,4vw,26px);padding-right:clamp(18px,4vw,26px);}
+  footer .wrap{max-width:1140px;padding-left:clamp(18px,4vw,26px);padding-right:clamp(18px,4vw,26px);}
+
+  /* hang 1: logo + menu */
+  .footer__inner{display:flex;flex-direction:column;align-items:flex-start;gap:16px;padding-top:30px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.08);}
+  .footer__inner .brand{color:#fff;flex:none;}
+  .footer__inner .brand-logo{filter:brightness(0) invert(1);height:30px;width:auto;display:block;}
+  .footer__links{display:flex;flex-wrap:wrap;gap:12px 20px;min-width:0;font-size:14px;font-weight:500;}
+  .footer__links a{color:#bdd4c4;overflow-wrap:anywhere;}
+  .footer__links a:hover{color:#fff;}
+
+  /* hang 2: lien he + socials */
+  .foot-social-row{display:flex;flex-direction:column;align-items:flex-start;gap:18px;padding:20px 0 4px;min-width:0;}
+  .foot-contact{display:flex;flex-direction:column;gap:9px;min-width:0;}
+  .foot-contact__lab{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#8fb79a;}
+  .foot-contact__people{display:flex;flex-direction:column;gap:10px;font-size:14px;font-weight:600;min-width:0;}
+  .foot-contact__item{display:inline-flex;align-items:center;gap:9px;min-width:0;}
+  .foot-contact__people a{color:#dbeee0;display:inline-flex;align-items:center;gap:7px;overflow-wrap:anywhere;}
+  .foot-contact__people a:hover{color:#fff;}
+  .locbadge{flex:none;font-size:10.5px;font-weight:800;letter-spacing:.06em;color:var(--gold-lite);background:rgba(232,178,58,.1);border:1px solid rgba(238,207,138,.5);padding:3px 9px;border-radius:999px;}
+  .socials{display:flex;gap:12px;flex-wrap:wrap;}
+  .social{width:38px;height:38px;border-radius:11px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);display:inline-flex;align-items:center;justify-content:center;color:#cfe3d6;transition:background .2s ease,color .2s ease,transform .2s ease;}
+  .social:hover{background:var(--gold);color:#2c2410;transform:translateY(-2px);}
+  .footer__meta{padding-top:16px;font-size:13px;color:#6f8f78;line-height:1.55;overflow-wrap:anywhere;}
+
+  /* desktop: dan hang ngang */
+  @media(min-width:769px){
+    .footer__inner{flex-direction:row;align-items:center;gap:22px;padding-top:32px;}
+    .footer__links{margin-left:auto;justify-content:flex-end;}
+    .foot-social-row{flex-direction:row;align-items:center;gap:22px;padding:22px 0 4px;}
+    .foot-contact__people{flex-direction:row;flex-wrap:wrap;gap:10px 22px;}
+    .socials{margin-left:auto;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    .hero__badge .dot,.leafdrift .lf{animation:none;}
+    html{scroll-behavior:auto;}
+  }
+  /* ===== 3D & tuong tac (chi tren may co chuot) ===== */
+  .rung__photo{transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .3s ease,border-color .3s ease;cursor:pointer;}
+  .rung:hover .rung__photo{transform:translateY(-9px) scale(1.07);box-shadow:0 18px 36px rgba(20,50,25,.34);border-color:var(--gold);}
+  .rung.pop .rung__photo{animation:rungpop .62s cubic-bezier(.34,1.56,.64,1);}
+  @keyframes rungpop{0%{transform:translateY(0) scale(1);}42%{transform:translateY(-12px) scale(1.18);}100%{transform:translateY(0) scale(1);}}
+  .tilt{position:relative;transform-style:preserve-3d;}
+  .tilt__sheen{position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;z-index:2;
+    background:radial-gradient(200px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.14),rgba(255,255,255,0) 55%);
+    transition:opacity .3s ease;}
+  .belief.tilt .tilt__sheen{background:radial-gradient(200px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.1),rgba(255,255,255,0) 55%);}
+  @media (hover:hover) and (pointer:fine){
+    .hero{perspective:1300px;}
+    .hero__grove{transform-origin:50% 100%;will-change:transform;transition:transform .5s cubic-bezier(.2,.7,.2,1);}
+    .hero .leafdrift,.hero__inner{will-change:transform;transition:transform .5s cubic-bezier(.2,.7,.2,1);}
+    .tilt{transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s ease;will-change:transform;}
+    .tilt:hover{box-shadow:var(--sh-lg);z-index:4;}
+    .tilt:hover .tilt__sheen{opacity:1;}
+    .magnet{will-change:transform;transition:transform .25s cubic-bezier(.2,.7,.2,1);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .rung:hover .rung__photo{transform:none;}
+  }
+  /* ===== Neumorphism (nut & the mem) ===== */
+  :root{
+    --neu-d:rgba(171,167,133,.55); --neu-l:rgba(255,255,255,.92);
+    --neu-up:6px 6px 14px var(--neu-d), -6px -6px 13px var(--neu-l);
+    --neu-up-sm:3px 3px 8px var(--neu-d), -3px -3px 7px var(--neu-l);
+    --neu-in:inset 3px 3px 7px var(--neu-d), inset -4px -4px 8px var(--neu-l);
+  }
+  .trio-card{background:var(--paper-2);border:none;box-shadow:var(--neu-up);}
+  .trio-card.tilt:hover{box-shadow:var(--neu-up), 0 22px 40px rgba(20,50,25,.12);}
+  .income{border:none;box-shadow:var(--neu-up), 0 30px 60px rgba(20,50,25,.10);}
+  .gauge{background:var(--paper-3);box-shadow:var(--neu-in);overflow:visible;}
+  .chip{background:var(--paper);border:none;box-shadow:var(--neu-up-sm);}
+  .gsplit span{background:var(--paper-2);border:none;box-shadow:var(--neu-up-sm);}
+  .job__chip{background:var(--paper-2);border:none;box-shadow:var(--neu-up-sm);}
+  .rung__photo{border-color:transparent;box-shadow:var(--neu-up);}
+  .jobfilter__btn{background:var(--paper);border:none;box-shadow:var(--neu-up-sm);}
+  .jobfilter__btn:hover{box-shadow:var(--neu-up);transform:translateY(-2px);}
+  .jobfilter__btn.is-active{background:var(--paper);color:var(--tre-shade);box-shadow:var(--neu-in);transform:none;}
+  .jobfilter__btn.is-active span{background:var(--paper-3);color:var(--tre-shade);}
+  @media (hover:hover) and (pointer:fine){
+    .trio-card.tilt,.belief.tilt{transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s ease;}
+  }
+  .head p.lead,.lead{text-wrap:balance;}
+  .hero__sub{text-wrap:balance;}
+  /* ===== Trinh sua noi dung + bo cuc ===== */
+  #edFab{position:fixed;right:18px;bottom:18px;z-index:9999;display:inline-flex;align-items:center;gap:8px;font-family:inherit;font-weight:700;font-size:14px;color:#fff;background:var(--tre-shade);border:none;border-radius:999px;padding:12px 18px;cursor:pointer;box-shadow:0 10px 26px rgba(20,50,25,.34);transition:transform .16s ease,box-shadow .16s ease;}
+  #edFab:hover{transform:translateY(-2px);box-shadow:0 16px 32px rgba(20,50,25,.4);}
+  #edBar{position:fixed;left:50%;top:14px;transform:translateX(-50%);z-index:9999;display:none;align-items:center;gap:9px;background:rgba(23,49,23,.96);color:#fff;padding:9px 10px 9px 12px;border-radius:14px;box-shadow:0 14px 34px rgba(0,0,0,.32);backdrop-filter:blur(8px);max-width:calc(100vw - 24px);}
+  #edBar .seg{display:inline-flex;background:rgba(255,255,255,.12);border-radius:10px;padding:3px;gap:2px;}
+  #edBar .seg button{font-family:inherit;font-weight:700;font-size:12.5px;border:none;background:transparent;color:#fff;padding:6px 11px;border-radius:8px;cursor:pointer;}
+  #edBar .seg button.on{background:var(--gold);color:#3a2708;}
+  #edBar .edbtn{font-family:inherit;font-weight:700;font-size:13px;border:none;border-radius:9px;padding:8px 12px;cursor:pointer;transition:transform .14s ease,filter .14s ease;}
+  #edBar .edbtn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  #edBar .edbtn--save{background:var(--gold);color:#3a2708;}
+  #edBar .edbtn--ghost{background:rgba(255,255,255,.16);color:#fff;}
+  body.edit-on #edFab{display:none;}
+  body.edit-on #edBar{display:flex;}
+  body.edit-on .reveal{opacity:1!important;transform:none!important;}
+  body.ed-text [data-ed]{outline:1.5px dashed rgba(47,176,168,.55);outline-offset:3px;border-radius:5px;cursor:text;}
+  body.ed-text [data-ed]:hover{outline-color:var(--brand);background:rgba(47,176,168,.07);}
+  body.ed-text [data-ed]:focus{outline:2px solid var(--brand);outline-offset:3px;background:rgba(47,176,168,.11);}
+  body.ed-text a{cursor:text;}
+  body.ed-layout [data-mv]{outline:1.5px dashed rgba(213,154,48,.6);outline-offset:4px;border-radius:10px;position:relative;}
+  body.ed-layout [data-mv]:hover{outline-color:var(--gold-deep);}
+  body.ed-layout a{cursor:default;}
+  .edctl{position:absolute;top:6px;right:6px;z-index:60;display:none;gap:4px;background:rgba(23,49,23,.94);padding:4px;border-radius:9px;box-shadow:0 6px 16px rgba(0,0,0,.3);}
+  body.ed-layout [data-mv] > .edctl{display:inline-flex;}
+  .edctl.edctl--sec{top:10px;right:14px;}
+  .edctl button{width:27px;height:27px;border:none;border-radius:6px;background:rgba(255,255,255,.18);color:#fff;font-size:13px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:1;}
+  .edctl button:hover{background:var(--gold);color:#3a2708;}
+  body:not(.edit-on) .hidden-block{display:none!important;}
+  body.edit-on .hidden-block{opacity:.34;position:relative;}
+  body.edit-on .hidden-block::after{content:"đang ẩn";position:absolute;top:8px;left:12px;font-size:11px;font-weight:800;color:#b4531f;background:#ffe9d0;padding:2px 8px;border-radius:6px;z-index:59;}
+  #edToast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(18px);z-index:10000;background:rgba(23,49,23,.97);color:#fff;font-weight:700;font-size:13.5px;padding:11px 18px;border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,.32);opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;max-width:calc(100vw - 32px);text-align:center;}
+  #edToast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  @media print{#edFab,#edBar,.edctl,#edToast{display:none!important;}}
+  @media (max-width:640px){#edBar{flex-wrap:wrap;justify-content:center;}}
+  /* ===== Vet la tre bay theo con tro ===== */
+  #leafTrail{position:fixed;inset:0;pointer-events:none;z-index:9990;overflow:hidden;}
+  .trail-leaf{position:fixed;left:0;top:0;pointer-events:none;will-change:transform,opacity;filter:drop-shadow(0 2px 3px rgba(20,50,25,.22));}
+  @media (prefers-reduced-motion: reduce){#leafTrail{display:none;}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<linearGradient id="grad-cane" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2c561c"/><stop offset=".16" stop-color="#4e8a2c"/><stop offset=".4" stop-color="#8cc24f"/><stop offset=".54" stop-color="#abdd6c"/><stop offset=".7" stop-color="#6fa838"/><stop offset="1" stop-color="#2b5019"/></linearGradient>
+<linearGradient id="grad-cane-dark" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1f3f14"/><stop offset=".45" stop-color="#3a6626"/><stop offset=".6" stop-color="#457831"/><stop offset="1" stop-color="#1c3a12"/></linearGradient>
+<linearGradient id="grad-shoot" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#93c94f"/><stop offset=".24" stop-color="#6aa834"/><stop offset=".46" stop-color="#56882a"/><stop offset=".63" stop-color="#5c7126"/><stop offset=".8" stop-color="#7c5a26"/><stop offset="1" stop-color="#48331a"/></linearGradient>
+<linearGradient id="grad-shoot-side" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffffff" stop-opacity=".18"/><stop offset=".42" stop-color="#ffffff" stop-opacity="0"/><stop offset="1" stop-color="#16300e" stop-opacity=".32"/></linearGradient>
+<!-- BUP MANG: non hinh, be nau chong lop chuyen xanh, chop cong, be kho duoi goc -->
+<symbol id="bud-real" viewBox="0 0 120 200" overflow="visible">
+  <g fill="#ccb885">
+    <path d="M22 190 C10 187 -2 191 -8 199 L34 195 C30 192 26 190 22 190Z" opacity=".9"/>
+    <path d="M98 191 C112 187 122 192 128 199 L84 196 C88 192 93 191 98 191Z" opacity=".85"/>
+    <path d="M44 197 C33 197 20 200 14 205 L60 203 C54 200 49 198 44 197Z" opacity=".55"/>
+  </g>
+  <path d="M40 192 C43 138 50 72 60 10 C70 72 77 138 80 192 Z" fill="url(#grad-shoot)"/>
+  <path d="M40.3 175.0 Q46.5 167.0 52.7 175.0 Q51.7 180.0 46.5 184.0 Q41.3 180.0 40.3 175.0 Z" fill="#544420" stroke="#33280f" stroke-width=".55" stroke-opacity=".5"/>
+<path d="M53.8 175.0 Q60.0 167.0 66.2 175.0 Q65.2 180.0 60.0 184.0 Q54.8 180.0 53.8 175.0 Z" fill="#544420" stroke="#33280f" stroke-width=".55" stroke-opacity=".5"/>
+<path d="M67.3 175.0 Q73.5 167.0 79.7 175.0 Q78.7 180.0 73.5 184.0 Q68.3 180.0 67.3 175.0 Z" fill="#544420" stroke="#33280f" stroke-width=".55" stroke-opacity=".5"/>
+<path d="M43.0 159.0 Q49.2 151.0 55.4 159.0 Q54.4 164.0 49.2 168.0 Q44.0 164.0 43.0 159.0 Z" fill="#584b21" stroke="#33280f" stroke-width=".55" stroke-opacity=".5"/>
+<path d="M56.5 159.0 Q62.7 151.0 68.9 159.0 Q67.9 164.0 62.7 168.0 Q57.5 164.0 56.5 159.0 Z" fill="#584b21" stroke="#33280f" stroke-width=".55" stroke-opacity=".5"/>
+<path d="M70.0 159.0 Q76.2 151.0 82.4 159.0 Q81.4 164.0 76.2 168.0 Q71.0 164.0 70.0 159.0 Z" fill="#584b21" stroke="#33280f" stroke-width=".55" stroke-opacity=".5"/>
+<path d="M47.0 143.0 Q53.2 135.0 59.5 143.0 Q58.5 148.0 53.2 152.0 Q48.0 148.0 47.0 143.0 Z" fill="#5b5223" stroke="#33280f" stroke-width=".55" stroke-opacity=".5"/>
+<path d="M60.5 143.0 Q66.8 135.0 73.0 143.0 Q72.0 148.0 66.8 152.0 Q61.5 148.0 60.5 143.0 Z" fill="#5b5223" stroke="#33280f" stroke-width=".55" stroke-opacity=".5"/>
+<path d="M49.7 127.0 Q56.0 119.0 62.2 127.0 Q61.2 132.0 56.0 136.0 Q50.7 132.0 49.7 127.0 Z" fill="#5c5f25" stroke="#33280f" stroke-width=".55" stroke-opacity=".5"/>
+<path d="M63.2 127.0 Q69.5 119.0 75.7 127.0 Q74.7 132.0 69.5 136.0 Q64.2 132.0 63.2 127.0 Z" fill="#5c5f25" stroke="#33280f" stroke-width=".55" stroke-opacity=".5"/>
+<path d="M47.0 111.0 Q53.2 103.0 59.5 111.0 Q58.5 116.0 53.2 120.0 Q48.0 116.0 47.0 111.0 Z" fill="#5e6d26" stroke="#33280f" stroke-width=".55" stroke-opacity=".5"/>
+<path d="M60.5 111.0 Q66.8 103.0 73.0 111.0 Q72.0 116.0 66.8 120.0 Q61.5 116.0 60.5 111.0 Z" fill="#5e6d26" stroke="#33280f" stroke-width=".55" stroke-opacity=".5"/>
+<path d="M49.7 95.0 Q56.0 87.0 62.2 95.0 Q61.2 100.0 56.0 104.0 Q50.7 100.0 49.7 95.0 Z" fill="#5f7b28" stroke="#33280f" stroke-width=".55" stroke-opacity=".5"/>
+<path d="M63.2 95.0 Q69.5 87.0 75.7 95.0 Q74.7 100.0 69.5 104.0 Q64.2 100.0 63.2 95.0 Z" fill="#5f7b28" stroke="#33280f" stroke-width=".55" stroke-opacity=".5"/>
+<path d="M53.8 79.0 Q60.0 71.0 66.2 79.0 Q65.2 84.0 60.0 88.0 Q54.8 84.0 53.8 79.0 Z" fill="#5f892b" stroke="#33280f" stroke-width=".55" stroke-opacity=".5"/>
+<path d="M56.5 63.0 Q62.7 55.0 68.9 63.0 Q67.9 68.0 62.7 72.0 Q57.5 68.0 56.5 63.0 Z" fill="#5f982e" stroke="#33280f" stroke-width=".55" stroke-opacity=".5"/>
+<path d="M53.8 47.0 Q60.0 39.0 66.2 47.0 Q65.2 52.0 60.0 56.0 Q54.8 52.0 53.8 47.0 Z" fill="#66a734" stroke="#33280f" stroke-width=".55" stroke-opacity=".5"/>
+<path d="M56.5 33.0 Q62.7 25.0 68.9 33.0 Q67.9 38.0 62.7 42.0 Q57.5 38.0 56.5 33.0 Z" fill="#73b33d" stroke="#33280f" stroke-width=".55" stroke-opacity=".5"/>
+  <path d="M40 192 C43 138 50 72 60 10 C70 72 77 138 80 192 Z" fill="url(#grad-shoot-side)"/>
+  <path d="M60 12 C63 26 62 40 58 52 C56 38 56 24 60 12 Z" fill="#3f7a24"/>
+  <path d="M60 16 C54 7 50 -3 51 -12 C58 -5 62 4 61 16 Z" fill="#6aa63a"/>
+  <path d="M60 16 C66 7 70 -3 69 -12 C62 -5 58 4 59 16 Z" fill="#82bb45" opacity=".92"/>
+  <path d="M60 20 C55 10 52 1 54 -7 C60 0 62 10 61 20 Z" fill="#4f8a2a" opacity=".8"/>
+  <ellipse cx="69" cy="70" rx="2.1" ry="2.9" fill="#eafae6" opacity=".8"/>
+</symbol>
+<!-- CAY TRE: than bong chia dot, vong mat phinh + vien nau, cum la manh -->
+<symbol id="cane-real" viewBox="0 0 200 400" overflow="visible">
+  <!-- than tre -->
+  <path d="M86 400 C85 300 88 180 90 90 C90 88 92 86 100 86 C108 86 110 88 110 90 C112 180 115 300 114 400 Z" fill="url(#grad-cane)"/>
+  <!-- highlight doc -->
+  <path d="M93 92 C91 200 91 320 92 400 L97 400 C96 320 96 200 97 92 Z" fill="#f0ffd6" opacity=".26"/>
+  <!-- bong doc -->
+  <path d="M106 92 C107 200 108 320 108 400 L112 400 C111 320 110 200 110 92 Z" fill="#153010" opacity=".2"/>
+  <!-- cac dot: bong -> vong phinh -> highlight -> vien nau -->
+  <g>
+    <ellipse cx="100" cy="350" rx="14" ry="3.2" fill="#173011" opacity=".26"/>
+    <ellipse cx="100" cy="339" rx="15" ry="3.4" fill="#dbecc2" opacity=".55"/>
+    <ellipse cx="100" cy="344" rx="17" ry="4.6" fill="#9ccb5f"/>
+    <ellipse cx="100" cy="343" rx="17" ry="2.5" fill="#c6e28c" opacity=".8"/>
+    <ellipse cx="100" cy="346.5" rx="17" ry="2.1" fill="#7c5b2b" opacity=".72"/>
+    <ellipse cx="100" cy="348" rx="16" ry="1" fill="#3f2f14" opacity=".5"/>
+
+    <ellipse cx="100" cy="292" rx="13.4" ry="3.1" fill="#173011" opacity=".26"/>
+    <ellipse cx="100" cy="281" rx="14.4" ry="3.3" fill="#dbecc2" opacity=".55"/>
+    <ellipse cx="100" cy="286" rx="16.4" ry="4.4" fill="#9ccb5f"/>
+    <ellipse cx="100" cy="285" rx="16.4" ry="2.4" fill="#c6e28c" opacity=".8"/>
+    <ellipse cx="100" cy="288.5" rx="16.4" ry="2" fill="#7c5b2b" opacity=".72"/>
+    <ellipse cx="100" cy="290" rx="15.4" ry="1" fill="#3f2f14" opacity=".5"/>
+
+    <ellipse cx="100" cy="230" rx="12.8" ry="3" fill="#173011" opacity=".26"/>
+    <ellipse cx="100" cy="219" rx="13.8" ry="3.2" fill="#dbecc2" opacity=".55"/>
+    <ellipse cx="100" cy="224" rx="15.8" ry="4.2" fill="#9ccb5f"/>
+    <ellipse cx="100" cy="223" rx="15.8" ry="2.3" fill="#c6e28c" opacity=".8"/>
+    <ellipse cx="100" cy="226.5" rx="15.8" ry="1.9" fill="#7c5b2b" opacity=".72"/>
+    <ellipse cx="100" cy="228" rx="14.8" ry="1" fill="#3f2f14" opacity=".5"/>
+
+    <ellipse cx="100" cy="164" rx="12" ry="2.9" fill="#173011" opacity=".26"/>
+    <ellipse cx="100" cy="153" rx="13" ry="3.1" fill="#dbecc2" opacity=".55"/>
+    <ellipse cx="100" cy="158" rx="15" ry="4" fill="#9ccb5f"/>
+    <ellipse cx="100" cy="157" rx="15" ry="2.2" fill="#c6e28c" opacity=".8"/>
+    <ellipse cx="100" cy="160.5" rx="15" ry="1.8" fill="#7c5b2b" opacity=".72"/>
+    <ellipse cx="100" cy="162" rx="14" ry="1" fill="#3f2f14" opacity=".5"/>
+
+    <ellipse cx="100" cy="102" rx="11" ry="2.7" fill="#173011" opacity=".26"/>
+    <ellipse cx="100" cy="91" rx="12" ry="2.9" fill="#dbecc2" opacity=".55"/>
+    <ellipse cx="100" cy="96" rx="14" ry="3.7" fill="#9ccb5f"/>
+    <ellipse cx="100" cy="95" rx="14" ry="2" fill="#c6e28c" opacity=".8"/>
+    <ellipse cx="100" cy="98.5" rx="14" ry="1.7" fill="#7c5b2b" opacity=".72"/>
+    <ellipse cx="100" cy="100" rx="13" ry="1" fill="#3f2f14" opacity=".5"/>
+  </g>
+  <!-- canh + cum la ngon (dot tren) -->
+  <g fill="none" stroke="#4f882c" stroke-width="2.4" stroke-linecap="round">
+    <path d="M93 96 C76 86 58 80 42 79"/>
+    <path d="M107 96 C124 86 142 82 158 82"/>
+    <path d="M100 88 C100 72 100 58 100 46"/>
+    <path d="M92 158 C78 150 66 147 54 148"/>
+    <path d="M108 158 C122 150 134 147 146 148"/>
+  </g>
+  <g fill="#5c9e33">
+    <path d="M42 79 C30 73 20 74 12 80 C22 85 36 85 42 79 Z"/>
+    <path d="M50 76 C40 69 30 70 22 76 C31 82 45 82 50 76 Z" opacity=".9"/>
+    <path d="M158 82 C170 76 180 77 188 83 C178 88 164 88 158 82 Z"/>
+    <path d="M150 79 C160 72 170 73 178 79 C169 85 155 85 150 79 Z" opacity=".9"/>
+    <path d="M100 46 C93 34 91 22 95 12 C103 22 105 36 100 46 Z"/>
+    <path d="M100 46 C107 34 109 22 105 12 C97 22 95 36 100 46 Z" opacity=".9"/>
+    <path d="M100 50 C89 40 82 28 82 16 C94 26 100 38 100 50 Z" opacity=".8"/>
+    <path d="M100 50 C111 40 118 28 118 16 C106 26 100 38 100 50 Z" opacity=".8"/>
+    <path d="M54 148 C44 143 35 144 28 149 C37 154 49 154 54 148 Z" opacity=".95"/>
+    <path d="M146 148 C156 143 165 144 172 149 C163 154 151 154 146 148 Z" opacity=".95"/>
+  </g>
+</symbol>
+<symbol id="ic-leaf" viewBox="0 0 44 16"><path d="M0 8 C12 -3 32 -3 44 8 C32 13 12 13 0 8 Z" fill="currentColor"/></symbol>
+<symbol id="ic-shoot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s5 4 5 9a5 5 0 0 1-10 0c0-3 5-9 5-9z"/></symbol>
+<symbol id="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></symbol>
+<symbol id="ic-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+<symbol id="ic-route" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-6 4 4 6-8"/><path d="M14 7h6v6"/></symbol>
+<symbol id="ic-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></symbol>
+<symbol id="ic-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/></symbol>
+<symbol id="ic-zalo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-9 8 9.3 9.3 0 01-4-.9L3 20l1.4-4A8.4 8.4 0 0112 3.5a8.4 8.4 0 019 8z"/></symbol>
+</defs></svg>
+
+<header>
+<div class="nav" id="navBar">
+<a href="homepage.html" class="brand" aria-label="Meetup Travel"><img class="brand-logo" src="data:image/png;base64,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" alt="Meetup Travel"></a>
+<nav class="nav__links">
+<a href="homepage.html#chuyen">Câu chuyện</a>
+<a href="#vi-tri">Vị trí tuyển dụng</a>
+<a href="#quyen-loi">Phúc lợi</a>
+</nav>
+<a href="#vi-tri" class="btn btn--gold btn--sm">Ứng tuyển</a>
+<button class="nav__menu" aria-label="Mở menu" id="menuBtn">☰</button>
+<div class="progress" id="progress"></div>
+</div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="top">
+<div class="hero__photo" aria-hidden="true"></div>
+<div class="leafdrift" aria-hidden="true">
+<svg class="lf" style="top:18%;left:20%;width:26px;color:#a9c793;animation-delay:1s" viewBox="0 0 44 16"><use href="#ic-leaf"/></svg>
+<svg class="lf" style="top:32%;left:38%;width:20px;color:#78b238;animation-delay:3.4s" viewBox="0 0 44 16"><use href="#ic-leaf"/></svg>
+<svg class="lf" style="top:24%;left:60%;width:30px;color:#8fbb52;animation-delay:5.2s" viewBox="0 0 44 16"><use href="#ic-leaf"/></svg>
+</div>
+<div class="hero__inner">
+<span class="hero__badge"><span class="dot"></span>Đang tuyển · Đội Điều hành · Hà Nội</span>
+<h1>Tổng hợp vị trí tuyển dụng <span class="accent">Điều hành</span></h1>
+<p class="hero__sub">Nghề điều hành như búp măng, phải len qua đất cứng rồi mới vươn thành tre. Nhưng bạn không mọc một mình, luôn có mạng lưới đối tác, quy trình và đội hỗ trợ 24/7 đứng sau lưng.</p>
+<div class="hero__ctas">
+<a href="#vi-tri" class="btn btn--gold">Xem 2 vị trí đang tuyển</a>
+<a href="#quyen-loi" class="btn btn--onDark">Phúc lợi &amp; thu nhập</a>
+</div>
+<div class="hero__trust"><span class="trustbadge"><span class="tb-score">4.9</span><span class="tb-sep"></span><span class="tb-col"><span class="tb-stars">★★★★★</span><span class="tb-src">trên <b>Tripadvisor</b></span></span></span><span class="tb-note">khách quốc tế khắp năm châu</span></div>
+</div>
+<svg class="hero__grove" viewBox="0 0 1440 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+  <defs>
+    <linearGradient id="hg-fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0e2c15" stop-opacity="0"/><stop offset="1" stop-color="#0c2713"/></linearGradient>
+  </defs>
+  <!-- đồi mờ xa -->
+  <path d="M0 200 Q360 160 720 190 T1440 180 V300 H0Z" fill="#1b4a26" opacity=".8"/>
+  <path d="M0 236 Q380 200 760 224 T1440 220 V300 H0Z" fill="#164021" opacity=".9"/>
+  <!-- lũy tre cao phía sau (trái) -->
+  <g class="gstalk"><use href="#cane-real" x="10" y="-10" width="150" height="320"/></g>
+  <g class="gstalk" style="animation-delay:.6s"><use href="#cane-real" x="110" y="-50" width="182" height="350"/></g>
+  <g class="gstalk" style="animation-delay:1.2s;opacity:.85"><use href="#cane-real" x="-52" y="30" width="130" height="280"/></g>
+  <g class="gstalk" style="animation-delay:.9s;opacity:.9"><use href="#cane-real" x="250" y="10" width="120" height="300"/></g>
+  <!-- lũy tre cao phía sau (phải) -->
+  <g class="gstalk" style="animation-delay:.3s"><use href="#cane-real" x="1280" y="-30" width="172" height="340"/></g>
+  <g class="gstalk" style="animation-delay:1s"><use href="#cane-real" x="1176" y="10" width="140" height="300"/></g>
+  <g class="gstalk" style="animation-delay:1.5s;opacity:.85"><use href="#cane-real" x="1372" y="30" width="128" height="285"/></g>
+  <g class="gstalk" style="animation-delay:.5s;opacity:.9"><use href="#cane-real" x="1090" y="20" width="118" height="295"/></g>
+  <!-- lớp mờ chân, tạo chiều sâu -->
+  <rect x="0" y="150" width="1440" height="150" fill="url(#hg-fade)"/>
+  <!-- CỤM BÚP MĂNG mọc ngay dưới gốc tre (tiền cảnh, nét rõ) -->
+  <g>
+    <use href="#bud-real" x="150" y="120" width="108" height="192"/>
+    <use href="#bud-real" x="92" y="150" width="94" height="168"/>
+    <use href="#bud-real" x="232" y="176" width="78" height="140"/>
+    <use href="#bud-real" x="300" y="204" width="58" height="104"/>
+  </g>
+  <g>
+    <use href="#bud-real" x="1150" y="126" width="104" height="186"/>
+    <use href="#bud-real" x="1214" y="158" width="88" height="158"/>
+    <use href="#bud-real" x="1084" y="184" width="72" height="130"/>
+    <use href="#bud-real" x="1280" y="208" width="54" height="100"/>
+  </g>
+</svg>
+</section>
+
+<div class="divider divider--field" aria-hidden="true"><svg viewBox="0 0 1440 86" preserveAspectRatio="none"><path d="M0 40 Q360 8 720 34 T1440 30 V86 H0 Z" fill="#eef0df"/><path d="M0 56 Q380 28 760 50 T1440 46 V86 H0 Z" fill="#f0efe1"/></svg></div>
+
+
+<!-- ===== JOBS ===== -->
+<section class="section" id="vi-tri" style="background:var(--paper);padding-top:52px;padding-bottom:70px">
+<div class="wrap">
+<div class="head reveal">
+<span class="hand">bén rễ</span>
+<span class="eyebrow">Gia nhập đội ngũ</span>
+<h2>4 vị trí Điều hành đang mở</h2>
+<p class="lead">Bấm vào từng vị trí để xem đầy đủ mô tả công việc, yêu cầu, quyền lợi và cách ứng tuyển.</p>
+</div>
+<div class="jobfilter reveal" role="tablist" aria-label="Lọc theo hình thức">
+<button class="jobfilter__btn is-active" data-filter="all">Tất cả <span>4</span></button>
+<button class="jobfilter__btn" data-filter="fulltime">Toàn thời gian <span>2</span></button>
+<button class="jobfilter__btn" data-filter="intern">Thực tập <span>2</span></button>
+</div>
+<div class="joblist" id="joblist">
+
+<details class="job reveal" data-type="fulltime" id="junior-dh-tour">
+<summary class="job__sum">
+<div class="job__head"><div class="job__titles"><span class="job__dept">Toàn thời gian</span><h3>Nhân viên Điều hành Tour (Tiếng Anh)</h3></div><span class="job__toggle" aria-hidden="true">+</span></div>
+<div class="job__chips"><span class="job__chip job__chip--pay">💰 11–15 triệu + thưởng hiệu suất</span><span class="job__chip">🧭 Ưu tiên ≥1 năm kinh nghiệm ĐH</span><span class="job__chip">🗣️ Tiếng Anh tự tin</span><span class="job__chip">📍 Hà Nội</span></div>
+<p class="job__summary">Bạn nhận booking đã chốt từ đội Sales, rồi lo trọn vẹn dịch vụ cho khách quốc tế và giữ mối với mạng lưới đối tác. Khi đã quen việc, bạn còn được đề xuất cải tiến sản phẩm và quy trình vận hành theo cách của mình.</p>
+<p class="job__foot">Xem chi tiết →</p>
+</summary>
+<div class="job__detail">
+<div class="job__seg"><h4><svg><use href="#ic-check"/></svg>Mô tả công việc</h4>
+<h5 class="job__subh">Vận hành tour</h5>
+<ul class="job__list"><li>Tiếp nhận booking đã chốt từ đội Sales, rà soát thông tin khách.</li><li>Sắp xếp và điều phối dịch vụ: lưu trú, di chuyển, vé máy bay, nhà hàng, điểm tham quan và các hạng mục khác của tour.</li><li>Theo dõi tour trong suốt hành trình, đảm bảo dịch vụ đúng như kế hoạch và xử lý sự cố kịp thời.</li></ul>
+<h5 class="job__subh">Quản lý đối tác</h5>
+<ul class="job__list"><li>Xây dựng và duy trì quan hệ với khách sạn, đơn vị vận chuyển, nhà hàng và các đối tác du lịch khác.</li><li>Đàm phán chất lượng dịch vụ, giá cả và điều khoản thương mại để tối ưu vận hành.</li></ul>
+<h5 class="job__subh">Cải tiến sản phẩm &amp; quy trình</h5>
+<ul class="job__list"><li>Hỗ trợ phát triển và cập nhật sản phẩm tour cho thị trường quốc tế.</li><li>Đề xuất cải tiến quy trình vận hành, chất lượng dịch vụ và trải nghiệm khách hàng.</li></ul></div>
+<div class="job__seg"><h4><svg><use href="#ic-user"/></svg>Yêu cầu ứng viên</h4><ul class="job__list"><li>Tối thiểu 1 năm kinh nghiệm ở vị trí Junior Tour Operation. Ưu tiên ứng viên từng làm tại công ty inbound.</li><li>Hiểu biết tốt về dịch vụ du lịch Việt Nam và vận hành tour inbound.</li><li>Giao tiếp tiếng Anh tự tin; biết thêm ngoại ngữ khác là lợi thế.</li><li>Kỹ năng giao tiếp, phối hợp, đàm phán và giải quyết vấn đề tốt.</li><li>Thành thạo Microsoft Office, đặc biệt là Excel và Google Sheets.</li></ul>
+<h5 class="job__subh">Tố chất phù hợp</h5><ul class="job__list"><li>Trách nhiệm, tỉ mỉ và có tổ chức.</li><li>Bình tĩnh xử lý sự cố, chịu được áp lực công việc.</li><li>Đam mê du lịch, muốn gắn bó lâu dài với ngành.</li><li>Chủ động, phối hợp tốt và luôn muốn cải thiện chất lượng vận hành.</li></ul></div>
+<div class="job__seg"><h4><svg><use href="#ic-shoot"/></svg>Quyền lợi</h4><ul class="job__list"><li>Lương cạnh tranh <b>11.000.000 – 15.000.000đ/tháng</b>, theo kinh nghiệm và năng lực.</li><li>Thưởng theo hiệu quả vận hành và mức độ hài lòng của khách hàng.</li><li>Thưởng lễ, Tết; BHXH đầy đủ theo quy định; BH sức khoẻ PVI sau 1 năm làm chính thức.</li><li>Chính sách lương và phụ cấp theo thâm niên cho nhân sự gắn bó lâu dài.</li><li>Soft Girl Days dành riêng cho nhân sự nữ toàn thời gian.</li><li>Cơ chế đánh giá KPI minh bạch, gắn với năng lực và hiệu suất thực tế.</li><li>Tham gia các chuyến khảo sát sản phẩm, trải nghiệm dịch vụ do công ty tài trợ.</li><li>Đào tạo liên tục về vận hành inbound, quản lý đối tác và dịch vụ khách hàng.</li></ul></div>
+<div class="job__seg job__seg--full"><h4><svg><use href="#ic-pin"/></svg>Thời gian &amp; địa điểm làm việc</h4>
+<p class="job__meta-line"><b>Thời gian:</b> Làm việc theo ca xoay, 2 ngày nghỉ linh hoạt/tuần. Các khung ca: 06:00–12:00, 08:30–18:00, 11:00–19:00, 18:00–24:00. Ca sáng sớm và ca tối làm việc từ xa (remote).</p>
+<ul class="job__list job__list--loc"><li>Meetup Hà Nội: Tầng 16, Sảnh Văn phòng, Chung cư C1 Thành Công, Phường Giảng Võ, Hà Nội.</li></ul></div>
+<div class="hireflow"><span class="hireflow__lab">☑ Quy trình ứng tuyển</span><div class="hireflow__grid"><div class="round"><b>Vòng 1</b><p>Gửi CV về hr@meetup.travel với tiêu đề đúng mẫu bên dưới.</p></div><div class="round"><b>Vòng 2</b><p>Phỏng vấn sơ bộ cùng HR.</p></div><div class="round"><b>Vòng 3</b><p>Bài test năng lực ngắn, gửi qua email.</p></div><div class="round"><b>Vòng 4</b><p>Phỏng vấn cùng Operations Leader tại văn phòng Meetup Hà Nội.</p></div></div></div>
+<div class="job__apply"><div><span class="job__apply-lab">✉ Cách ứng tuyển</span><p class="job__apply-line">Gửi CV (kèm portfolio nếu có) về <a href="mailto:hr@meetup.travel">hr@meetup.travel</a> với tiêu đề:</p><span class="job__apply-code">[JUNIOR TOUR OPERATOR] + Họ và tên + SĐT</span></div><a class="btn btn--gold btn--sm" href="mailto:hr@meetup.travel?subject=%5BJUNIOR%20TOUR%20OPERATOR%5D%20Ho%20ten%20-%20SDT">Gửi CV ngay</a></div>
+</div>
+</details>
+
+<details class="job reveal" data-type="fulltime" id="junior-dh-tour-fr">
+<summary class="job__sum">
+<div class="job__head"><div class="job__titles"><span class="job__dept">Toàn thời gian</span><h3>Nhân viên Điều hành Tour (Tiếng Pháp)</h3></div><span class="job__toggle" aria-hidden="true">+</span></div>
+<div class="job__chips"><span class="job__chip job__chip--pay">💰 11–15 triệu + thưởng hiệu suất</span><span class="job__chip">🧭 Ưu tiên ≥1 năm kinh nghiệm ĐH</span><span class="job__chip">🗣️ Tiếng Pháp tự tin</span><span class="job__chip">📍 Hà Nội</span></div>
+<p class="job__summary">Bạn nhận booking đã chốt từ đội Sales, rồi lo trọn vẹn dịch vụ cho khách quốc tế và giữ mối với mạng lưới đối tác. Khi đã quen việc, bạn còn được đề xuất cải tiến sản phẩm và quy trình vận hành theo cách của mình.</p>
+<p class="job__foot">Xem chi tiết →</p>
+</summary>
+<div class="job__detail">
+<div class="job__seg"><h4><svg><use href="#ic-check"/></svg>Mô tả công việc</h4>
+<h5 class="job__subh">Vận hành tour</h5>
+<ul class="job__list"><li>Tiếp nhận booking đã chốt từ đội Sales, rà soát thông tin khách.</li><li>Sắp xếp và điều phối dịch vụ: lưu trú, di chuyển, vé máy bay, nhà hàng, điểm tham quan và các hạng mục khác của tour.</li><li>Theo dõi tour trong suốt hành trình, đảm bảo dịch vụ đúng như kế hoạch và xử lý sự cố kịp thời.</li></ul>
+<h5 class="job__subh">Quản lý đối tác</h5>
+<ul class="job__list"><li>Xây dựng và duy trì quan hệ với khách sạn, đơn vị vận chuyển, nhà hàng và các đối tác du lịch khác.</li><li>Đàm phán chất lượng dịch vụ, giá cả và điều khoản thương mại để tối ưu vận hành.</li></ul>
+<h5 class="job__subh">Cải tiến sản phẩm &amp; quy trình</h5>
+<ul class="job__list"><li>Hỗ trợ phát triển và cập nhật sản phẩm tour cho thị trường quốc tế.</li><li>Đề xuất cải tiến quy trình vận hành, chất lượng dịch vụ và trải nghiệm khách hàng.</li></ul></div>
+<div class="job__seg"><h4><svg><use href="#ic-user"/></svg>Yêu cầu ứng viên</h4><ul class="job__list"><li>Tối thiểu 1 năm kinh nghiệm ở vị trí Junior Tour Operation. Ưu tiên ứng viên từng làm tại công ty inbound.</li><li>Hiểu biết tốt về dịch vụ du lịch Việt Nam và vận hành tour inbound.</li><li>Giao tiếp tiếng Pháp tự tin; biết thêm ngoại ngữ khác là lợi thế.</li><li>Kỹ năng giao tiếp, phối hợp, đàm phán và giải quyết vấn đề tốt.</li><li>Thành thạo Microsoft Office, đặc biệt là Excel và Google Sheets.</li></ul>
+<h5 class="job__subh">Tố chất phù hợp</h5><ul class="job__list"><li>Trách nhiệm, tỉ mỉ và có tổ chức.</li><li>Bình tĩnh xử lý sự cố, chịu được áp lực công việc.</li><li>Đam mê du lịch, muốn gắn bó lâu dài với ngành.</li><li>Chủ động, phối hợp tốt và luôn muốn cải thiện chất lượng vận hành.</li></ul></div>
+<div class="job__seg"><h4><svg><use href="#ic-shoot"/></svg>Quyền lợi</h4><ul class="job__list"><li>Lương cạnh tranh <b>11.000.000 – 15.000.000đ/tháng</b>, theo kinh nghiệm và năng lực.</li><li>Thưởng theo hiệu quả vận hành và mức độ hài lòng của khách hàng.</li><li>Thưởng lễ, Tết; BHXH đầy đủ theo quy định; BH sức khoẻ PVI sau 1 năm làm chính thức.</li><li>Chính sách lương và phụ cấp theo thâm niên cho nhân sự gắn bó lâu dài.</li><li>Soft Girl Days dành riêng cho nhân sự nữ toàn thời gian.</li><li>Cơ chế đánh giá KPI minh bạch, gắn với năng lực và hiệu suất thực tế.</li><li>Tham gia các chuyến khảo sát sản phẩm, trải nghiệm dịch vụ do công ty tài trợ.</li><li>Đào tạo liên tục về vận hành inbound, quản lý đối tác và dịch vụ khách hàng.</li></ul></div>
+<div class="job__seg job__seg--full"><h4><svg><use href="#ic-pin"/></svg>Thời gian &amp; địa điểm làm việc</h4>
+<p class="job__meta-line"><b>Thời gian:</b> Làm việc theo ca xoay, 2 ngày nghỉ linh hoạt/tuần. Các khung ca: 06:00–12:00, 08:30–18:00, 11:00–19:00, 18:00–24:00. Ca sáng sớm và ca tối làm việc từ xa (remote).</p>
+<ul class="job__list job__list--loc"><li>Meetup Hà Nội: Tầng 16, Sảnh Văn phòng, Chung cư C1 Thành Công, Phường Giảng Võ, Hà Nội.</li></ul></div>
+<div class="hireflow"><span class="hireflow__lab">☑ Quy trình ứng tuyển</span><div class="hireflow__grid"><div class="round"><b>Vòng 1</b><p>Gửi CV về hr@meetup.travel với tiêu đề đúng mẫu bên dưới.</p></div><div class="round"><b>Vòng 2</b><p>Phỏng vấn sơ bộ cùng HR.</p></div><div class="round"><b>Vòng 3</b><p>Bài test năng lực ngắn, gửi qua email.</p></div><div class="round"><b>Vòng 4</b><p>Phỏng vấn cùng Operations Leader tại văn phòng Meetup Hà Nội.</p></div></div></div>
+<div class="job__apply"><div><span class="job__apply-lab">✉ Cách ứng tuyển</span><p class="job__apply-line">Gửi CV (kèm portfolio nếu có) về <a href="mailto:hr@meetup.travel">hr@meetup.travel</a> với tiêu đề:</p><span class="job__apply-code">[JUNIOR TOUR OPERATOR FR] + Họ và tên + SĐT</span></div><a class="btn btn--gold btn--sm" href="mailto:hr@meetup.travel?subject=%5BJUNIOR%20TOUR%20OPERATOR%20FR%5D%20Ho%20ten%20-%20SDT">Gửi CV ngay</a></div>
+</div>
+</details>
+
+<details class="job reveal" data-type="intern" id="intern-dh-tour">
+<summary class="job__sum">
+<div class="job__head"><div class="job__titles"><span class="job__dept">Thực tập</span><h3>Thực tập sinh Điều hành Tour (Tiếng Anh)</h3></div><span class="job__toggle" aria-hidden="true">+</span></div>
+<div class="job__chips"><span class="job__chip job__chip--pay">💰 Hỗ trợ 3 triệu/tháng</span><span class="job__chip">🎂 2000–2004</span><span class="job__chip">🗣️ Tiếng Anh tốt</span><span class="job__chip">📍 Hà Nội</span></div>
+<p class="job__summary">Bạn sẽ đồng hành cùng khách quốc tế suốt hành trình, từ lúc xác nhận booking cho tới khi chuyến đi khép lại. Vừa học vận hành tour ngay trên việc thật, bạn vừa có cơ hội lên chính thức sau kỳ thực tập.</p>
+<p class="job__foot">Xem chi tiết →</p>
+</summary>
+<div class="job__detail">
+<div class="job__seg"><h4><svg><use href="#ic-shoot"/></svg>Vì sao bắt đầu tại Meetup</h4><ul class="job__list"><li>Được đào tạo thực tế về vận hành tour inbound và chăm sóc khách quốc tế.</li><li>Dùng tiếng Anh mỗi ngày khi hỗ trợ khách.</li><li>Trải nghiệm quy trình vận hành thật của một công ty lữ hành quốc tế.</li><li>Cơ hội trở thành nhân viên chính thức sau kỳ thực tập.</li></ul></div>
+<div class="job__seg"><h4><svg><use href="#ic-check"/></svg>Mô tả công việc</h4><ul class="job__list"><li>Hỗ trợ và đồng hành cùng khách quốc tế suốt hành trình, từ khi xác nhận booking tới chăm sóc sau chuyến đi.</li><li>Chủ động liên hệ khách qua chat hoặc điện thoại để hỗ trợ và xử lý vấn đề phát sinh một cách chuyên nghiệp, tận tâm.</li><li>Thu thập phản hồi khách sau mỗi chuyến, tổng hợp báo cáo và đề xuất cải thiện trải nghiệm.</li><li>Phối hợp với Sales, Điều hành và Marketing để mang lại trải nghiệm liền mạch cho khách.</li><li>Quản lý thông tin khách hàng, hỗ trợ theo dõi CRM và chăm sóc khách thân thiết.</li></ul></div>
+<div class="job__seg"><h4><svg><use href="#ic-user"/></svg>Yêu cầu ứng viên</h4><ul class="job__list"><li>Sinh năm 2000 – 2004.</li><li>Tự tin giao tiếp tiếng Anh với khách quốc tế, nghe hiểu tốt.</li><li>Tư duy đặt khách hàng lên hàng đầu, yêu thích mang lại dịch vụ tốt.</li><li>Ưu tiên sinh viên/mới tốt nghiệp ngành Du lịch, Khách sạn, Quản trị lữ hành hoặc ngành liên quan.</li></ul>
+<h5 class="job__subh">Tố chất phù hợp</h5><ul class="job__list"><li>Trách nhiệm, tỉ mỉ và có tổ chức.</li><li>Bình tĩnh xử lý tình huống bất ngờ, chịu được áp lực.</li><li>Đam mê du lịch, muốn gắn bó lâu dài với ngành.</li><li>Chủ động, phối hợp tốt và luôn muốn cải thiện chất lượng vận hành.</li></ul></div>
+<div class="job__seg"><h4><svg><use href="#ic-route"/></svg>Lộ trình &amp; hỗ trợ</h4>
+<p class="job__ladder">Thực tập → Điều hành viên (Junior) → Điều hành viên (Middle) → Điều hành cao cấp (Senior) → Trưởng nhóm (Leader)</p>
+<p class="job__meta-line"><b>Hỗ trợ:</b> 3.000.000đ/tháng ngay từ ngày đầu. Cơ hội lên nhân viên chính thức sau kỳ thực tập và thử việc, tuỳ năng lực.</p></div>
+<div class="job__seg"><h4><svg><use href="#ic-pin"/></svg>Thời gian &amp; địa điểm</h4>
+<p class="job__meta-line"><b>Thời gian:</b> Làm việc theo ca xoay, 2 ngày nghỉ linh hoạt/tuần. Các khung ca: 06:00–12:00, 08:30–18:00, 11:00–19:00, 18:00–24:00. Ca sáng sớm và ca tối làm việc từ xa.</p>
+<p class="job__meta-line"><b>Địa điểm:</b></p><ul class="job__list job__list--loc"><li>Meetup Hà Nội: Tầng 16, Sảnh Văn phòng, Chung cư C1 Thành Công, Phường Giảng Võ, Hà Nội.</li></ul></div>
+<div class="job__seg job__seg--full"><h4><svg><use href="#ic-doc"/></svg>Quy trình ứng tuyển</h4><ol class="job__steps"><li>Gửi CV (kèm portfolio nếu có) về hr@meetup.travel.</li><li>Phỏng vấn sơ bộ.</li><li>Bài test năng lực ngắn qua email.</li><li>Phỏng vấn cùng Operations Leader.</li></ol></div>
+<div class="hireflow"><span class="hireflow__lab">☑ Quy trình ứng tuyển</span><div class="hireflow__grid"><div class="round"><b>Vòng 1</b><p>Gửi CV về hr@meetup.travel với tiêu đề đúng mẫu bên dưới.</p></div><div class="round"><b>Vòng 2</b><p>Phỏng vấn sơ bộ cùng HR.</p></div><div class="round"><b>Vòng 3</b><p>Bài test năng lực ngắn, gửi qua email.</p></div><div class="round"><b>Vòng 4</b><p>Phỏng vấn cùng Operations Leader tại văn phòng Meetup Hà Nội.</p></div></div></div>
+<div class="job__apply"><div><span class="job__apply-lab">✉ Cách ứng tuyển</span><p class="job__apply-line">Gửi CV (kèm portfolio nếu có) về <a href="mailto:hr@meetup.travel">hr@meetup.travel</a> với tiêu đề:</p><span class="job__apply-code">[INTERN TOUR OPERATOR] + Họ và tên + SĐT</span></div><a class="btn btn--gold btn--sm" href="mailto:hr@meetup.travel?subject=%5BINTERN%20TOUR%20OPERATOR%5D">Gửi CV ngay</a></div>
+</div>
+</details>
+
+<details class="job reveal" data-type="intern" id="intern-dh-tour-fr">
+<summary class="job__sum">
+<div class="job__head"><div class="job__titles"><span class="job__dept">Thực tập</span><h3>Thực tập sinh Điều hành Tour (Tiếng Pháp)</h3></div><span class="job__toggle" aria-hidden="true">+</span></div>
+<div class="job__chips"><span class="job__chip job__chip--pay">💰 Hỗ trợ 3 triệu/tháng</span><span class="job__chip">🎂 2000–2004</span><span class="job__chip">🗣️ Tiếng Pháp tốt</span><span class="job__chip">📍 Hà Nội</span></div>
+<p class="job__summary">Bạn sẽ đồng hành cùng khách quốc tế suốt hành trình, từ lúc xác nhận booking cho tới khi chuyến đi khép lại. Vừa học vận hành tour ngay trên việc thật, bạn vừa có cơ hội lên chính thức sau kỳ thực tập.</p>
+<p class="job__foot">Xem chi tiết →</p>
+</summary>
+<div class="job__detail">
+<div class="job__seg"><h4><svg><use href="#ic-shoot"/></svg>Vì sao bắt đầu tại Meetup</h4><ul class="job__list"><li>Được đào tạo thực tế về vận hành tour inbound và chăm sóc khách quốc tế.</li><li>Dùng tiếng Pháp mỗi ngày khi hỗ trợ khách.</li><li>Trải nghiệm quy trình vận hành thật của một công ty lữ hành quốc tế.</li><li>Cơ hội trở thành nhân viên chính thức sau kỳ thực tập.</li></ul></div>
+<div class="job__seg"><h4><svg><use href="#ic-check"/></svg>Mô tả công việc</h4><ul class="job__list"><li>Hỗ trợ và đồng hành cùng khách quốc tế suốt hành trình, từ khi xác nhận booking tới chăm sóc sau chuyến đi.</li><li>Chủ động liên hệ khách qua chat hoặc điện thoại để hỗ trợ và xử lý vấn đề phát sinh một cách chuyên nghiệp, tận tâm.</li><li>Thu thập phản hồi khách sau mỗi chuyến, tổng hợp báo cáo và đề xuất cải thiện trải nghiệm.</li><li>Phối hợp với Sales, Điều hành và Marketing để mang lại trải nghiệm liền mạch cho khách.</li><li>Quản lý thông tin khách hàng, hỗ trợ theo dõi CRM và chăm sóc khách thân thiết.</li></ul></div>
+<div class="job__seg"><h4><svg><use href="#ic-user"/></svg>Yêu cầu ứng viên</h4><ul class="job__list"><li>Sinh năm 2000 – 2004.</li><li>Tự tin giao tiếp tiếng Pháp với khách quốc tế, nghe hiểu tốt.</li><li>Tư duy đặt khách hàng lên hàng đầu, yêu thích mang lại dịch vụ tốt.</li><li>Ưu tiên sinh viên/mới tốt nghiệp ngành Du lịch, Khách sạn, Quản trị lữ hành hoặc ngành liên quan.</li></ul>
+<h5 class="job__subh">Tố chất phù hợp</h5><ul class="job__list"><li>Trách nhiệm, tỉ mỉ và có tổ chức.</li><li>Bình tĩnh xử lý tình huống bất ngờ, chịu được áp lực.</li><li>Đam mê du lịch, muốn gắn bó lâu dài với ngành.</li><li>Chủ động, phối hợp tốt và luôn muốn cải thiện chất lượng vận hành.</li></ul></div>
+<div class="job__seg"><h4><svg><use href="#ic-route"/></svg>Lộ trình &amp; hỗ trợ</h4>
+<p class="job__ladder">Thực tập → Điều hành viên (Junior) → Điều hành viên (Middle) → Điều hành cao cấp (Senior) → Trưởng nhóm (Leader)</p>
+<p class="job__meta-line"><b>Hỗ trợ:</b> 3.000.000đ/tháng ngay từ ngày đầu. Cơ hội lên nhân viên chính thức sau kỳ thực tập và thử việc, tuỳ năng lực.</p></div>
+<div class="job__seg"><h4><svg><use href="#ic-pin"/></svg>Thời gian &amp; địa điểm</h4>
+<p class="job__meta-line"><b>Thời gian:</b> Làm việc theo ca xoay, 2 ngày nghỉ linh hoạt/tuần. Các khung ca: 06:00–12:00, 08:30–18:00, 11:00–19:00, 18:00–24:00. Ca sáng sớm và ca tối làm việc từ xa.</p>
+<p class="job__meta-line"><b>Địa điểm:</b></p><ul class="job__list job__list--loc"><li>Meetup Hà Nội: Tầng 16, Sảnh Văn phòng, Chung cư C1 Thành Công, Phường Giảng Võ, Hà Nội.</li></ul></div>
+<div class="job__seg job__seg--full"><h4><svg><use href="#ic-doc"/></svg>Quy trình ứng tuyển</h4><ol class="job__steps"><li>Gửi CV (kèm portfolio nếu có) về hr@meetup.travel.</li><li>Phỏng vấn sơ bộ.</li><li>Bài test năng lực ngắn qua email.</li><li>Phỏng vấn cùng Operations Leader.</li></ol></div>
+<div class="hireflow"><span class="hireflow__lab">☑ Quy trình ứng tuyển</span><div class="hireflow__grid"><div class="round"><b>Vòng 1</b><p>Gửi CV về hr@meetup.travel với tiêu đề đúng mẫu bên dưới.</p></div><div class="round"><b>Vòng 2</b><p>Phỏng vấn sơ bộ cùng HR.</p></div><div class="round"><b>Vòng 3</b><p>Bài test năng lực ngắn, gửi qua email.</p></div><div class="round"><b>Vòng 4</b><p>Phỏng vấn cùng Operations Leader tại văn phòng Meetup Hà Nội.</p></div></div></div>
+<div class="job__apply"><div><span class="job__apply-lab">✉ Cách ứng tuyển</span><p class="job__apply-line">Gửi CV (kèm portfolio nếu có) về <a href="mailto:hr@meetup.travel">hr@meetup.travel</a> với tiêu đề:</p><span class="job__apply-code">[INTERN TOUR OPERATOR FR] + Họ và tên + SĐT</span></div><a class="btn btn--gold btn--sm" href="mailto:hr@meetup.travel?subject=%5BINTERN%20TOUR%20OPERATOR%20FR%5D">Gửi CV ngay</a></div>
+</div>
+</details>
+
+</div>
+</div>
+</section>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 1440 58" preserveAspectRatio="none"><path d="M0 32 Q360 6 720 28 T1440 24 V58 H0 Z" fill="#eef2e0"/><path d="M0 44 Q380 22 760 40 T1440 38 V58 H0 Z" fill="#f8f7ec"/></svg></div>
+
+<!-- ===== NÓI THẬT ===== -->
+<section class="section" id="giong" style="background:var(--paper-2)">
+<div class="wrap">
+<div class="head reveal">
+<span class="hand">mọc qua đất cứng</span>
+<span class="eyebrow">Nói thật trước đã</span>
+<h2>Trước khi vươn thẳng, măng phải mọc qua đất cứng</h2>
+<p class="lead">Chúng mình sẽ không tô hồng công việc này. Có hôm lịch trình thay đổi liên tục, cũng có ngày sự cố dồn về một lúc khiến bạn xoay gần như không kịp thở. Nhưng điều khác biệt ở Meetup là dù có khó tới đâu, <b>bạn cũng không phải một mình gồng gánh</b>.</p>
+</div>
+<div class="truths reveal">
+<div class="truth"><h3>🪨 Khách đổi ý ngay giữa chuyến</h3><p>Lịch trình vừa chốt xong thì khách lại đổi ý, muốn thay điểm đến, dời giờ, đổi cả số người đi.</p><div class="flip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><use href="#ic-shoot"/></svg>Quy trình điều chỉnh linh hoạt và mạng lưới đối tác có sẵn giúp bạn xoay chuyển trong vài phút.</div></div>
+<div class="truth"><h3>🪨 Chuyến bay huỷ, xe hỏng giữa đường</h3><p>Sự cố ập đến chẳng hề báo trước, trong khi khách vẫn đang đứng đợi ở sân bay hay điểm hẹn.</p><div class="flip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><use href="#ic-shoot"/></svg>Đội hỗ trợ 24/7 và checklist xử lý sự vụ luôn sẵn sàng cùng bạn tìm phương án.</div></div>
+<div class="truth"><h3>🪨 Một mình xử lý nhiều đoàn cùng lúc</h3><p>Vào mùa cao điểm, nhiều đoàn khách chạy song song ngay trong cùng một ngày, đan xen liên tục.</p><div class="flip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><use href="#ic-shoot"/></svg>Leader kèm cặp sát sao và phần mềm quản lý tour giúp bạn không rối việc.</div></div>
+</div>
+<p class="shiftnote reveal">Nói thật thêm một điều: Điều hành ở Meetup làm việc theo <b>ca xoay, linh hoạt</b>, có ca sáng sớm, có ca tối muộn làm từ nhà, có 2 ngày nghỉ mỗi tuần nhưng không cố định. Đây là công việc dành cho người sẵn sàng đồng hành cùng khách bất kể giờ giấc.</p>
+<p class="bigquote reveal">"Đất cứng đến mấy, măng vẫn tìm được đường lên.<br><span>Người điều hành cũng vậy.</span>"</p>
+</div>
+</section>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 1440 58" preserveAspectRatio="none"><path d="M0 32 Q360 6 720 28 T1440 24 V58 H0 Z" fill="#eef2e0"/><path d="M0 44 Q380 22 760 40 T1440 38 V58 H0 Z" fill="#f0efe1"/></svg></div>
+
+<!-- ===== CHÂN DUNG ===== -->
+<section class="section" id="chan-dung" style="background:var(--paper)">
+<div class="wrap">
+<div class="head reveal">
+<span class="hand">rễ chắc, thân mới vững</span>
+<span class="eyebrow">Chân dung "Người Điều hành"</span>
+<h2>Trước hết, phải là người yêu khách</h2>
+<p class="lead">Kỹ năng vận hành có thể đào tạo, nhưng sự tận tâm với khách thì không. Hợp những giá trị này trước đã, rồi mới nói đến quy trình hay lộ trình.</p>
+</div>
+<div class="personagrid reveal">
+<div class="pcard"><span class="pnum">01</span><h3>❤️ Yêu khách, yêu khách, yêu khách</h3><p>Nhắc lại ba lần vì đó là gốc của nghề. Mọi quyết định điều hành đều bắt đầu từ một câu hỏi: điều gì tốt nhất cho khách lúc này?</p></div>
+<div class="pcard"><span class="pnum">02</span><h3>👂 Luôn tìm điều tốt nhất, luôn lắng nghe</h3><p>Thay vì chọn cách dễ nhất cho bản thân, bạn chọn điều tốt nhất cho khách, rồi lắng nghe từng phản hồi sau mỗi chuyến để lần sau làm hay hơn nữa.</p></div>
+<div class="pcard"><span class="pnum">03</span><h3>🌱 Trưởng thành sau mỗi lần giải quyết sự vụ</h3><p>Mỗi sự cố là một bài học. Bình tĩnh xử lý, rút kinh nghiệm rồi vững vàng hơn, như đốt tre nối đốt tre, cứng cáp dần theo thời gian.</p></div>
+</div>
+<div class="chips reveal">
+<span class="chip">❤️ Yêu khách thật lòng</span>
+<span class="chip">🧭 Tỉ mỉ &amp; có trách nhiệm</span>
+<span class="chip">🕐 Sẵn sàng làm theo ca, linh hoạt</span>
+</div>
+</div>
+</section>
+
+<div class="divider divider--dark" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 34 Q360 8 720 30 T1440 26 V60 H0 Z" fill="#1c3a17"/><path d="M0 46 Q380 24 760 42 T1440 40 V60 H0 Z" fill="#123a19"/></svg></div>
+
+<!-- BAND van hoa -->
+<section class="band" id="van-hoa">
+<svg class="band__grove" viewBox="0 0 1440 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <g style="color:#2b5420"><use href="#cane-real" x="30" y="20" width="150" height="380"/></g>
+  <g style="color:#376627"><use href="#cane-real" x="150" y="-30" width="180" height="430"/></g>
+  <g style="color:#21491d"><use href="#cane-real" x="-50" y="60" width="130" height="340"/></g>
+  <g style="color:#2b5420"><use href="#cane-real" x="1260" y="0" width="170" height="400"/></g>
+  <g style="color:#376627"><use href="#cane-real" x="1160" y="40" width="140" height="360"/></g>
+  <g style="color:#21491d"><use href="#cane-real" x="1360" y="30" width="130" height="370"/></g>
+</svg>
+<div class="leafdrift" aria-hidden="true">
+<svg class="lf" style="top:16%;left:14%;width:30px;color:#78b238;animation-delay:.5s" viewBox="0 0 44 16"><use href="#ic-leaf"/></svg>
+<svg class="lf" style="top:26%;left:80%;width:24px;color:#a9c793;animation-delay:3s" viewBox="0 0 44 16"><use href="#ic-leaf"/></svg>
+<svg class="lf" style="top:10%;left:52%;width:20px;color:#5c8a45;animation-delay:6s" viewBox="0 0 44 16"><use href="#ic-leaf"/></svg>
+</div>
+<div class="wrap">
+<span class="hand" style="color:#eecf8a">rễ đan vào nhau</span>
+<span class="eyebrow on-dark">Đồng đội &amp; văn hoá</span>
+<p class="quote">"Rễ tre đan vào nhau dưới lòng đất, để trên mặt đất, lũy tre không bao giờ đứng <span>một mình</span>."</p>
+<div class="beliefs">
+<div class="belief"><b>Niềm tin 1</b><p>Khi được trao niềm tin, được ghi nhận và đào tạo, ai cũng có thể trở thành nhân tài.</p></div>
+<div class="belief"><b>Niềm tin 2</b><p>Sự cân bằng là điều cần thiết để phát triển bền vững. Cân bằng lợi ích, cân bằng sức khoẻ.</p></div>
+<div class="belief"><b>Niềm tin 3</b><p>Meetup sẽ là tập thể thực thi tốt nhất trong những việc chúng tôi chọn làm.</p></div>
+</div>
+<p class="principle"><b>Nguyên tắc làm việc:</b> Một task được tính là hoàn thiện khi không phải tốn bất kì nguồn lực nào để thực hiện nữa.</p>
+</div>
+</section>
+
+<div class="divider divider--dark" aria-hidden="true" style="transform:rotate(180deg)"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 34 Q360 8 720 30 T1440 26 V60 H0 Z" fill="#1c3a17"/><path d="M0 46 Q380 24 760 42 T1440 40 V60 H0 Z" fill="#f8f7ec"/></svg></div>
+
+<!-- ===== VÌ SAO ===== -->
+<section class="section" id="vi-sao" style="background:var(--paper-2)">
+<div class="wrap">
+<div class="head reveal">
+<span class="hand">rễ đã bén</span>
+<span class="eyebrow">Vì sao là Điều hành ở Meetup</span>
+<h2>Rễ vững rồi, thân tre lớn rất nhanh</h2>
+<p class="lead">Điều hành ở Meetup không phải tự tay dựng mọi thứ từ đầu. Mạng lưới đối tác, quy trình chuẩn hoá và công cụ quản lý đều đã có sẵn, bạn chỉ tập trung vào việc quan trọng nhất: giữ cho mỗi chuyến đi trọn vẹn.</p>
+</div>
+<div class="trio reveal">
+<div class="trio-card"><span class="tnum">01</span><h3>Mạng lưới đối tác có sẵn</h3><p>Khách sạn, xe, nhà hàng, hướng dẫn viên đã được thẩm định và hợp tác lâu dài. Bạn không phải đàm phán giá từ số 0 cho từng chuyến.</p></div>
+<div class="trio-card"><span class="tnum">02</span><h3>Đội hỗ trợ 24/7 luôn túc trực</h3><p>Sự cố phát sinh giữa đêm hay cuối tuần đều có người cùng bạn xử lý, không phải một mình đối mặt với khách đang chờ.</p></div>
+<div class="trio-card"><span class="tnum">03</span><h3>Quy trình đã chuẩn hoá</h3><p>Checklist xử lý sự vụ, mẫu báo giá, phần mềm quản lý tour đã dựng sẵn. Bạn vận hành trên nền tảng vững, không phải tự nghĩ cách làm từ đầu.</p></div>
+</div>
+<div class="advpanel reveal">
+<h3>Lợi thế cạnh tranh chúng tôi xây sẵn cho bạn</h3>
+<p class="sub">Những thứ giúp bạn điều hành trơn tru hơn hẳn so với khi làm ở nơi khác:</p>
+<ul>
+<li><span class="ck">✓</span>Mạng lưới khách sạn, xe, nhà hàng, đối tác địa phương đã hợp tác lâu dài.</li>
+<li><span class="ck">✓</span>Quy trình xử lý sự vụ chuẩn hoá, có checklist cho từng tình huống.</li>
+<li><span class="ck">✓</span>Đội hỗ trợ 24/7, không phải một mình trực đêm giải quyết sự cố.</li>
+<li><span class="ck">✓</span>Phần mềm quản lý tour, theo dõi đoàn khách theo thời gian thực.</li>
+<li><span class="ck">✓</span>Mẫu báo giá, hợp đồng, quy trình làm việc với nhà cung cấp đã dựng sẵn.</li>
+<li><span class="ck">✓</span>Leader kèm 1-1, đồng hành cùng bạn qua từng sự vụ đầu tiên.</li>
+<li><span class="ck">✓</span>Data đoàn khách, lịch trình rõ ràng, phân bổ minh bạch.</li>
+<li><span class="ck">✓</span>Training hằng tuần về vận hành, đối tác và kỹ năng xử lý tình huống.</li>
+</ul>
+</div>
+<div class="advpanel advpanel--light reveal">
+<h3>Meetup's Premium Standard</h3>
+<p class="sub">Chuẩn dịch vụ chính tay Điều hành đảm bảo trên mỗi hành trình, không phải lời hứa suông:</p>
+<ul>
+<li><span class="ck">✓</span>Nhóm nhỏ riêng tư (thường dưới 14 khách), bay Vietnam Airlines, du thuyền 5–6 sao.</li>
+<li><span class="ck">✓</span>Fast-track sân bay cho khách 4–5 sao, xe đưa đón mới &amp; sạch, phản hồi trong 5 phút.</li>
+<li><span class="ck">✓</span>Đã gồm bảo hiểm du lịch, phục vụ tận tâm trong từng hành trình.</li>
+</ul>
+<div class="advpanel__cta"><a class="btn btn--ghost btn--sm" href="https://demo.meetup.travel/why-meetup" target="_blank" rel="noopener">Xem đầy đủ vì sao chọn Meetup →</a></div>
+</div>
+</div>
+</section>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 1440 58" preserveAspectRatio="none"><path d="M0 32 Q360 6 720 28 T1440 24 V58 H0 Z" fill="#eef2e0"/><path d="M0 44 Q380 22 760 40 T1440 38 V58 H0 Z" fill="#f0efe1"/></svg></div>
+
+<!-- ===== THU NHẬP ===== -->
+<section class="section" id="thu-nhap" style="background:var(--paper)"><span id="quyen-loi" style="position:relative;top:-70px" aria-hidden="true"></span>
+<div class="wrap">
+<div class="head reveal">
+<span class="hand">lớn từng đốt</span>
+<span class="eyebrow">Cấu trúc thu nhập</span>
+<h2>Lương cứng vững, thưởng theo hiệu suất</h2>
+</div>
+<div class="income reveal" id="incomeCard">
+<h3>Thu nhập tới <span class="n"><span id="incomeNum">0</span> triệu</span> / tháng</h3>
+<p class="note">Nhân viên Điều hành có lương cứng từ 11 triệu ở cấp Junior, lên tới 18 triệu ở cấp Senior. Thu nhập thực nhận dao động theo hiệu suất vận hành và mức độ hài lòng của khách, cộng thưởng hiệu suất vận hành theo quý. Thực tập sinh nhận hỗ trợ 3 triệu/tháng ngay từ ngày đầu.</p>
+<div class="gauge">
+<div class="gfill" id="gaugeBase"></div>
+<div class="gfill" id="gaugeOte"></div>
+<svg class="gco" id="gaugeCo" viewBox="0 0 24 24" style="color:var(--gold-deep)"><use href="#ic-shoot"/></svg>
+</div>
+<div class="gmarks"><span>0</span><span>6</span><span>11</span><span>15</span><b>18tr+</b></div>
+<div class="gsplit">
+<span><b>Trợ cấp thực tập 3 triệu</b> · ngay từ ngày đầu</span>
+<span><b>Lương cứng 11–18 triệu</b> · Junior đến Senior</span>
+<span><b>Thưởng hiệu suất vận hành</b> · theo quý</span>
+<span>Thưởng lễ, Tết</span><span>BHXH đầy đủ</span><span>PVI sau 1 năm chính thức</span><span>Lương thâm niên</span>
+</div>
+</div>
+</div>
+</section>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 1440 58" preserveAspectRatio="none"><path d="M0 32 Q360 6 720 28 T1440 24 V58 H0 Z" fill="#eef2e0"/><path d="M0 44 Q380 22 760 40 T1440 38 V58 H0 Z" fill="#f8f7ec"/></svg></div>
+
+<!-- LO TRINH -->
+<section class="section" id="lo-trinh" style="background:var(--paper-2)">
+<div class="wrap">
+<div class="mission reveal">
+<span class="hand">vì sao nghề này đáng theo</span>
+<h2>Giữ trọn lời hứa, <span>giữ vững hình ảnh Việt Nam</span></h2>
+<p>Meetup là công ty inbound, tức là chúng mình đón khách quốc tế đến với Việt Nam.<br class="tri">Mỗi chuyến đi bạn điều hành trọn vẹn là một lời hứa được giữ với khách,<br class="tri">và là một ấn tượng đẹp về Việt Nam mà họ mang theo về tận quê nhà.<br class="tri">Nói không quá lời, đây là một nghề tử tế và có ý nghĩa thật sự.</p>
+<p>Du lịch inbound Việt Nam vẫn còn rất nhiều dư địa để phát triển,<br class="tri">nên nếu bạn nghiêm túc theo nghề điều hành, bạn hoàn toàn có<br class="tri">một chỗ đứng thật sự và cả một chặng đường dài phía trước.</p>
+<hr>
+<p class="mfoot">Và khi bạn đã nghiêm túc với nghề, đây là <b>lộ trình phát triển</b> Meetup dựng sẵn cho bạn, từ búp măng non tới lũy tre làng.</p>
+</div>
+<div class="head reveal">
+<span class="hand">từ măng non</span>
+<span class="eyebrow">Lộ trình thăng tiến</span>
+<h2>Từ búp măng non tới lũy tre làng</h2>
+<p class="lead">Mỗi bậc là một đốt tre cao thêm, vươn thẳng và cứng cáp hơn sau mỗi lần vượt qua thử thách.</p>
+</div>
+<div class="ladder reveal">
+<div class="rung"><div class="rung__photo"><svg viewBox="0 0 120 200"><use href="#bud-real"/></svg></div><span class="lv">Bậc 01 · TTS</span><h3>Thực tập sinh Điều hành</h3><p>Măng non nhú lên, học quy trình và làm quen đối tác</p></div>
+<div class="rung"><div class="rung__photo"><svg viewBox="0 0 200 400" style="transform:translateY(8%)"><use href="#cane-real"/></svg></div><span class="lv">Bậc 02 · Junior</span><h3>Điều hành viên (Junior)</h3><p>Đốt tre đầu tiên, tự vận hành trọn vẹn một tour</p></div>
+<div class="rung"><div class="rung__photo"><svg viewBox="0 0 200 400" style="transform:translateY(4%)"><use href="#cane-real"/></svg></div><span class="lv">Bậc 03 · Middle</span><h3>Điều hành viên (Middle)</h3><p>Thân tre chắc dần, vận hành thành thạo nhiều loại tour</p></div>
+<div class="rung"><div class="rung__photo"><svg viewBox="0 0 200 400"><use href="#cane-real"/></svg></div><span class="lv">Bậc 04 · Senior</span><h3>Điều hành cao cấp (Senior)</h3><p>Thân tre cứng cáp, điều phối nhiều đoàn cùng lúc</p></div>
+<div class="rung"><div class="rung__photo"><svg viewBox="0 0 200 400"><use href="#cane-real"/></svg></div><span class="lv">Bậc 05 · Leader</span><h3>Trưởng nhóm Điều hành</h3><p>Tre vươn thẳng, xây quy trình và dẫn dắt đội</p></div>
+</div>
+<p class="ladder-note reveal">Với thực tập sinh: cơ hội lên chính thức sau kỳ thực tập và thử việc, có thể rút ngắn tuỳ năng lực và nhu cầu vận hành.</p>
+</div>
+</section>
+
+<div class="divider divider--field" aria-hidden="true"><svg viewBox="0 0 1440 86" preserveAspectRatio="none"><path d="M0 40 Q360 8 720 34 T1440 30 V86 H0 Z" fill="#eceadc"/><path d="M0 56 Q380 28 760 50 T1440 46 V86 H0 Z" fill="#f8f7ec"/></svg></div>
+
+<!-- ===== VĂN PHÒNG ===== -->
+<section class="section" id="van-phong" style="background:var(--paper-2)">
+<div class="wrap">
+<div class="head reveal">
+<span class="eyebrow">Nơi bạn sẽ bén rễ</span>
+<h2>Văn phòng Meetup</h2>
+</div>
+<div class="offices reveal">
+<a class="office" href="https://maps.google.com/?q=C1+Thành+Công+Ba+Đình+Hà+Nội" target="_blank" rel="noopener">
+<div class="office__ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#ic-pin"/></svg></div>
+<div><h3>Meetup Hà Nội</h3><p>Tầng 16, Sảnh Văn phòng, Chung cư C1 Thành Công, Phường Giảng Võ, Hà Nội.</p><span class="office__go">Xem bản đồ →</span></div>
+</a>
+<a class="office" href="https://maps.google.com/?q=53+Phó+Đức+Chính+Bến+Thành+Hồ+Chí+Minh" target="_blank" rel="noopener">
+<div class="office__ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#ic-pin"/></svg></div>
+<div><h3>Meetup Hồ Chí Minh</h3><p>53 Phó Đức Chính, Phường Bến Thành, TP. Hồ Chí Minh.</p><span class="office__go">Xem bản đồ →</span></div>
+</a>
+</div>
+</div>
+</section>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 1440 58" preserveAspectRatio="none"><path d="M0 32 Q360 6 720 28 T1440 24 V58 H0 Z" fill="#eef2e0"/><path d="M0 44 Q380 22 760 40 T1440 38 V58 H0 Z" fill="#f0efe1"/></svg></div>
+
+<!-- ===== CTA CUỐI ===== -->
+<section class="section" id="ung-tuyen" style="background:var(--paper)">
+<div class="wrap">
+<div class="ctaend reveal">
+<div>
+<span class="hand">đến lượt bạn mọc</span>
+<h2>Sẵn sàng bén rễ cùng chúng tôi?</h2>
+<p>Nếu bạn thương khách thật lòng, đủ bình tĩnh trước mỗi sự cố và muốn lớn lên từ chính những va vấp trong nghề, thì chiếc ghế ở đội Điều hành vẫn đang để dành cho bạn.</p>
+</div>
+<div class="col">
+<a class="btn btn--gold" href="#vi-tri">Chọn vị trí &amp; ứng tuyển →</a>
+<span class="mail">CV gửi về <a href="mailto:hr@meetup.travel">hr@meetup.travel</a></span>
+</div>
+</div>
+</div>
+</section>
+
+<footer>
+<svg class="foot-scene" viewBox="0 0 1440 96" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><circle cx="1210" cy="30" r="24" fill="#e2bd5c" opacity=".35"/><path d="M0 60 Q360 34 720 54 T1440 50 V96 H0 Z" fill="#124021"/><path d="M0 74 Q380 52 760 68 T1440 66 V96 H0 Z" fill="#0d3319"/></svg>
+<div class="wrap footer__inner">
+<a href="homepage.html" class="brand" aria-label="Meetup Travel"><img class="brand-logo" src="data:image/png;base64,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" alt="Meetup Travel"></a>
+<div class="footer__links">
+<a href="homepage.html#chuyen">Câu chuyện</a><a href="#vi-tri">Vị trí tuyển dụng</a><a href="#quyen-loi">Phúc lợi</a><a href="mailto:hr@meetup.travel">hr@meetup.travel</a>
+</div>
+</div>
+<div class="wrap">
+<div class="foot-social-row">
+<div class="foot-contact">
+<span class="foot-contact__lab">Liên hệ tuyển dụng</span>
+<div class="foot-contact__people"><span class="foot-contact__item"><span class="locbadge">HN</span><a href="https://zalo.me/0326966180" target="_blank" rel="noopener"><svg width="15" height="15"><use href="#ic-zalo"/></svg> Ms. Kiều · 0326966180</a></span><span class="foot-contact__item"><span class="locbadge">HCM</span><a href="https://zalo.me/0908290175" target="_blank" rel="noopener"><svg width="15" height="15"><use href="#ic-zalo"/></svg> Ms. Trân · 0908290175</a></span></div>
+</div>
+<div class="socials">
+<a class="social" href="https://www.facebook.com/meetup.tuyendung/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.8 3.7-3.8 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.5V12h2.7l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg></a>
+<a class="social" href="https://www.tiktok.com/@meetuptraveltuyendung" target="_blank" rel="noopener" aria-label="TikTok"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.8a4.3 4.3 0 01-2.6-3.8h-3.1v13.6a2.4 2.4 0 11-2.4-2.4c.2 0 .5 0 .7.1V8.2a5.6 5.6 0 00-.7-.1 5.5 5.5 0 105.5 5.5V8.8a7.2 7.2 0 004.2 1.3V7.2a4.3 4.3 0 01-1.6-1.4z"/></svg></a>
+<a class="social" href="https://www.instagram.com/meetup_vietnam/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+</div>
+</div>
+</div>
+<div class="wrap footer__meta">© 2026 Meetup Travel · tuyendung.meetup.travel</div>
+</footer>
+
+<script>
+(function(){
+  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var revealEls=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window && !reduced){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.1});
+    revealEls.forEach(function(el){io.observe(el);});
+  } else revealEls.forEach(function(el){el.classList.add('in');});
+
+  var bar=document.getElementById('progress'), fill=document.getElementById('actsFill'),
+      acts=document.getElementById('acts'), actEls=acts?acts.querySelectorAll('.act'):[];
+  function onScroll(){
+    var h=document.documentElement, max=h.scrollHeight-h.clientHeight, pct=(max>0?(h.scrollTop/max)*100:0);
+    if(bar) bar.style.width=pct+'%';
+    if(acts&&fill){
+      var r=acts.getBoundingClientRect(), anchor=innerHeight*0.6, total=r.height-12;
+      fill.style.height=Math.min(Math.max(anchor-r.top-6,0),total)+'px';
+      actEls.forEach(function(a){ (a.getBoundingClientRect().top<anchor)?a.classList.add('lit'):a.classList.remove('lit'); });
+    }
+  }
+  if(reduced&&fill){ fill.style.height='100%'; actEls.forEach(function(a){a.classList.add('lit');}); }
+  var tick=false;
+  addEventListener('scroll',function(){ if(!tick){ requestAnimationFrame(function(){ onScroll(); tick=false; }); tick=true; } },{passive:true});
+  onScroll();
+
+  var card=document.getElementById('incomeCard'), num=document.getElementById('incomeNum'),
+      gB=document.getElementById('gaugeBase'), gO=document.getElementById('gaugeOte'), co=document.getElementById('gaugeCo'), fired=false;
+  function ifill(){
+    if(fired)return; fired=true;
+    if(gB)gB.style.width='73%'; if(gO)gO.style.width='100%'; if(co)co.style.left='98%';
+    if(reduced){ if(num)num.textContent='18'; return; }
+    var v=0,iv=setInterval(function(){ v+=1; if(v>=18){ v=18; clearInterval(iv);} if(num)num.textContent=v; },55);
+  }
+  if(card){ if('IntersectionObserver' in window){ var io2=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){ifill();io2.unobserve(card);}});},{threshold:.4}); io2.observe(card);} else ifill(); }
+
+  var btns=document.querySelectorAll('.jobfilter__btn'), jobs=document.querySelectorAll('.job');
+  btns.forEach(function(b){ b.addEventListener('click',function(){
+    btns.forEach(function(x){x.classList.remove('is-active');}); b.classList.add('is-active');
+    var f=b.getAttribute('data-filter');
+    jobs.forEach(function(j){ j.style.display=(f==='all'||j.getAttribute('data-type')===f)?'':'none'; });
+  }); });
+
+  function hashOpen(){ var h=location.hash.replace('#',''); if(!h)return; var d=document.getElementById(h); if(d&&d.tagName==='DETAILS'){d.open=true;} }
+  addEventListener('hashchange',hashOpen); hashOpen();
+
+  var mbtn=document.getElementById('menuBtn'), navEl=document.getElementById('navBar');
+  if(mbtn&&navEl){
+    mbtn.addEventListener('click',function(e){ e.stopPropagation(); navEl.classList.toggle('open'); });
+    navEl.querySelectorAll('.nav__links a').forEach(function(a){ a.addEventListener('click',function(){ navEl.classList.remove('open'); }); });
+    document.addEventListener('click',function(e){ if(!navEl.contains(e.target)) navEl.classList.remove('open'); });
+  }
+
+  /* ===== 3D & tuong tac ===== */
+  var canHover = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+  // Hero parallax theo chuot: cac lop dich chuyen khac toc do -> chieu sau 3D
+  var hero=document.querySelector('.hero'),
+      grove=document.querySelector('.hero__grove'),
+      hleaf=document.querySelector('.hero .leafdrift'),
+      hinner=document.querySelector('.hero__inner');
+  if(hero && grove && canHover && !reduced){
+    var tx=0,ty=0,px=0,py=0,praf=null;
+    function ploop(){
+      px+=(tx-px)*0.08; py+=(ty-py)*0.08;
+      grove.style.transform='translate3d('+(px*28).toFixed(2)+'px,'+(py*10).toFixed(2)+'px,0) rotateY('+(px*2.4).toFixed(2)+'deg)';
+      if(hleaf) hleaf.style.transform='translate3d('+(px*50).toFixed(2)+'px,'+(py*24).toFixed(2)+'px,0)';
+      if(hinner) hinner.style.transform='translate3d('+(px*-11).toFixed(2)+'px,'+(py*-6).toFixed(2)+'px,0)';
+      if(Math.abs(tx-px)>0.0008||Math.abs(ty-py)>0.0008){ praf=requestAnimationFrame(ploop);} else { praf=null; }
+    }
+    function pkick(){ if(!praf) praf=requestAnimationFrame(ploop); }
+    hero.addEventListener('pointermove',function(e){ if(document.body.classList.contains('edit-on'))return; var r=hero.getBoundingClientRect(); tx=(e.clientX-r.left)/r.width-0.5; ty=(e.clientY-r.top)/r.height-0.5; pkick(); });
+    hero.addEventListener('pointerleave',function(){ tx=0; ty=0; pkick(); });
+  }
+
+  // The nghieng 3D theo con tro + vet sang chay theo chuot
+  if(canHover && !reduced){
+    document.querySelectorAll('.truth,.pcard,.office,.trio-card,.belief').forEach(function(c){
+      c.classList.add('tilt');
+      if(!c.querySelector(':scope > .tilt__sheen')){ var sheen=document.createElement('span'); sheen.className='tilt__sheen'; c.appendChild(sheen); }
+      var rc=null;
+      c.addEventListener('pointerenter',function(){ rc=c.getBoundingClientRect(); });
+      c.addEventListener('pointermove',function(e){ if(document.body.classList.contains('edit-on'))return; 
+        if(!rc) rc=c.getBoundingClientRect();
+        var mx=(e.clientX-rc.left)/rc.width, my=(e.clientY-rc.top)/rc.height;
+        var rx=(0.5-my)*8.5, ry=(mx-0.5)*11;
+        c.style.transform='perspective(720px) rotateX('+rx.toFixed(2)+'deg) rotateY('+ry.toFixed(2)+'deg) translateZ(8px)';
+        c.style.setProperty('--mx',(mx*100).toFixed(1)+'%');
+        c.style.setProperty('--my',(my*100).toFixed(1)+'%');
+      });
+      c.addEventListener('pointerleave',function(){ c.style.transform=''; rc=null; });
+    });
+  }
+
+  // Nut nam cham: hut nhe theo chuot
+  if(canHover && !reduced){
+    document.querySelectorAll('.btn--gold,.btn--primary').forEach(function(b){
+      b.classList.add('magnet');
+      b.addEventListener('pointermove',function(e){ if(document.body.classList.contains('edit-on'))return; var r=b.getBoundingClientRect(); var mx=(e.clientX-r.left-r.width/2)/r.width, my=(e.clientY-r.top-r.height/2)/r.height; b.style.transform='translate('+(mx*9).toFixed(2)+'px,'+(my*9-2).toFixed(2)+'px)'; });
+      b.addEventListener('pointerleave',function(){ b.style.transform=''; });
+    });
+  }
+
+  // Bac lo trinh: bam vao thi bup mang/cay tre nay len
+  document.querySelectorAll('.rung').forEach(function(r){
+    r.addEventListener('click',function(){ if(reduced) return; r.classList.remove('pop'); void r.offsetWidth; r.classList.add('pop'); });
+  });
+})();
+</script>
+<script id="leafTrailScript">
+(function(){
+  try{
+    var mq=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+    var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(!mq||reduced) return;
+    if(!document.body.animate) return;
+    var COLORS=['#78b238','#5c9e33','#8fbb52','#6aa63a','#4f882c','#a9c793'];
+    var box=document.getElementById('leafTrail');
+    if(!box){ box=document.createElement('div'); box.id='leafTrail'; box.setAttribute('aria-hidden','true'); document.body.appendChild(box); }
+    else { box.innerHTML=''; }
+    var lastX=0,lastY=0,started=false,count=0;
+    function leafSVG(size,color){
+      var NS='http://www.w3.org/2000/svg';
+      var s=document.createElementNS(NS,'svg');
+      s.setAttribute('viewBox','0 0 44 16'); s.setAttribute('width',size); s.setAttribute('height',(size*16/44).toFixed(1));
+      var p=document.createElementNS(NS,'path');
+      p.setAttribute('d','M0 8 C12 -3 32 -3 44 8 C32 13 12 13 0 8 Z'); p.setAttribute('fill',color);
+      var v=document.createElementNS(NS,'path');
+      v.setAttribute('d','M4 8 H40'); v.setAttribute('stroke','rgba(255,255,255,.4)'); v.setAttribute('stroke-width','1'); v.setAttribute('fill','none');
+      s.appendChild(p); s.appendChild(v); return s;
+    }
+    function spawn(x,y){
+      if(count>24) return;
+      var size=13+Math.random()*13;
+      var el=document.createElement('div'); el.className='trail-leaf';
+      el.appendChild(leafSVG(size, COLORS[(Math.random()*COLORS.length)|0]));
+      box.appendChild(el); count++;
+      var r0=Math.random()*360, dx=(Math.random()*46-23), dy=40+Math.random()*56, dr=(Math.random()*240-120), dur=950+Math.random()*450;
+      var a=el.animate([
+        {transform:'translate('+x+'px,'+y+'px) rotate('+r0+'deg) scale(.5)',opacity:0},
+        {transform:'translate('+(x+dx*0.3)+'px,'+(y+dy*0.16)+'px) rotate('+(r0+dr*0.25)+'deg) scale(1)',opacity:.95,offset:.16},
+        {transform:'translate('+(x+dx)+'px,'+(y+dy)+'px) rotate('+(r0+dr)+'deg) scale(.66)',opacity:0}
+      ],{duration:dur,easing:'cubic-bezier(.35,.55,.4,1)'});
+      function done(){ if(el.parentNode) el.remove(); count--; }
+      a.onfinish=done; a.oncancel=done;
+    }
+    window.addEventListener('pointermove',function(e){
+      if(e.pointerType==='touch') return;
+      if(document.body.classList.contains('edit-on')) return;
+      if(!started){ lastX=e.clientX; lastY=e.clientY; started=true; return; }
+      var mx=e.clientX-lastX, my=e.clientY-lastY;
+      if(mx*mx+my*my < 900) return;
+      lastX=e.clientX; lastY=e.clientY;
+      spawn(e.clientX, e.clientY);
+    },{passive:true});
+  }catch(err){}
+})();
+</script>
+<button id="edFab" title="Sửa nội dung ngay trên trang">✏️ Sửa trang</button>
+<div id="edBar" aria-live="polite">
+  <div class="seg" id="edModes">
+    <button data-mode="text" class="on">✍️ Sửa chữ</button>
+    <button data-mode="layout">🧩 Bố cục</button>
+  </div>
+  <button class="edbtn edbtn--save" id="edSaveCloud">💾 Lưu ở Claude</button>
+  <button class="edbtn edbtn--ghost" id="edSave">⤓ Tải file</button>
+  <button class="edbtn edbtn--ghost" id="edReset">↺ Gốc</button>
+  <button class="edbtn edbtn--ghost" id="edExit">✕ Xong</button>
+</div>
+<div id="edToast" role="status"></div>
+<script id="edScript">
+(function(){
+  var SEL='h1,h2,h3,h4,h5,p,li,blockquote,.hand,.eyebrow,.chip,.job__chip,.gsplit span,.job__dept,.lv,.tnum,.job__apply-code,.job__apply-lab,.hireflow__lab,.round b,.office__go,.job__foot,.job__ladder,.mail,.hero__badge,.btn';
+  var GROUPS=[['.truths','.truth'],['.personagrid','.pcard'],['.trio','.trio-card'],['.joblist','.job'],['.ladder','.rung'],['.offices','.office'],['.beliefs','.belief'],['.chips','.chip'],['.gsplit','span']];
+  var KEY='trang_edit_v3';
+  var eds=[], forcedIn=[], openedDetails=[];
+
+  function hasStore(){ try{ return !!(window.storage && typeof window.storage.set==='function'); }catch(e){ return false; } }
+  function toast(msg){ var t=document.getElementById('edToast'); if(!t) return; t.textContent=msg; t.classList.add('show'); clearTimeout(t.__t); t.__t=setTimeout(function(){ t.classList.remove('show'); },2600); }
+
+  // ---- controls ----
+  function markMv(el,isSec,sel){
+    if(el.__mv) return; el.__mv=sel; el.setAttribute('data-mv','');
+    var ctl=document.createElement('div'); ctl.className='edctl'+(isSec?' edctl--sec':'');
+    ctl.innerHTML = isSec
+      ? '<button data-a="up" title="Chuyển lên">↑</button><button data-a="down" title="Chuyển xuống">↓</button><button data-a="hide" title="Ẩn / hiện">👁</button>'
+      : '<button data-a="prev" title="Ra trước">◀</button><button data-a="next" title="Ra sau">▶</button><button data-a="hide" title="Ẩn / hiện">👁</button>';
+    ctl.addEventListener('click',function(e){
+      var b=e.target.closest('button'); if(!b) return; e.preventDefault(); e.stopPropagation();
+      var a=b.getAttribute('data-a');
+      if(a==='hide'){ el.classList.toggle('hidden-block'); return; }
+      if(isSec) moveSection(el, a==='up'?-1:1);
+      else moveCard(el, sel, a==='prev'?-1:1);
+    });
+    el.appendChild(ctl);
+  }
+  function injectControls(){
+    GROUPS.forEach(function(g){
+      document.querySelectorAll(g[0]).forEach(function(c){
+        c.querySelectorAll(':scope > '+g[1]).forEach(function(it){ markMv(it,false,g[1]); });
+      });
+    });
+    document.querySelectorAll('section.section').forEach(function(sec){ markMv(sec,true,'section.section'); });
+  }
+  function moveCard(el,sel,dir){
+    var items=Array.prototype.slice.call(el.parentNode.querySelectorAll(':scope > '+sel));
+    var i=items.indexOf(el), j=i+dir; if(j<0||j>=items.length) return;
+    if(dir<0) el.parentNode.insertBefore(el, items[j]);
+    else el.parentNode.insertBefore(el, items[j].nextSibling);
+  }
+  function swapNodes(a,b){
+    var m=document.createComment('s');
+    a.parentNode.insertBefore(m,a);
+    b.parentNode.insertBefore(a,b);
+    m.parentNode.insertBefore(b,m);
+    m.remove();
+  }
+  function moveSection(sec,dir){
+    var secs=Array.prototype.slice.call(document.querySelectorAll('section.section'));
+    var i=secs.indexOf(sec), j=i+dir; if(j<0||j>=secs.length) return;
+    swapNodes(sec, secs[j]); autofixDividers();
+    sec.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+  function secBg(sec){
+    if(!sec) return {c:'#f0efe1',dark:false};
+    if(sec.classList.contains('band')||sec.id==='top') return {c:'#123a19',dark:true};
+    var st=sec.getAttribute('style')||'';
+    if(st.indexOf('paper-2')>-1) return {c:'#f8f7ec',dark:false};
+    return {c:'#f0efe1',dark:false};
+  }
+  function prevSection(n){ n=n.previousElementSibling; while(n){ if(n.tagName==='SECTION') return n; n=n.previousElementSibling; } return null; }
+  function nextSection(n){ n=n.nextElementSibling; while(n){ if(n.tagName==='SECTION') return n; n=n.nextElementSibling; } return null; }
+  function autofixDividers(){
+    document.querySelectorAll('.divider').forEach(function(d){
+      var above=secBg(prevSection(d)), below=secBg(nextSection(d));
+      var ps=d.querySelectorAll('path'); if(ps.length<2) return;
+      ps[0].setAttribute('fill', above.dark?'#1c3a17':'#eef2e0');
+      ps[1].setAttribute('fill', below.c);
+    });
+  }
+
+  // ---- enter / exit / modes ----
+  // ---- granular persistence (khong ghi de trang) ----
+  function keyify(){
+    var i=0;
+    document.querySelectorAll(SEL).forEach(function(el){
+      if(el.closest('#edBar')||el.closest('#edFab')||el.closest('.edctl')) return;
+      if(!el.hasAttribute('data-tk')) el.setAttribute('data-tk','t'+i);
+      i++;
+    });
+    GROUPS.forEach(function(g,gi){
+      document.querySelectorAll(g[0]).forEach(function(c,ci){
+        var ck=c.getAttribute('data-ck'); if(!ck){ ck='c'+gi+'_'+ci; c.setAttribute('data-ck',ck); }
+        var k=0;
+        c.querySelectorAll(':scope > '+g[1]).forEach(function(it){
+          if(!it.hasAttribute('data-ik')) it.setAttribute('data-ik', ck+'_'+k);
+          k++;
+        });
+      });
+    });
+  }
+  function snapshot(){
+    keyify();
+    var snap={texts:{},order:{},hidden:[]};
+    document.querySelectorAll('[data-tk]').forEach(function(el){ snap.texts[el.getAttribute('data-tk')]=el.innerHTML; });
+    GROUPS.forEach(function(g){
+      document.querySelectorAll(g[0]).forEach(function(c){
+        var ck=c.getAttribute('data-ck'); if(!ck) return;
+        snap.order[ck]=Array.prototype.map.call(c.querySelectorAll(':scope > '+g[1]),function(it){return it.getAttribute('data-ik');});
+      });
+    });
+    document.querySelectorAll('.hidden-block[data-ik]').forEach(function(el){ snap.hidden.push(el.getAttribute('data-ik')); });
+    return snap;
+  }
+  function applySnap(snap){
+    if(!snap) return;
+    keyify();
+    if(snap.order){
+      GROUPS.forEach(function(g){
+        document.querySelectorAll(g[0]).forEach(function(c){
+          var ck=c.getAttribute('data-ck'); var ord=ck&&snap.order[ck]; if(!ord) return;
+          ord.forEach(function(ik){ var it=c.querySelector(':scope > [data-ik="'+ik+'"]'); if(it) c.appendChild(it); });
+        });
+      });
+    }
+    if(snap.texts){ for(var k in snap.texts){ var el=document.querySelector('[data-tk="'+k+'"]'); if(el) el.innerHTML=snap.texts[k]; } }
+    if(snap.hidden){ snap.hidden.forEach(function(ik){ var el=document.querySelector('[data-ik="'+ik+'"]'); if(el) el.classList.add('hidden-block'); }); }
+  }
+  function enableText(){
+    if(eds.length) return;
+    document.querySelectorAll(SEL).forEach(function(el){
+      if(el.closest('#edBar')||el.closest('#edFab')||el.closest('.edctl')) return;
+      el.setAttribute('data-ed',''); el.setAttribute('contenteditable','true'); el.setAttribute('spellcheck','false'); eds.push(el);
+    });
+  }
+  function disableText(){ eds.forEach(function(el){ el.removeAttribute('contenteditable'); el.removeAttribute('spellcheck'); el.removeAttribute('data-ed'); }); eds=[]; }
+  function setMode(mode){
+    document.body.classList.remove('ed-text','ed-layout');
+    if(mode==='layout'){ document.body.classList.add('ed-layout'); disableText(); }
+    else { document.body.classList.add('ed-text'); enableText(); }
+    document.querySelectorAll('#edModes button').forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-mode')===mode); });
+  }
+  function on(mode){
+    document.body.classList.add('edit-on');
+    document.querySelectorAll('.reveal').forEach(function(e){ if(!e.classList.contains('in')){ e.classList.add('in'); forcedIn.push(e); } });
+    document.querySelectorAll('details').forEach(function(d){ if(!d.open){ d.open=true; openedDetails.push(d); } });
+    injectControls();
+    setMode(mode||'text');
+  }
+  function off(){
+    disableText();
+    forcedIn.forEach(function(e){ e.classList.remove('in'); }); forcedIn=[];
+    openedDetails.forEach(function(d){ d.open=false; }); openedDetails=[];
+    document.body.classList.remove('edit-on','ed-text','ed-layout');
+  }
+
+  // ---- serialize (clean copy) ----
+  function serialize(){
+    var clone=document.documentElement.cloneNode(true);
+    clone.querySelectorAll('.edctl').forEach(function(n){ n.remove(); });
+    clone.querySelectorAll('[data-mv]').forEach(function(n){ n.removeAttribute('data-mv'); });
+    clone.querySelectorAll('[data-ed]').forEach(function(n){ n.removeAttribute('data-ed'); n.removeAttribute('contenteditable'); n.removeAttribute('spellcheck'); });
+    clone.querySelectorAll('[contenteditable]').forEach(function(n){ n.removeAttribute('contenteditable'); n.removeAttribute('spellcheck'); });
+    clone.querySelectorAll('details[open]').forEach(function(d){ d.removeAttribute('open'); });
+    clone.querySelectorAll('.hero__grove,.hero__inner,.truth,.pcard,.office,.trio-card,.belief,.btn').forEach(function(n){ n.style.transform=''; });
+    var lf=clone.querySelector('.hero .leafdrift'); if(lf) lf.style.transform='';
+    var lt=clone.querySelector('#leafTrail'); if(lt) lt.innerHTML='';
+    var ti=clone.querySelector('#edToast'); if(ti) ti.textContent='';
+    clone.classList.remove('edit-on','ed-text','ed-layout');
+    return '<!DOCTYPE html>\n'+clone.outerHTML;
+  }
+  function downloadFile(){
+    var blob=new Blob([serialize()],{type:'text/html;charset=utf-8'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='trang_dieu_hanh_edited.html';
+    document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); },1500);
+    toast('Đã tải file bản đã sửa ✓');
+  }
+  function saveCloud(){
+    if(!hasStore()){ toast('Lưu ở Claude chỉ dùng được khi mở trong Claude. Hãy bấm Tải file.'); return; }
+    try{
+      var p=window.storage.set(KEY, JSON.stringify(snapshot()), false);
+      if(p && p.then) p.then(function(){ toast('Đã lưu ở Claude ✓ lần sau mở vẫn còn.'); }, function(){ toast('Lưu thất bại, thử Tải file.'); });
+      else toast('Đã lưu ở Claude ✓');
+    }catch(e){ toast('Lưu thất bại, thử Tải file.'); }
+  }
+  function resetAll(){
+    if(!confirm('Khôi phục bản gốc? Bản đã Lưu ở Claude cũng sẽ bị xoá.')) return;
+    function done(){ window.name=''; location.reload(); }
+    try{ if(hasStore()){ var p=window.storage.delete(KEY,false); if(p&&p.then){ p.then(done,done); return; } } }catch(e){}
+    done();
+  }
+  function restore(){
+    if(!hasStore()) return;
+    try{
+      var p=window.storage.get(KEY,false);
+      if(p && p.then) p.then(function(r){ if(r && r.value){ try{ applySnap(JSON.parse(r.value)); }catch(e){} } }, function(){});
+    }catch(e){}
+  }
+
+  // ---- wiring ----
+  var fab=document.getElementById('edFab');
+  if(fab) fab.addEventListener('click',function(){ on('text'); });
+  document.querySelectorAll('#edModes button').forEach(function(b){ b.addEventListener('click',function(){ setMode(b.getAttribute('data-mode')); }); });
+  var s1=document.getElementById('edSaveCloud'); if(s1) s1.addEventListener('click',saveCloud);
+  var s2=document.getElementById('edSave'); if(s2) s2.addEventListener('click',downloadFile);
+  var rs=document.getElementById('edReset'); if(rs) rs.addEventListener('click',resetAll);
+  var ex=document.getElementById('edExit'); if(ex) ex.addEventListener('click',off);
+  document.addEventListener('click',function(e){
+    if(!document.body.classList.contains('edit-on')) return;
+    if(e.target.closest('#edBar')||e.target.closest('#edFab')||e.target.closest('.edctl')) return;
+    var a=e.target.closest('a'); if(a) e.preventDefault();
+    var sm=e.target.closest('summary'); if(sm) e.preventDefault();
+  }, true);
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape' && document.body.classList.contains('edit-on')){ off(); return; }
+    if(e.key==='Enter' && document.body.classList.contains('ed-text')){
+      var t=e.target && e.target.closest ? e.target.closest('[data-ed]') : null;
+      if(t){ e.preventDefault(); }
+    }
+  });
+  document.addEventListener('paste',function(e){
+    if(!document.body.classList.contains('ed-text')) return;
+    var t=e.target && e.target.closest ? e.target.closest('[data-ed]') : null;
+    if(!t) return;
+    e.preventDefault();
+    var txt=((e.clipboardData||window.clipboardData).getData('text/plain')||'').replace(/\r?\n+/g,' ');
+    try{ document.execCommand('insertText', false, txt); }
+    catch(err){ var sel=window.getSelection(); if(sel && sel.rangeCount){ var r=sel.getRangeAt(0); r.deleteContents(); r.insertNode(document.createTextNode(txt)); r.collapse(false); } }
+  });
+
+  keyify();
+  if(document.readyState==='complete') restore();
+  else window.addEventListener('load', restore);
+})();
+</script>
+<!-- Live Edit (chỉ hiện khi mở kèm ?edit) -->
+<script src="live-edit.js"></script>
+</body>
+</html>

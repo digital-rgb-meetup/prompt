@@ -34,31 +34,43 @@ là trang đó cũng có tính năng chỉnh sửa.
 
 ---
 
-## 2. Cách sếp chỉnh sửa nội dung — 4 bước
+## 2. Cách sếp chỉnh sửa nội dung
 
 ### Bước 1 — Mở trang
 **Double-click** thẳng vào file cần sửa (ví dụ `homepage.html`) để mở bằng trình
-duyệt (Chrome/Edge/Firefox). **Không cần gõ gì thêm** — thanh công cụ chỉnh sửa
+duyệt (Chrome/Edge/Firefox). **Không cần gõ gì thêm** — thanh công cụ Live Edit
 tự hiện ở góc dưới bên trái.
 
 > ⚠️ Bản này để thanh công cụ **luôn hiện** (dùng nội bộ). Nếu sau này đưa website
 > cho khách xem, xem lại Mục 5 để ẩn công cụ đi.
 
-### Bước 2 — Bấm nút **“✏️ Bật chỉnh sửa”**
-Thanh công cụ màu đen nằm ở **góc dưới bên trái** màn hình. Sau khi bấm, mọi dòng
-chữ sửa được sẽ có **viền nét đứt màu xanh**.
+### Bước 2 — Chọn chế độ trên thanh công cụ
+Thanh công cụ có **3 chế độ** (bấm để chuyển):
 
-### Bước 3 — Click vào chữ và sửa
-Click vào bất kỳ đoạn chữ nào (tiêu đề, đoạn văn, nút, menu…) và gõ như gõ Word.
-Có thể xoá, thêm, sửa thoải mái.
+| Chế độ | Dùng để |
+|--------|---------|
+| **👀 Xem** | Xem trang y như khách. Ở chế độ này **các nút bấm/link hoạt động bình thường** (ví dụ nút “Gửi CV ngay” sẽ mở email). |
+| **✍️ Sửa chữ** | Click thẳng vào chữ để sửa nội dung (như gõ Word). |
+| **🧩 Bố cục** | Chọn 1 khối rồi **kéo góc để đổi kích thước** hoặc chỉnh khoảng cách. Các khối khác **tự dồn theo**. |
+
+### Bước 3a — Sửa chữ (chế độ ✍️ Sửa chữ)
+Click vào bất kỳ đoạn chữ nào (tiêu đề, đoạn văn, nút, menu…) và gõ. Xoá/thêm/sửa thoải mái.
+
+### Bước 3b — Chỉnh bố cục / khoảng cách (chế độ 🧩 Bố cục)
+1. **Click 1 khối** bất kỳ → khối được chọn có viền vàng và hiện **tay kéo ⤡** ở góc.
+2. **Kéo tay ⤡** để phóng to/thu nhỏ khối. Các khối bên dưới tự dồn lại cho vừa.
+3. Hoặc dùng các nút tinh chỉnh: **Trên / Dưới** (khoảng cách ngoài), **Trong**
+   (khoảng đệm bên trong), **Rộng** (chiều rộng) — mỗi cái có **−** và **＋**.
+4. **⬆️ Khối cha**: nếu muốn chọn cả khung lớn bao ngoài (thay vì khối nhỏ).
+5. **↺ Đặt lại khối**: trả khối đang chọn về kích thước/khoảng cách gốc.
 
 ### Bước 4 — Bấm **“💾 Lưu & Tải xuống”**
-Trình duyệt sẽ tải về một **file HTML mới cùng tên** (ví dụ `homepage.html`) đã
-chứa nội dung vừa sửa. File nằm trong thư mục **Downloads/Tải xuống**.
+Nút này nằm **tách riêng bên phải** thanh công cụ. Bấm để tải về **file HTML mới
+cùng tên** đã chứa mọi thay đổi (cả chữ lẫn bố cục). File nằm ở thư mục **Downloads**.
 
 ### Bước 5 — Cập nhật lên website
 Gửi file vừa tải cho **bộ phận kỹ thuật**, hoặc tự **thay thế** file cũ bằng file
-mới (đưa lên hosting / thư mục website). Xong!
+mới. Xong!
 
 ---
 
@@ -66,15 +78,18 @@ mới (đưa lên hosting / thư mục website). Xong!
 
 | Nút | Tác dụng |
 |-----|----------|
-| **✏️ Bật chỉnh sửa** | Cho phép click vào chữ để sửa. Bấm lại (**⏸️ Tắt chỉnh sửa**) để xem thử như khách. |
-| **💾 Lưu & Tải xuống** | Tải về file HTML mới đã sửa. |
-| **↩️ Hoàn tác tất cả** | Quay về nội dung gốc ban đầu (huỷ mọi thay đổi). |
+| **👀 Xem / ✍️ Sửa chữ / 🧩 Bố cục** | Chuyển giữa 3 chế độ (xem / sửa chữ / chỉnh bố cục). |
+| **Trên · Dưới · Trong · Rộng** (chế độ Bố cục) | Tăng/giảm khoảng cách & kích thước của khối đang chọn. |
+| **⬆️ Khối cha** | Chọn khung lớn bao ngoài khối hiện tại. |
+| **↺ Đặt lại khối** | Trả khối đang chọn về mặc định. |
+| **💾 Lưu & Tải xuống** | Tải về file HTML mới đã áp mọi thay đổi (tách riêng bên phải). |
+| **↩️ Hoàn tác** | Quay về bản gốc ban đầu (huỷ mọi thay đổi chữ + bố cục). |
 
 **Tính năng an toàn tự động:**
-- **Tự lưu nháp**: nếu lỡ đóng tab, khi mở lại (kèm `?edit`) sẽ hỏi *“Khôi phục
-  bản nháp?”* để không mất công.
-- **Cảnh báo thoát**: nếu sửa mà chưa bấm Lưu, đóng trang sẽ được nhắc lại.
-- Khi đang chỉnh sửa, **click vào link sẽ không nhảy trang** (để tránh mất nội dung).
+- **Tự lưu nháp**: lỡ đóng tab, khi mở lại sẽ hỏi *“Khôi phục bản nháp?”*.
+- **Cảnh báo thoát**: sửa mà chưa Lưu, đóng trang sẽ được nhắc lại.
+- Khi đang **Sửa chữ / Bố cục**, click link **không nhảy trang** (tránh mất nội dung).
+  Muốn thử bấm link/nút thật (mở email…) thì chuyển về **👀 Xem**.
 
 ---
 
@@ -84,9 +99,9 @@ mới (đưa lên hosting / thư mục website). Xong!
 Đúng vậy — chỉnh sửa chỉ hiển thị trên màn hình. Chỉ khi bấm **Lưu & Tải xuống**
 và **thay file cũ bằng file mới** thì website thật mới đổi.
 
-**Có sửa được ảnh, màu, bố cục không?**
-Công cụ này tập trung cho **văn bản (chữ)** — an toàn, khó làm hỏng giao diện.
-Việc đổi ảnh/màu/bố cục vẫn nên nhờ kỹ thuật.
+**Có sửa được khoảng cách / kích thước khối không?**
+Có — dùng chế độ **🧩 Bố cục**: kéo góc khối hoặc chỉnh Trên/Dưới/Trong/Rộng.
+Riêng việc **đổi ảnh và đổi màu** thì vẫn nên nhờ kỹ thuật.
 
 **Không thấy thanh công cụ?**
 Kiểm tra địa chỉ đã có `?edit` ở cuối chưa, và `live-edit.js` có nằm cùng thư mục

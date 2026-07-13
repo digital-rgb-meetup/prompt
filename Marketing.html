@@ -1062,7 +1062,7 @@ Khám phá
 <div class="wrap footer__meta">© 2026 Meetup Travel · tuyendung.meetup.travel</div>
 </footer>
 
-<!-- [Live Edit] Thanh công cụ chỉnh sửa cũ đã được gỡ, thay bằng live-edit.js. -->
+<!-- [Live Edit] Cong cu chinh sua cu da duoc go, thay bang live-edit.js -->
 
 <script>
 (async function(){
@@ -1322,133 +1322,6 @@ drop.querySelectorAll('a').forEach(function(a){a.addEventListener('click',functi
 document.addEventListener('click',function(e){if(!drop.contains(e.target)&&e.target!==mbtn)drop.classList.remove('open');});
 }
 
-// chỉnh sửa nội dung trực tiếp + lưu lại
-var editToggleBtn=document.getElementById('editToggleBtn'),editSaveBtn=document.getElementById('editSaveBtn'),
-editResetBtn=document.getElementById('editResetBtn'),editStatus=document.getElementById('editStatus'),
-editables=Array.prototype.slice.call(document.querySelectorAll('[data-store-key]'));
-
-// Khi mở bằng link công khai thì không có bộ nhớ lưu -> ẩn hẳn thanh chỉnh sửa,
-// tránh việc người xem bấm vào rồi sửa mà không lưu được.
-if(!window.storage){
-var bar=document.getElementById('editbar');
-if(bar)bar.style.display='none';
-}
-
-function showStatus(msg){
-if(!editStatus)return;
-editStatus.textContent=msg;
-editStatus.classList.add('show');
-clearTimeout(showStatus._t);
-showStatus._t=setTimeout(function(){editStatus.classList.remove('show');},2600);
-}
-
-// gắn tay kéo-resize cho từng khối (thẻ, card, panel...) — kéo góc để đổi kích thước,
-// vì khối vẫn nằm trong luồng bố cục bình thường nên nội dung/khối bên dưới tự đẩy xuống khi khối này giãn ra
-var BLOCK_SELECTOR='.truth,.pcard,.trio-card,.rrstep,.job,.advpanel,.income,.channels,.unlock,.perks,.ctaend,.belief';
-function setupResizable(){
-document.querySelectorAll(BLOCK_SELECTOR).forEach(function(el){
-if(el.classList.contains('block-editable'))return;
-el.classList.add('block-editable');
-var parentDisplay=el.parentElement?getComputedStyle(el.parentElement).display:'block';
-var gridChild=(parentDisplay==='grid');
-
-var hint=document.createElement('span');
-hint.className='resize-hint'; hint.textContent=gridChild?'Kéo để đổi chiều cao':'Kéo để đổi kích thước';
-hint.setAttribute('contenteditable','false');
-el.appendChild(hint);
-
-var handle=document.createElement('span');
-handle.className='resize-handle'+(gridChild?' v-only':'');
-handle.setAttribute('aria-hidden','true');
-handle.setAttribute('contenteditable','false');
-el.appendChild(handle);
-
-var startX=0,startY=0,startW=0,startH=0,dragging=false;
-handle.addEventListener('pointerdown',function(e){
-e.preventDefault(); e.stopPropagation();
-dragging=true;
-el.classList.add('is-resizing');
-startX=e.clientX; startY=e.clientY;
-var rect=el.getBoundingClientRect();
-startW=rect.width; startH=rect.height;
-try{handle.setPointerCapture(e.pointerId);}catch(err){}
-});
-handle.addEventListener('pointermove',function(e){
-if(!dragging)return;
-var dx=e.clientX-startX, dy=e.clientY-startY;
-if(!gridChild){
-el.style.width=Math.max(140,startW+dx)+'px';
-el.style.flex='none';
-}
-el.style.minHeight=Math.max(60,startH+dy)+'px';
-});
-function endDrag(e){
-if(!dragging)return;
-dragging=false;
-el.classList.remove('is-resizing');
-try{handle.releasePointerCapture(e.pointerId);}catch(err){}
-}
-handle.addEventListener('pointerup',endDrag);
-handle.addEventListener('pointercancel',endDrag);
-handle.addEventListener('dblclick',function(e){
-e.stopPropagation(); e.preventDefault();
-el.style.width=''; el.style.minHeight=''; el.style.flex='';
-});
-});
-}
-setupResizable();
-
-function setEditMode(on){
-document.body.classList.toggle('edit-mode',on);
-editables.forEach(function(el){ el.setAttribute('contenteditable', on ? 'true' : 'false'); });
-if(editToggleBtn)editToggleBtn.textContent = on ? '👀 Xem trước' : '✏️ Chỉnh sửa nội dung';
-}
-
-if(editToggleBtn){
-editToggleBtn.addEventListener('click',function(){
-var on=!document.body.classList.contains('edit-mode');
-setEditMode(on);
-if(on)showStatus('Bấm vào chữ để sửa, hoặc kéo góc vàng ở mỗi khối để đổi kích thước.');
-});
-}
-
-function getCleanHTML(el){
-var clone=el.cloneNode(true);
-clone.querySelectorAll('.resize-handle,.resize-hint').forEach(function(n){n.remove();});
-clone.querySelectorAll('.block-editable').forEach(function(n){n.classList.remove('block-editable','is-resizing');});
-return clone.innerHTML;
-}
-
-if(editSaveBtn){
-editSaveBtn.addEventListener('click',async function(){
-if(!window.storage){ showStatus('Tính năng lưu chưa khả dụng ở đây.'); return; }
-editSaveBtn.disabled=true;
-try{
-for(var i=0;i<editables.length;i++){
-var el=editables[i], key=el.getAttribute('data-store-key');
-await window.storage.set(storeKey(key), getCleanHTML(el), false);
-}
-showStatus('Đã lưu thay đổi ✓');
-}catch(e){
-showStatus('Lưu thất bại, thử lại nhé.');
-}
-editSaveBtn.disabled=false;
-});
-}
-
-if(editResetBtn){
-editResetBtn.addEventListener('click',async function(){
-if(!confirm('Xoá toàn bộ chỉnh sửa đã lưu và quay về bản gốc?'))return;
-if(window.storage){
-for(var i=0;i<editables.length;i++){
-var key=editables[i].getAttribute('data-store-key');
-try{ await window.storage.delete(storeKey(key), false); }catch(e){}
-try{ await window.storage.delete('content:'+key, false); }catch(e){}
-}
-}
-location.reload();
-});
-}
 })();
 </script>
 

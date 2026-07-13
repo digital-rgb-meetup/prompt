@@ -15,9 +15,12 @@ file HTML mới**. Không cần cài phần mềm, không cần internet.
 
 > ⚠️ Luôn giữ `live-edit.js` **nằm chung thư mục** với các file `.html`.
 
-> 🔧 Riêng `Marketing.html` trước đây có sẵn một thanh chỉnh sửa cũ (cần backend
-> mới chạy) — đã được **gỡ bỏ** để tránh trùng lặp; nay cả 6 trang dùng chung một
-> bộ Live Edit thống nhất.
+> 🔧 3 trang `Marketing.html`, `Dieu-hanh.html`, `Sales.html` trước đây có sẵn các
+> công cụ chỉnh sửa cũ tự chế (mỗi trang một kiểu) — đã được **gỡ bỏ** để tránh
+> xung đột/trùng thanh công cụ. Riêng `Sales.html` có ràng buộc đặc biệt (hàm khởi
+> tạo hiệu ứng nằm trong code editor cũ) nên đã được **giữ lại lời gọi khởi tạo**
+> để trang vẫn chạy hiệu ứng bình thường. Nay cả 6 trang dùng chung một bộ Live
+> Edit thống nhất.
 
 Dòng đã được chèn tự động vào cuối mỗi trang (ngay trước `</body>`):
 

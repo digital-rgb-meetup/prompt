@@ -71,9 +71,11 @@
     /* nhóm hành động Lưu / Hoàn tác — tách riêng bằng vạch ngăn, đẩy sang phải */
     '#le-bar .le-actions{display:flex;gap:8px;align-items:center;margin-left:auto;',
     'padding-left:12px;border-left:2px solid rgba(255,255,255,.22);}',
-    '#le-bar .le-save{background:#16a34a;font-weight:800;padding:11px 18px;',
+    '#le-bar .le-save{background:#16a34a;font-weight:800;padding:11px 16px;',
     'box-shadow:0 0 0 3px rgba(22,163,74,.25);}',
     '#le-bar .le-save:hover{background:#15803d;}',
+    '#le-bar .le-download{background:#2563eb;font-weight:800;padding:11px 16px;}',
+    '#le-bar .le-download:hover{background:#1d4ed8;}',
     '#le-bar .le-undo{background:#475569;}',
     '#le-bar .le-hint{font-weight:500;opacity:.85;font-size:12px;max-width:220px;}',
     /* bảng chỉnh bố cục */
@@ -129,15 +131,18 @@
     '</span>' +
     '<span class="le-hint"></span>' +
     '<span class="le-actions">' +
-      '<button type="button" class="le-save">💾 Lưu &amp; Tải xuống</button>' +
+      '<button type="button" class="le-save" title="Lưu ngay tại trang — mở lại vẫn còn">💾 Lưu</button>' +
+      '<button type="button" class="le-download" title="Tải file HTML về máy">⤓ Tải xuống</button>' +
       '<button type="button" class="le-undo">↩️ Hoàn tác</button>' +
     '</span>';
   document.body.appendChild(bar);
 
-  var segBtns = bar.querySelectorAll('.le-seg button');
-  var btnSave = bar.querySelector('.le-save');
-  var btnUndo = bar.querySelector('.le-undo');
-  var hint    = bar.querySelector('.le-hint');
+  var segBtns  = bar.querySelectorAll('.le-seg button');
+  var btnSave  = bar.querySelector('.le-save');
+  var btnDown  = bar.querySelector('.le-download');
+  var btnUndo  = bar.querySelector('.le-undo');
+  var hint     = bar.querySelector('.le-hint');
+  var savedKey = 'live-edit-saved::' + window.location.pathname;
 
   var handle = document.createElement('div');
   handle.id = 'le-handle';
@@ -387,7 +392,21 @@
     if (!/\.html?$/i.test(name)) name = 'index.html';
     return name;
   }
-  function saveAndDownload() {
+  // 💾 LƯU tại trang: ghi vào bộ nhớ trình duyệt, mở lại trang sẽ tự hiện lại.
+  function saveLocal() {
+    try {
+      localStorage.setItem(savedKey, getContentHTML());
+      localStorage.removeItem(draftKey);
+      dirty = false;
+      toast('✅ Đã lưu vào trang. Lần sau mở lại sẽ tự hiện bản này.');
+    } catch (err) {
+      toast('⚠️ Không lưu được (trình duyệt chặn bộ nhớ). Hãy dùng “Tải xuống”.');
+    }
+  }
+  btnSave.addEventListener('click', saveLocal);
+
+  // ⤓ TẢI XUỐNG: xuất file HTML để giao kỹ thuật / thay lên hosting.
+  function downloadFile() {
     var prev = mode; setMode('view');       // dọn về trạng thái sạch để serialize
     var docClone = document.documentElement.cloneNode(true);
     cleanForeignEditors(docClone);
@@ -402,21 +421,20 @@
     document.body.appendChild(a); a.click();
     setTimeout(function () { URL.revokeObjectURL(url); a.remove(); }, 1500);
 
-    dirty = false;
-    try { localStorage.removeItem(draftKey); } catch (err) {}
-    toast('✅ Đã tải xuống “' + currentFileName() + '”. Thay file cũ bằng file này để cập nhật web.');
+    toast('⤓ Đã tải xuống “' + currentFileName() + '”. Thay file cũ bằng file này để cập nhật web.');
     if (prev !== 'view') setMode(prev);
   }
-  btnSave.addEventListener('click', saveAndDownload);
+  btnDown.addEventListener('click', downloadFile);
 
   /* ---------------------------- HOÀN TÁC ------------------------------- */
   var _snapshot = null;
   btnUndo.addEventListener('click', function () {
     if (_snapshot == null) return;
-    if (!window.confirm('Hoàn tác TẤT CẢ thay đổi (chữ + bố cục) và quay về bản gốc?')) return;
+    if (!window.confirm('Hoàn tác TẤT CẢ thay đổi (chữ + bố cục) và quay về bản gốc?\n' +
+        '(Xoá luôn bản đã lưu tại trang này.)')) return;
     restoreBodyHTML(_snapshot);
     dirty = false;
-    try { localStorage.removeItem(draftKey); } catch (err) {}
+    try { localStorage.removeItem(draftKey); localStorage.removeItem(savedKey); } catch (err) {}
     toast('Đã hoàn tác về bản gốc.');
   });
 
@@ -426,8 +444,15 @@
 
   /* ------------------------------ KHỞI ĐỘNG --------------------------- */
   cleanForeignEditors(document);
-  _snapshot = getContentHTML();
+  _snapshot = getContentHTML();              // bản GỐC của file (để Hoàn tác)
   setMode('view');
-  offerDraftRestore();
+  var _saved = null;
+  try { _saved = localStorage.getItem(savedKey); } catch (err) {}
+  if (_saved && _saved !== _snapshot) {
+    restoreBodyHTML(_saved);                 // tự hiện bản đã Lưu lần trước
+    toast('Đã mở bản bạn đã lưu. Bấm ↩️ Hoàn tác để về bản gốc.');
+  } else {
+    offerDraftRestore();                     // nếu chưa Lưu nhưng có nháp crash
+  }
   console.log('%c Live Edit đã sẵn sàng (Xem · Sửa chữ · Bố cục) ', 'background:#2563eb;color:#fff;padding:2px 6px;border-radius:4px');
 })();

@@ -64,13 +64,18 @@ Click vào bất kỳ đoạn chữ nào (tiêu đề, đoạn văn, nút, menu�
 4. **⬆️ Khối cha**: nếu muốn chọn cả khung lớn bao ngoài (thay vì khối nhỏ).
 5. **↺ Đặt lại khối**: trả khối đang chọn về kích thước/khoảng cách gốc.
 
-### Bước 4 — Bấm **“💾 Lưu & Tải xuống”**
-Nút này nằm **tách riêng bên phải** thanh công cụ. Bấm để tải về **file HTML mới
-cùng tên** đã chứa mọi thay đổi (cả chữ lẫn bố cục). File nằm ở thư mục **Downloads**.
+### Bước 4 — Lưu lại (2 nút tách riêng bên phải)
+| Nút | Khi nào dùng |
+|-----|--------------|
+| **💾 Lưu** | Lưu ngay **tại trang** (vào bộ nhớ trình duyệt). **Mở lại trang là bản của bạn tự hiện** — dùng để làm dở rồi quay lại làm tiếp. *Chỉ lưu trên máy này.* |
+| **⤓ Tải xuống** | Xuất ra **file HTML** để giao kỹ thuật / thay lên hosting. Đây là bước để **cập nhật website thật**. |
+
+> Mẹo: cứ sửa → bấm **💾 Lưu** để không mất. Khi ưng ý rồi thì bấm **⤓ Tải xuống**
+> để lấy file đưa lên web.
 
 ### Bước 5 — Cập nhật lên website
-Gửi file vừa tải cho **bộ phận kỹ thuật**, hoặc tự **thay thế** file cũ bằng file
-mới. Xong!
+Gửi file vừa **Tải xuống** cho **bộ phận kỹ thuật**, hoặc tự **thay thế** file cũ
+bằng file mới. Xong!
 
 ---
 
@@ -82,8 +87,9 @@ mới. Xong!
 | **Trên · Dưới · Trong · Rộng** (chế độ Bố cục) | Tăng/giảm khoảng cách & kích thước của khối đang chọn. |
 | **⬆️ Khối cha** | Chọn khung lớn bao ngoài khối hiện tại. |
 | **↺ Đặt lại khối** | Trả khối đang chọn về mặc định. |
-| **💾 Lưu & Tải xuống** | Tải về file HTML mới đã áp mọi thay đổi (tách riêng bên phải). |
-| **↩️ Hoàn tác** | Quay về bản gốc ban đầu (huỷ mọi thay đổi chữ + bố cục). |
+| **💾 Lưu** | Lưu tại trang (mở lại vẫn còn). Tách riêng bên phải. |
+| **⤓ Tải xuống** | Xuất file HTML để cập nhật website. Tách riêng bên phải. |
+| **↩️ Hoàn tác** | Quay về bản gốc ban đầu (xoá cả bản đã Lưu). |
 
 **Tính năng an toàn tự động:**
 - **Tự lưu nháp**: lỡ đóng tab, khi mở lại sẽ hỏi *“Khôi phục bản nháp?”*.

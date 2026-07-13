@@ -18,9 +18,9 @@
   /* ----------------------------- CẤU HÌNH ------------------------------ */
   var CONFIG = {
     // Cách bật thanh công cụ:
-    //   'query'  -> chỉ hiện khi địa chỉ có ?edit   (KHUYẾN NGHỊ)
-    //   'always' -> luôn hiện (dùng khi làm bản nội bộ, không public)
-    activation: 'query',
+    //   'query'  -> chỉ hiện khi địa chỉ có ?edit
+    //   'always' -> luôn hiện, không cần gõ gì   (ĐANG DÙNG - bản nội bộ)
+    activation: 'always',
     queryFlag: 'edit',       // tên tham số kích hoạt: ...html?edit
     autosave: true           // tự lưu bản nháp vào trình duyệt để tránh mất
   };

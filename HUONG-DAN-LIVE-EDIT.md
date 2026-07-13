@@ -27,23 +27,15 @@ là trang đó cũng có tính năng chỉnh sửa.
 
 ---
 
-## 2. Cách sếp chỉnh sửa nội dung — 5 bước
+## 2. Cách sếp chỉnh sửa nội dung — 4 bước
 
-### Bước 1 — Mở trang ở chế độ chỉnh sửa
-Thêm `?edit` vào cuối địa chỉ trang rồi mở bằng trình duyệt (Chrome/Edge/Firefox):
+### Bước 1 — Mở trang
+**Double-click** thẳng vào file cần sửa (ví dụ `homepage.html`) để mở bằng trình
+duyệt (Chrome/Edge/Firefox). **Không cần gõ gì thêm** — thanh công cụ chỉnh sửa
+tự hiện ở góc dưới bên trái.
 
-```
-homepage.html?edit
-Sales.html?edit
-Marketing.html?edit
-```
-
-- Nếu xem trên **máy tính có sẵn file**: mở file HTML, rồi bấm vào thanh địa chỉ
-  và thêm `?edit` vào cuối, Enter.
-- Nếu website **đã đưa lên mạng**: mở đường link trang và thêm `?edit` vào cuối.
-
-> Khách vào xem website bình thường (không có `?edit`) sẽ **không thấy** gì cả —
-> công cụ chỉ hiện cho người biết mẹo `?edit`.
+> ⚠️ Bản này để thanh công cụ **luôn hiện** (dùng nội bộ). Nếu sau này đưa website
+> cho khách xem, xem lại Mục 5 để ẩn công cụ đi.
 
 ### Bước 2 — Bấm nút **“✏️ Bật chỉnh sửa”**
 Thanh công cụ màu đen nằm ở **góc dưới bên trái** màn hình. Sau khi bấm, mọi dòng

@@ -36,13 +36,21 @@ là trang đó cũng có tính năng chỉnh sửa.
 
 ## 2. Cách sếp chỉnh sửa nội dung
 
-### Bước 1 — Mở trang
-**Double-click** thẳng vào file cần sửa (ví dụ `homepage.html`) để mở bằng trình
-duyệt (Chrome/Edge/Firefox). **Không cần gõ gì thêm** — thanh công cụ Live Edit
-tự hiện ở góc dưới bên trái.
+### Bước 1 — Mở trang ở chế độ chỉnh sửa (thêm `?edit`)
+Mở file bằng trình duyệt (Chrome/Edge/Firefox), rồi **thêm `?edit` vào cuối địa chỉ**
+trên thanh trình duyệt và nhấn Enter. Ví dụ:
 
-> ⚠️ Bản này để thanh công cụ **luôn hiện** (dùng nội bộ). Nếu sau này đưa website
-> cho khách xem, xem lại Mục 5 để ẩn công cụ đi.
+```
+homepage.html?edit
+Marketing.html?edit
+```
+
+Thanh công cụ Live Edit sẽ hiện ở góc dưới bên trái.
+
+> 🔒 **Vì sao phải có `?edit`?** Để **an toàn khi đưa web lên mạng** (demo.meetup.travel):
+> khách vào xem trang bình thường sẽ **không thấy** và **không sửa được** gì cả — chỉ
+> người biết mẹo `?edit` mới vào được chế độ chỉnh sửa. (Muốn khó đoán hơn: đổi từ
+> khoá `?edit` thành chuỗi bí mật — xem Mục 5.)
 
 ### Bước 2 — Chọn chế độ trên thanh công cụ
 Thanh công cụ có **3 chế độ** (bấm để chuyển):

@@ -19,9 +19,11 @@
 
   /* ----------------------------- CẤU HÌNH ------------------------------ */
   var CONFIG = {
-    // 'always' -> luôn hiện thanh công cụ (bản nội bộ, ĐANG DÙNG)
-    // 'query'  -> chỉ hiện khi địa chỉ có ?edit  (khi đưa web cho khách)
-    activation: 'always',
+    // 'query'  -> chỉ hiện khi địa chỉ có ?edit  (AN TOÀN để publish, ĐANG DÙNG)
+    //             Khách vào trang bình thường KHÔNG sửa được; chỉ ai mở kèm
+    //             ?edit (vd: homepage.html?edit) mới thấy thanh công cụ.
+    // 'always' -> luôn hiện (chỉ dùng bản nội bộ, KHÔNG đưa lên web công khai)
+    activation: 'query',
     queryFlag: 'edit',
     autosave: true,
     stepSpace: 8,     // bước chỉnh khoảng cách (px) cho Trên/Dưới/Trong

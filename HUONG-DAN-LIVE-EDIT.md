@@ -126,7 +126,27 @@ Không. Khi mở bình thường (không `?edit`), file chạy y như cũ, khôn
 
 ---
 
-## 5. Tuỳ chỉnh cho kỹ thuật viên (không bắt buộc)
+## 5. Thay ảnh (làm cho ảnh nét hơn)
+
+Toàn bộ ảnh đã được tách ra thư mục **`images/`** nằm cạnh các file HTML, đặt tên
+dễ nhớ: `homepage-anh-1.webp`, `homepage-anh-2.webp`, … , `vitri-anh-1.png`, …
+
+**Muốn đổi/nâng nét một ảnh — cực đơn giản, KHÔNG cần sửa code:**
+1. Mở thư mục `images/`, xem ảnh nào cần thay (mở lên xem thử là biết tên file).
+2. Chuẩn bị ảnh mới **nét hơn**, **đổi tên nó trùng y hệt** ảnh cũ (ví dụ muốn thay
+   `homepage-anh-12.webp` thì đặt tên ảnh mới cũng là `homepage-anh-12.webp`).
+3. **Dán đè** vào thư mục `images/` (ghi đè ảnh cũ). Xong! Mở lại trang là thấy ảnh mới.
+
+> 💡 Nên giữ đúng **định dạng** (`.webp`/`.png`) và **tỉ lệ khung** gần giống ảnh cũ
+> để bố cục không bị lệch. Ảnh nét nên rộng khoảng **1200–1600px**.
+
+Muốn dùng **link ảnh trên mạng (CDN)** thay vì file trong folder: mở file HTML, tìm
+`src="images/homepage-anh-1.webp"` và đổi thành `src="https://cdn.meetup.travel/..."`.
+(Nếu cần, gửi tôi danh sách link — tôi thay giúp.)
+
+---
+
+## 6. Tuỳ chỉnh cho kỹ thuật viên (không bắt buộc)
 
 Mở `live-edit.js`, phần `CONFIG` ở đầu file:
 

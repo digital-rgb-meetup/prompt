@@ -872,6 +872,32 @@ footer{padding-bottom:calc(34px + env(safe-area-inset-bottom,0px))}
 </div>
 </section>
 
+<style id="crossnav-css">
+.crossnav{padding:56px 0;}
+.crossnav .wrap{max-width:1140px;margin:0 auto;padding:0 26px;}
+.crossnav__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px;}
+.crossnav__card{display:flex;flex-direction:column;gap:8px;padding:24px 22px;border-radius:20px;
+  background:#fff;border:1px solid var(--line,#d8e6c6);box-shadow:0 6px 20px rgba(20,50,25,.07);
+  text-decoration:none;color:inherit;transition:transform .25s ease,box-shadow .25s ease,border-color .25s;}
+.crossnav__card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(39,105,42,.18);border-color:var(--brand,#2fb0a8);}
+.crossnav__ic{font-size:30px;line-height:1;}
+.crossnav__name{font-weight:800;font-size:19px;color:var(--ink,#18321d);}
+.crossnav__desc{font-size:14.5px;color:var(--ink-2,#37543c);margin:0;flex:1;}
+.crossnav__go{font-weight:700;color:var(--rice,#5c9e30);}
+.crossnav__card--all{background:linear-gradient(150deg,#2f7d46,#12401f);color:#eafae6;border:0;}
+.crossnav__card--all .crossnav__name,.crossnav__card--all .crossnav__desc{color:#eafae6;}
+.crossnav__card--all .crossnav__go{color:#ffe9a8;}
+@media(max-width:820px){.crossnav__grid{grid-template-columns:1fr;}}
+</style>
+<section class="section crossnav">
+  <div class="wrap">
+    <div class="head reveal"><span class="eyebrow">Vị trí khác</span><h2>Khám phá thêm cơ hội tại Meetup</h2></div>
+    <div class="crossnav__grid">
+<a class="crossnav__card" href="Dieu-hanh.html"><span class="crossnav__ic">🧭</span><span class="crossnav__name">Điều hành tour</span><p class="crossnav__desc">Vận hành hành trình trọn vẹn, đồng hành cùng khách.</p><span class="crossnav__go">Xem vị trí →</span></a>
+<a class="crossnav__card" href="Marketing.html"><span class="crossnav__ic">✍️</span><span class="crossnav__name">Marketing · Creative</span><p class="crossnav__desc">Kể chuyện Việt Nam bằng hình ảnh & nội dung chất.</p><span class="crossnav__go">Xem vị trí →</span></a>
+<a class="crossnav__card crossnav__card--all" href="vi-tri-tuyen-dung.html"><span class="crossnav__ic">📋</span><span class="crossnav__name">Tất cả vị trí đang tuyển</span><p class="crossnav__desc">Xem toàn bộ vị trí ở mọi phòng ban của Meetup.</p><span class="crossnav__go">Xem tất cả →</span></a>    </div>
+  </div>
+</section>
 <footer>
 <svg class="foot-scene" viewBox="0 0 1440 96" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><circle cx="1210" cy="30" r="24" fill="#e2bd5c" opacity=".35"/><g fill="#eef6ea"><g transform="translate(120 22) scale(.3)"><g transform="translate(170 0) scale(-1 1)"><use href="#co-glide"/></g></g><g transform="translate(228 16) scale(.3)"><g transform="translate(170 0) scale(-1 1)"><use href="#co-glide"/></g></g><g transform="translate(336 24) scale(.3)"><g transform="translate(170 0) scale(-1 1)"><use href="#co-glide"/></g></g></g><path d="M0 60 Q360 34 720 54 T1440 50 V96 H0 Z" fill="#124021"/><path d="M0 74 Q380 52 760 68 T1440 66 V96 H0 Z" fill="#0d3319"/></svg>
 <div class="wrap footer__inner">
@@ -1013,5 +1039,8 @@ addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd
 
 <!-- Live Edit -->
 <script src="live-edit.js"></script>
+<style id="perffx">/* Tối ưu hiệu năng: tắt animation đung đưa từng nhánh lúa (hàng trăm cái) — giữ chuyển động nhẹ toàn cụm */
+.hero__ricefield .rw,.hero__ricefield .rf-sway{animation:none !important;}
+@media (max-width:820px){.hero__ricefield .rf-front,.hero__ricefield .rf-back{animation:none !important;}}</style>
 </body>
 </html>

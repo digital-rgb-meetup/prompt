@@ -683,7 +683,7 @@ a.vquote:hover{transform:translateY(-4px);box-shadow:var(--sh);border-color:var(
       <a href="vi-tri-tuyen-dung.html">Vị trí tuyển dụng</a>
       <a href="Phuc-loi.html">Phúc lợi</a>
     </nav>
-    <a href="vi-tri-tuyen-dung.html" class="btn btn--gold btn--sm">Ứng tuyển</a>
+    <a href="mailto:hr@meetup.travel?subject=Ứng tuyển Meetup Travel" class="btn btn--gold btn--sm">Ứng tuyển</a>
     <button class="nav__menu" aria-label="Mở menu">☰</button>
   </div>
   <div class="progress" id="progress"></div>
@@ -1287,12 +1287,32 @@ a.vquote:hover{transform:translateY(-4px);box-shadow:var(--sh);border-color:var(
 
 
 <style id="elffx">
-/* Cố gắng cho các khung review Elfsight đồng nhất chiều cao (best-effort) */
-.elfsight-app-e0273143-6a47-4330-a3dd-220606b2ffb0 [class*="Review-"],
-.elfsight-app-e0273143-6a47-4330-a3dd-220606b2ffb0 [class*="review-item"],
-.elfsight-app-e0273143-6a47-4330-a3dd-220606b2ffb0 [class*="Card"]{height:100%;}
+/* Cố gắng style khung review Elfsight: bo tròn · kính mờ · đồng nhất chiều cao.
+   (Best-effort — Elfsight render DOM riêng; nếu chưa ăn, chỉnh trong dashboard Elfsight.) */
+.elfsight-app-e0273143-6a47-4330-a3dd-220606b2ffb0 [class*="ReviewsItem"],
+.elfsight-app-e0273143-6a47-4330-a3dd-220606b2ffb0 [class*="reviews-item"],
+.elfsight-app-e0273143-6a47-4330-a3dd-220606b2ffb0 [class*="Review__Card"],
+.elfsight-app-e0273143-6a47-4330-a3dd-220606b2ffb0 [class*="Card-"],
+.elfsight-app-e0273143-6a47-4330-a3dd-220606b2ffb0 [class*="Item-sc"]{
+  height:100% !important;
+  border-radius:20px !important;
+  background:rgba(255,255,255,.62) !important;
+  -webkit-backdrop-filter:blur(12px) saturate(1.25) !important;
+  backdrop-filter:blur(12px) saturate(1.25) !important;
+  border:1px solid rgba(255,255,255,.7) !important;
+  box-shadow:0 8px 26px rgba(20,50,25,.10) !important;
+  transition:transform .3s ease, box-shadow .3s ease !important;
+}
+.elfsight-app-e0273143-6a47-4330-a3dd-220606b2ffb0 [class*="ReviewsItem"]:hover,
+.elfsight-app-e0273143-6a47-4330-a3dd-220606b2ffb0 [class*="reviews-item"]:hover,
+.elfsight-app-e0273143-6a47-4330-a3dd-220606b2ffb0 [class*="Card-"]:hover{
+  transform:translateY(-5px) !important;
+  box-shadow:0 18px 40px rgba(47,176,168,.26) !important;
+}
+/* ép các ô trong slider/grid cao bằng nhau */
 .elfsight-app-e0273143-6a47-4330-a3dd-220606b2ffb0 [class*="slide"],
-.elfsight-app-e0273143-6a47-4330-a3dd-220606b2ffb0 [class*="Slide"]{display:flex;align-items:stretch;}
+.elfsight-app-e0273143-6a47-4330-a3dd-220606b2ffb0 [class*="Slide"],
+.elfsight-app-e0273143-6a47-4330-a3dd-220606b2ffb0 [class*="Grid"] > *{ display:flex !important; align-items:stretch !important; height:auto !important; }
 </style>
 
 </body>

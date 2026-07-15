@@ -1,0 +1,1 @@
+try{initPage();}catch(e){console.error(e);}

@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="VAN DU — trang chu du lich dang trien lam.">
+<title>VÂN DU — Triển lãm những miền đất</title>
+<style>*{margin:0;padding:0}img{max-width:100%}</style>
+</head>
+<body>
+<style>
+  :root{
+    --paper:#E9E3D5; --paper-2:#E1DACB; --paper-3:#DED6C4;
+    --ink:#1B1712; --ink-soft:#4A4238; --muted:#8C8372;
+    --line:rgba(27,23,18,.16); --line-2:rgba(27,23,18,.08);
+    --gold:#B08A1E; --vermilion:#B23327; --jade:#2C7460;
+    --accent:var(--gold); --accent-ink:var(--gold);
+    --font-display:'Didot','Bodoni MT','Hoefler Text',Georgia,'Times New Roman',serif;
+    --font-serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,Cambria,serif;
+    --font-sans:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+    --font-mono:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;
+    --shell:min(1320px,100vw - 3rem);
+    --grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.42'/></svg>");
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --paper:#14110C; --paper-2:#1A160E; --paper-3:#201B12;
+      --ink:#EDE5D3; --ink-soft:#C7BDA6; --muted:#8B8168;
+      --line:rgba(237,229,211,.15); --line-2:rgba(237,229,211,.07);
+      --gold:#D9B34A; --vermilion:#DB5346; --jade:#4FA285;
+    }
+  }
+  :root[data-theme="light"]{
+    --paper:#E9E3D5; --paper-2:#E1DACB; --paper-3:#DED6C4;
+    --ink:#1B1712; --ink-soft:#4A4238; --muted:#8C8372;
+    --line:rgba(27,23,18,.16); --line-2:rgba(27,23,18,.08);
+    --gold:#B08A1E; --vermilion:#B23327; --jade:#2C7460;
+  }
+  :root[data-theme="dark"]{
+    --paper:#14110C; --paper-2:#1A160E; --paper-3:#201B12;
+    --ink:#EDE5D3; --ink-soft:#C7BDA6; --muted:#8B8168;
+    --line:rgba(237,229,211,.15); --line-2:rgba(237,229,211,.07);
+    --gold:#D9B34A; --vermilion:#DB5346; --jade:#4FA285;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--font-serif);
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; z-index:9999; pointer-events:none;
+    background-image:var(--grain); background-size:180px; opacity:.05; mix-blend-mode:multiply;
+  }
+  @media (prefers-color-scheme:dark){ body::before{mix-blend-mode:screen; opacity:.045} }
+  :root[data-theme="dark"] body::before{mix-blend-mode:screen; opacity:.045}
+  a{color:inherit}
+  ::selection{background:var(--accent); color:var(--paper)}
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    position:fixed; inset:0 0 auto 0; z-index:200;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:1rem; padding:1.05rem clamp(1rem,3.4vw,2.4rem);
+    mix-blend-mode:normal;
+  }
+  .topbar::after{
+    content:""; position:absolute; inset:0; z-index:-1;
+    background:linear-gradient(var(--paper),color-mix(in srgb,var(--paper) 10%,transparent));
+    -webkit-mask:linear-gradient(#000,#000 55%,transparent);
+            mask:linear-gradient(#000,#000 55%,transparent);
+  }
+  .brand{display:flex; align-items:baseline; gap:.6rem; text-decoration:none}
+  .brand .mark{font-family:var(--font-display); font-size:1.34rem; letter-spacing:.32em; font-weight:600}
+  .brand .cjk{font-size:.98rem; color:var(--muted); letter-spacing:.1em}
+  nav.halls{display:flex; gap:.15rem; font-family:var(--font-mono); font-size:.66rem}
+  nav.halls a{
+    text-decoration:none; color:var(--muted); letter-spacing:.16em; text-transform:uppercase;
+    padding:.5rem .7rem; border-radius:100px; transition:color .3s, background .3s;
+    display:flex; gap:.5rem; align-items:center;
+  }
+  nav.halls a .no{opacity:.55}
+  nav.halls a:hover{color:var(--ink)}
+  nav.halls a.active{color:var(--ink); background:var(--paper-3)}
+  nav.halls a.active .no{opacity:1; color:var(--accent)}
+  .tb-right{display:flex; align-items:center; gap:.7rem}
+  .theme-btn{
+    font-family:var(--font-mono); font-size:.62rem; letter-spacing:.16em; text-transform:uppercase;
+    background:transparent; color:var(--muted); border:1px solid var(--line);
+    padding:.5rem .7rem; border-radius:100px; cursor:pointer; transition:.25s;
+  }
+  .theme-btn:hover{color:var(--ink); border-color:var(--ink)}
+  .cta-pill{
+    text-decoration:none; font-family:var(--font-mono); font-size:.64rem; letter-spacing:.18em; text-transform:uppercase;
+    background:var(--ink); color:var(--paper); padding:.62rem 1rem; border-radius:100px;
+    display:inline-flex; gap:.5rem; align-items:center; transition:.3s;
+  }
+  .cta-pill:hover{background:var(--accent); color:var(--paper)}
+  .cta-pill .dot{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.8}
+
+  /* ---------- left rail ---------- */
+  .rail{
+    position:fixed; left:clamp(.6rem,2.2vw,1.5rem); top:0; bottom:0; z-index:150;
+    width:2.2rem; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:1.1rem; pointer-events:none; mix-blend-mode:normal;
+  }
+  .rail .rno{font-family:var(--font-display); font-size:1.5rem; color:var(--accent); transition:color .5s}
+  .rail .rname{
+    writing-mode:vertical-rl; font-family:var(--font-mono); font-size:.62rem; letter-spacing:.42em;
+    text-transform:uppercase; color:var(--muted);
+  }
+  .rail .track{width:1px; flex:0 0 min(34vh,240px); background:var(--line); position:relative; overflow:hidden}
+  .rail .track i{position:absolute; left:0; top:0; width:100%; background:var(--accent); height:0%; transition:height .2s linear, background .5s}
+  @media (max-width:760px){ .rail{display:none} }
+
+  /* ---------- sections ---------- */
+  main{position:relative}
+  .hall{
+    position:relative; min-height:100svh; display:grid; align-items:center;
+    padding:6.5rem clamp(1rem,3.4vw,2.4rem) 4.5rem; overflow:hidden;
+    scroll-snap-align:start;
+  }
+  @media (min-width:900px){ html{scroll-snap-type:y proximity} }
+  canvas.curtain{position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none}
+  .hall > .wrap{position:relative; z-index:2; width:100%; max-width:var(--shell); margin:0 auto}
+
+  .eyebrow{
+    display:flex; align-items:center; gap:.7rem; font-family:var(--font-mono);
+    font-size:.7rem; letter-spacing:.14em; color:var(--ink-soft); margin:0 0 1.5rem;
+  }
+  .eyebrow .seal{font-family:var(--font-display); font-size:1.5rem; color:var(--accent); line-height:1}
+  .eyebrow .ln{width:2.4rem; height:1px; background:var(--accent)}
+
+  .head{
+    font-family:var(--font-display); font-weight:600; color:var(--ink);
+    font-size:clamp(2.7rem,8.2vw,7.4rem); line-height:.98; letter-spacing:-.015em;
+    text-wrap:balance; margin:0; max-width:16ch;
+  }
+  .head .em{font-style:italic; color:var(--accent)}
+  .head .rule{display:inline-block; width:clamp(2rem,7vw,5.5rem); height:.14em; background:var(--accent);
+    vertical-align:middle; margin:0 .35em .18em; border-radius:2px}
+
+  .caption{
+    margin-top:2rem; max-width:34ch; color:var(--ink-soft);
+    font-size:1.02rem; line-height:1.62;
+  }
+  .caption .lead{color:var(--ink)}
+
+  /* reveal */
+  .reveal{opacity:0; transform:translateY(26px); filter:blur(6px)}
+  .in-view .reveal{opacity:1; transform:none; filter:none;
+    transition:opacity 1s cubic-bezier(.2,.7,.2,1), transform 1s cubic-bezier(.2,.7,.2,1), filter 1s}
+  .in-view .reveal.d1{transition-delay:.08s}
+  .in-view .reveal.d2{transition-delay:.18s}
+  .in-view .reveal.d3{transition-delay:.30s}
+  .in-view .reveal.d4{transition-delay:.42s}
+
+  /* side markers (like the reference flags) */
+  .markers{position:absolute; z-index:3; top:50%; transform:translateY(-50%); right:clamp(1rem,3.4vw,2.4rem);
+    display:flex; flex-direction:column; gap:.6rem; text-align:right}
+  .marker{
+    display:flex; flex-direction:column; align-items:flex-end; gap:.15rem;
+    padding:.55rem .8rem; border:1px solid var(--line); border-radius:10px;
+    background:color-mix(in srgb,var(--paper) 62%,transparent); backdrop-filter:blur(3px);
+    font-family:var(--font-mono); transition:.35s;
+  }
+  .marker .co{font-size:.82rem; letter-spacing:.06em; color:var(--ink)}
+  .marker .cd{font-size:.6rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
+  .marker.on{border-color:var(--accent)}
+  .marker.on .co{color:var(--accent)}
+  @media (max-width:900px){ .markers{display:none} }
+
+  /* meta strip bottom of each hall */
+  .meta{
+    position:absolute; z-index:3; left:clamp(1rem,3.4vw,2.4rem); right:clamp(1rem,3.4vw,2.4rem);
+    bottom:1.6rem; display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap;
+    font-family:var(--font-mono); font-size:.64rem; letter-spacing:.12em; color:var(--muted);
+    text-transform:uppercase; border-top:1px solid var(--line-2); padding-top:.8rem;
+  }
+  .meta b{color:var(--ink-soft); font-weight:400}
+
+  /* ---------- intro ---------- */
+  #intro .wrap{display:grid; gap:0}
+  #intro .kicker{font-family:var(--font-mono); font-size:.72rem; letter-spacing:.3em; text-transform:uppercase; color:var(--muted); margin-bottom:1.8rem}
+  #intro .big{
+    font-family:var(--font-display); font-weight:600; color:var(--ink);
+    font-size:clamp(3rem,11vw,10.5rem); line-height:.9; letter-spacing:-.02em; margin:0; text-wrap:balance;
+  }
+  #intro .big .it{font-style:italic}
+  #intro .big .th{ -webkit-text-stroke:1.4px var(--ink); color:transparent; }
+  :root[data-theme="dark"] #intro .big .th, .darkish #intro .big .th{ -webkit-text-stroke:1.4px var(--ink) }
+  #intro .sub{
+    margin-top:2.4rem; display:flex; gap:2.4rem; flex-wrap:wrap; align-items:flex-start;
+  }
+  #intro .sub p{max-width:40ch; color:var(--ink-soft); font-size:1.06rem; line-height:1.6; margin:0}
+  #intro .scrollcue{
+    display:flex; align-items:center; gap:.7rem; font-family:var(--font-mono);
+    font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; color:var(--muted);
+  }
+  #intro .scrollcue .bar{width:2px; height:34px; background:linear-gradient(var(--accent),transparent); animation:drip 2.2s infinite}
+  @keyframes drip{0%{transform:scaleY(.2);transform-origin:top;opacity:0}40%{opacity:1}100%{transform:scaleY(1);transform-origin:top;opacity:0}}
+
+  /* ---------- closing / index ---------- */
+  #atlas{background:var(--paper-2); min-height:auto; padding:6rem clamp(1rem,3.4vw,2.4rem) 5rem; scroll-snap-align:start}
+  #atlas .wrap{max-width:var(--shell); margin-inline:auto}
+  #atlas h2{font-family:var(--font-display); font-size:clamp(2.2rem,6vw,4.6rem); line-height:1; margin:0 0 .3rem; font-weight:600; text-wrap:balance}
+  #atlas .sub{font-family:var(--font-mono); font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:2.8rem}
+  .idx{display:grid; gap:0; border-top:1px solid var(--line)}
+  .idx a{
+    text-decoration:none; display:grid; grid-template-columns:auto 1fr auto auto; gap:clamp(.8rem,3vw,2.5rem);
+    align-items:baseline; padding:1.5rem .4rem; border-bottom:1px solid var(--line);
+    transition:padding .4s, background .4s; position:relative;
+  }
+  .idx a .n{font-family:var(--font-mono); font-size:.72rem; color:var(--muted)}
+  .idx a .nm{font-family:var(--font-display); font-size:clamp(1.7rem,5vw,3.2rem); line-height:1; color:var(--ink); transition:color .3s}
+  .idx a .nm .cj{font-family:var(--font-serif); font-size:.5em; color:var(--muted); margin-left:.5em; letter-spacing:.1em}
+  .idx a .tag{font-family:var(--font-mono); font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft)}
+  .idx a .go{font-family:var(--font-mono); font-size:1rem; color:var(--muted); transition:transform .4s, color .3s}
+  .idx a::before{content:""; position:absolute; left:0; top:0; height:100%; width:0; background:var(--ac); opacity:.09; transition:width .45s cubic-bezier(.2,.7,.2,1)}
+  .idx a:hover{padding-left:1.4rem}
+  .idx a:hover::before{width:100%}
+  .idx a:hover .nm{color:var(--ac)}
+  .idx a:hover .go{transform:translateX(6px); color:var(--ac)}
+
+  .foot{display:flex; justify-content:space-between; flex-wrap:wrap; gap:1.4rem; margin-top:3.4rem; padding-top:1.6rem; border-top:1px solid var(--line)}
+  .foot .plan{max-width:44ch}
+  .foot .plan p{color:var(--ink-soft); line-height:1.6; margin:.4rem 0 1.3rem}
+  .foot .invite{font-family:var(--font-display); font-size:clamp(1.6rem,4vw,2.4rem); line-height:1.05; margin:0; text-wrap:balance}
+  .foot .col{font-family:var(--font-mono); font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); line-height:2}
+  .foot .col b{color:var(--ink-soft); font-weight:400}
+
+  /* custom cursor */
+  .cursor{position:fixed; z-index:9998; top:0; left:0; width:26px; height:26px; border:1px solid var(--accent);
+    border-radius:50%; transform:translate(-50%,-50%); pointer-events:none; mix-blend-mode:normal;
+    transition:width .25s, height .25s, background .25s, border-color .3s; opacity:0}
+  .cursor.on{opacity:1}
+  .cursor.grow{width:56px; height:56px; background:color-mix(in srgb,var(--accent) 14%,transparent)}
+  @media (pointer:coarse){ .cursor{display:none} }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto; scroll-snap-type:none}
+    .reveal{opacity:1!important; transform:none!important; filter:none!important}
+    #intro .scrollcue .bar{animation:none}
+  }
+</style>
+
+<header class="topbar">
+  <a class="brand" href="#intro" data-cursor>
+    <span class="mark">VÂN DU</span><span class="cjk">雲遊</span>
+  </a>
+  <nav class="halls" id="hallnav">
+    <a href="#intro" data-hall="intro"><span class="no">00</span> Lời tựa</a>
+    <a href="#trunghoa" data-hall="trunghoa"><span class="no">01</span> Trung Hoa</a>
+    <a href="#nhatban" data-hall="nhatban"><span class="no">02</span> Nhật Bản</a>
+    <a href="#vietnam" data-hall="vietnam"><span class="no">03</span> Việt Nam</a>
+    <a href="#atlas" data-hall="atlas"><span class="no">04</span> Hành trình</a>
+  </nav>
+  <div class="tb-right">
+    <button class="theme-btn" id="themeBtn" data-cursor aria-label="Đổi giao diện sáng/tối">Lacquer</button>
+    <a class="cta-pill" href="#atlas" data-cursor><span class="dot"></span> Lên lịch trình</a>
+  </div>
+</header>
+
+<aside class="rail" aria-hidden="true">
+  <span class="rno" id="railNo">00</span>
+  <span class="rname" id="railName">LỜI TỰA</span>
+  <span class="track"><i id="railFill"></i></span>
+</aside>
+
+<div class="cursor" id="cursor"></div>
+
+<main>
+
+  <!-- 00 · intro -->
+  <section class="hall" id="intro" data-hall="intro" data-accent="var(--gold)" data-rname="LỜI TỰA" data-rno="00">
+    <div class="wrap">
+      <p class="kicker reveal">Phòng trưng bày của những chuyến đi · Est. 2026</p>
+      <h1 class="big">
+        <span class="reveal d1">Mỗi miền đất</span><br>
+        <span class="reveal d2 it">là một gian</span><br>
+        <span class="reveal d3 th">triển lãm.</span>
+      </h1>
+      <div class="sub">
+        <p class="reveal d3">VÂN DU không bán tour. Chúng tôi dựng cho mỗi vùng đất một gian phòng — nơi mái ngói, dấu thanh và khoảng lặng được treo lên như tác phẩm, chờ bạn bước qua tấm rèm chữ.</p>
+        <div class="reveal d4 scrollcue"><span class="bar"></span> Cuộn để vào triển lãm</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span>VÂN DU · <b>雲遊</b> — roaming with the clouds</span>
+      <span>Ba gian · <b>Trung Hoa / Nhật Bản / Việt Nam</b></span>
+      <span><b>16°N</b> 108°E</span>
+    </div>
+  </section>
+
+  <!-- 01 · China -->
+  <section class="hall" id="trunghoa" data-hall="trunghoa" data-accent="var(--gold)"
+           data-roof="pagoda" data-glyphs="紫禁龍鳳雲山瓦宮殿詩茶絲金玉風水墨" data-rname="TRUNG HOA" data-rno="01">
+    <canvas class="curtain"></canvas>
+    <div class="wrap">
+      <p class="eyebrow reveal"><span class="seal">緣</span><span class="ln"></span> Duyên · một cuộc hẹn định sẵn</p>
+      <h2 class="head">
+        <span class="reveal d1">Trung Hoa</span><span class="rule reveal d1"></span><br>
+        <span class="reveal d2">sân vàng cố cung,</span><br>
+        <span class="reveal d2 em">huyền thoại tơ lụa,</span><br>
+        <span class="reveal d3">mái ngói thách thức</span><br>
+        <span class="reveal d3 em">trọng lực.</span>
+      </h2>
+      <p class="caption reveal d4"><span class="lead">Tử Cấm Thành lúc rạng sáng.</span> Ngói lưu ly hắt vàng, đầu đao cong vút như muốn rời khỏi mặt đất — còn bên dưới, một tấm rèm chữ Hán đổ xuống thành thác. Đưa con trỏ vào để vén rèm.</p>
+    </div>
+    <div class="markers" aria-hidden="true">
+      <span class="marker on"><span class="co">中國</span><span class="cd">China</span></span>
+      <span class="marker"><span class="co">日本</span><span class="cd">Japan →</span></span>
+      <span class="marker"><span class="co">Việt</span><span class="cd">Vietnam →</span></span>
+    </div>
+    <div class="meta">
+      <span>Gian <b>01</b> · Bắc Kinh — Tô Châu — Đôn Hoàng</span>
+      <span><b>Chất liệu:</b> ngói lưu ly, tơ tằm, mực nho</span>
+      <span>Mùa đẹp · <b>Thu (T9–T11)</b></span>
+    </div>
+  </section>
+
+  <!-- 02 · Japan -->
+  <section class="hall" id="nhatban" data-hall="nhatban" data-accent="var(--vermilion)"
+           data-roof="torii" data-glyphs="鳥居桜神社山波風靜寂京侘茶禅雪月花" data-rname="NHẬT BẢN" data-rno="02">
+    <canvas class="curtain"></canvas>
+    <div class="wrap">
+      <p class="eyebrow reveal"><span class="seal">間</span><span class="ln"></span> Ma · khoảng lặng giữa hai nhịp</p>
+      <h2 class="head">
+        <span class="reveal d1">Nhật Bản</span><span class="rule reveal d1"></span><br>
+        <span class="reveal d2">cổng torii đỏ,</span><br>
+        <span class="reveal d2 em">thiền trong bóng lá,</span><br>
+        <span class="reveal d3">vẻ đẹp của sự</span><br>
+        <span class="reveal d3 em">dở dang.</span>
+      </h2>
+      <p class="caption reveal d4"><span class="lead">Fushimi Inari, ngàn cổng nối nhau.</span> Sơn son chồng lớp cho tới khi màu đỏ thành một khoảng lặng. Wabi-sabi: cái đẹp không nằm ở sự hoàn hảo, mà ở nếp thời gian để lại trên gỗ.</p>
+    </div>
+    <div class="markers" aria-hidden="true">
+      <span class="marker"><span class="co">中國</span><span class="cd">← China</span></span>
+      <span class="marker on"><span class="co">日本</span><span class="cd">Japan</span></span>
+      <span class="marker"><span class="co">Việt</span><span class="cd">Vietnam →</span></span>
+    </div>
+    <div class="meta">
+      <span>Gian <b>02</b> · Kyoto — Nara — Kanazawa</span>
+      <span><b>Chất liệu:</b> sơn son, gỗ hinoki, giấy washi</span>
+      <span>Mùa đẹp · <b>Hoa anh đào (T4)</b></span>
+    </div>
+  </section>
+
+  <!-- 03 · Vietnam -->
+  <section class="hall" id="vietnam" data-hall="vietnam" data-accent="var(--jade)"
+           data-roof="dinh" data-glyphs="ẾỒỪẠĐƠĂỘỆỠỰỄẨỀ̉" data-rname="VIỆT NAM" data-rno="03">
+    <canvas class="curtain"></canvas>
+    <div class="wrap">
+      <p class="eyebrow reveal"><span class="seal">緣</span><span class="ln"></span> Duyên · nơi dấu thanh biết hát</p>
+      <h2 class="head">
+        <span class="reveal d1">Việt Nam</span><span class="rule reveal d1"></span><br>
+        <span class="reveal d2">mái đình cong,</span><br>
+        <span class="reveal d2 em">khói bếp sông Hương,</span><br>
+        <span class="reveal d3">thanh sắc trong</span><br>
+        <span class="reveal d3 em">từng con chữ.</span>
+      </h2>
+      <p class="caption reveal d4"><span class="lead">Mái đình làng Bắc Bộ, đầu đao cong như sóng.</span> Ở đây tấm rèm không rơi bằng chữ Hán, mà bằng những dấu thanh — huyền, sắc, nặng, hỏi, ngã — thứ khiến tiếng Việt cất lên thành nhạc.</p>
+    </div>
+    <div class="markers" aria-hidden="true">
+      <span class="marker"><span class="co">中國</span><span class="cd">← China</span></span>
+      <span class="marker"><span class="co">日本</span><span class="cd">← Japan</span></span>
+      <span class="marker on"><span class="co">Việt</span><span class="cd">Vietnam</span></span>
+    </div>
+    <div class="meta">
+      <span>Gian <b>03</b> · Huế — Hội An — Đường Lâm</span>
+      <span><b>Chất liệu:</b> ngói âm dương, gỗ mít, sơn ta</span>
+      <span>Mùa đẹp · <b>Thu (T9–T11)</b></span>
+    </div>
+  </section>
+
+  <!-- 04 · atlas / closing -->
+  <section id="atlas" data-hall="atlas" data-accent="var(--gold)" data-rname="HÀNH TRÌNH" data-rno="04">
+    <div class="wrap">
+      <p class="sub reveal">Bảng chỉ dẫn · chọn gian để bắt đầu</p>
+      <h2 class="reveal d1">Hành trình của bạn,<br>xếp như một buổi triển lãm.</h2>
+      <nav class="idx">
+        <a href="#trunghoa" style="--ac:var(--gold)" data-cursor>
+          <span class="n">01</span>
+          <span class="nm">Trung Hoa<span class="cj">中國</span></span>
+          <span class="tag">Cố cung · Tơ lụa · 8 ngày</span>
+          <span class="go">↗</span>
+        </a>
+        <a href="#nhatban" style="--ac:var(--vermilion)" data-cursor>
+          <span class="n">02</span>
+          <span class="nm">Nhật Bản<span class="cj">日本</span></span>
+          <span class="tag">Torii · Thiền · 7 ngày</span>
+          <span class="go">↗</span>
+        </a>
+        <a href="#vietnam" style="--ac:var(--jade)" data-cursor>
+          <span class="n">03</span>
+          <span class="nm">Việt Nam<span class="cj">越南</span></span>
+          <span class="tag">Mái đình · Dấu thanh · 6 ngày</span>
+          <span class="go">↗</span>
+        </a>
+      </nav>
+      <div class="foot">
+        <div class="plan">
+          <p class="invite reveal">Bạn chọn miền đất. <span style="color:var(--muted)">Chúng tôi treo nó lên tường.</span></p>
+          <p>Mỗi lịch trình được người phụ trách dựng riêng — không lặp lại, như cách không có hai buổi triển lãm nào giống nhau.</p>
+          <a class="cta-pill" href="#intro" data-cursor><span class="dot"></span> Bắt đầu trò chuyện</a>
+        </div>
+        <div class="col">
+          <b>VÂN DU · 雲遊</b><br>
+          Hà Nội — Đà Nẵng — Sài Gòn<br>
+          hello@vandu.travel<br>
+          <span style="color:var(--muted)">© 2026 — một triển lãm mở quanh năm</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(() => {
+  const root = document.documentElement;
+  const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  /* ---------- theme toggle ---------- */
+  const themeBtn = document.getElementById('themeBtn');
+  const prefersDark = matchMedia('(prefers-color-scheme:dark)').matches;
+  let dark = prefersDark;
+  const syncTheme = () => {
+    root.setAttribute('data-theme', dark ? 'dark' : 'light');
+    themeBtn.textContent = dark ? 'Rice paper' : 'Lacquer';
+    curtains.forEach(c => c.recolor());
+  };
+  themeBtn.addEventListener('click', () => { dark = !dark; syncTheme(); });
+
+  /* ---------- custom cursor ---------- */
+  const cur = document.getElementById('cursor');
+  if (matchMedia('(pointer:fine)').matches && !reduce) {
+    let cx = innerWidth/2, cy = innerHeight/2, tx = cx, ty = cy;
+    addEventListener('pointermove', e => { tx = e.clientX; ty = e.clientY; cur.classList.add('on'); });
+    const loop = () => { cx += (tx-cx)*.18; cy += (ty-cy)*.18; cur.style.transform = `translate(${cx}px,${cy}px) translate(-50%,-50%)`; requestAnimationFrame(loop); };
+    loop();
+    document.addEventListener('mouseover', e => cur.classList.toggle('grow', !!e.target.closest('[data-cursor],a,button')));
+    addEventListener('mouseleave', () => cur.classList.remove('on'));
+  }
+
+  /* ---------- curtain field ---------- */
+  const cssVar = n => getComputedStyle(root).getPropertyValue(n).trim();
+  function hexOf(v){ // resolve a css color to rgb via a probe
+    const p = document.createElement('span'); p.style.color = v; document.body.appendChild(p);
+    const c = getComputedStyle(p).color; p.remove();
+    const m = c.match(/\d+/g); return m ? {r:+m[0], g:+m[1], b:+m[2]} : {r:180,g:140,b:30};
+  }
+
+  class Curtain {
+    constructor(section){
+      this.sec = section;
+      this.cv = section.querySelector('canvas.curtain');
+      this.ctx = this.cv.getContext('2d');
+      this.roof = section.dataset.roof;
+      this.glyphs = [...(section.dataset.glyphs || '雲')];
+      this.accentVar = section.dataset.accent;
+      this.active = false; this.intro = 0; this.started = 0;
+      this.px = -9999; this.py = -9999; // pointer in canvas space
+      this.recolor();
+      this.resize();
+    }
+    recolor(){
+      this.accent = hexOf(cssVar(this.accentVar.replace(/var\(|\)/g,'')));
+      this.ink = hexOf(cssVar('--ink'));
+    }
+    resize(){
+      const r = this.sec.getBoundingClientRect();
+      const dpr = Math.min(devicePixelRatio||1, 2);
+      this.w = r.width; this.h = r.height;
+      this.cv.width = this.w*dpr; this.cv.height = this.h*dpr;
+      this.ctx.setTransform(dpr,0,0,dpr,0,0);
+      // motif geometry
+      this.motifW = Math.min(this.w*0.92, 1040);
+      this.cx = this.w/2;
+      this.roofW = Math.min(this.motifW*0.62, 620);
+      this.roofTop = this.h*0.13;
+      this.eaveY = this.roofTop + this.roofW*0.22 + 26;
+      this.colGap = Math.max(20, this.motifW/34);
+      this.beadGap = this.colGap*1.16;
+      this.bottom = this.h*0.98;
+      this.cols = Math.floor(this.motifW/this.colGap);
+      this.fontPx = Math.round(this.colGap*0.72);
+    }
+    setPointer(clientX, clientY){
+      const r = this.cv.getBoundingClientRect();
+      this.px = clientX - r.left; this.py = clientY - r.top;
+    }
+    clearPointer(){ this.px = -9999; }
+
+    drawRoof(ctx, glow){
+      const {cx, roofTop, roofW} = this;
+      const a = this.accent;
+      ctx.save();
+      ctx.globalAlpha = 0.9*glow;
+      const g = ctx.createLinearGradient(0, roofTop-20, 0, this.eaveY+10);
+      g.addColorStop(0, `rgba(${a.r},${a.g},${a.b},1)`);
+      g.addColorStop(1, `rgba(${a.r*.7|0},${a.g*.7|0},${a.b*.7|0},1)`);
+      ctx.fillStyle = g;
+      ctx.strokeStyle = `rgba(${a.r},${a.g},${a.b},1)`;
+      ctx.lineJoin = 'round';
+
+      if (this.roof === 'pagoda'){
+        const tier = (w, y, h) => {
+          const half = w/2;
+          ctx.beginPath();
+          ctx.moveTo(cx-half*0.34, y);            // ridge left
+          ctx.lineTo(cx+half*0.34, y);            // ridge right
+          ctx.quadraticCurveTo(cx+half*0.9, y+h*0.55, cx+half, y+h);     // right eave sweep up
+          ctx.quadraticCurveTo(cx+half*0.6, y+h*0.72, cx, y+h*0.7);
+          ctx.quadraticCurveTo(cx-half*0.6, y+h*0.72, cx-half, y+h);     // left eave
+          ctx.quadraticCurveTo(cx-half*0.9, y+h*0.55, cx-half*0.34, y);
+          ctx.closePath(); ctx.fill();
+        };
+        tier(roofW, roofTop, roofW*0.24);                 // upper tier
+        tier(roofW*1.34, roofTop+roofW*0.22, roofW*0.26); // lower tier
+        // finial
+        ctx.fillRect(cx-2.5, roofTop-16, 5, 18);
+        ctx.beginPath(); ctx.arc(cx, roofTop-18, 5, 0, 7); ctx.fill();
+      }
+      else if (this.roof === 'torii'){
+        const half = roofW/2, top = roofTop, postY = this.eaveY+8;
+        const beamH = roofW*0.075;
+        // kasagi (curved top beam)
+        ctx.beginPath();
+        ctx.moveTo(cx-half*1.14, top+beamH);
+        ctx.quadraticCurveTo(cx, top-beamH*0.7, cx+half*1.14, top+beamH);
+        ctx.lineTo(cx+half*1.14, top+beamH*1.9);
+        ctx.quadraticCurveTo(cx, top+beamH*0.5, cx-half*1.14, top+beamH*1.9);
+        ctx.closePath(); ctx.fill();
+        // nuki (second beam)
+        ctx.fillRect(cx-half*0.98, top+beamH*3.3, half*1.96, beamH*0.9);
+        // gakuzuka tablet
+        ctx.fillRect(cx-roofW*0.05, top+beamH*1.9, roofW*0.1, beamH*1.5);
+        // posts
+        ctx.fillRect(cx-half*0.86, top+beamH, roofW*0.05, postY-top);
+        ctx.fillRect(cx+half*0.86-roofW*0.05, top+beamH, roofW*0.05, postY-top);
+      }
+      else { // dinh — single sweeping roof, strong upturned corners
+        const half = roofW*0.72, y = roofTop+8, h = roofW*0.2;
+        ctx.beginPath();
+        ctx.moveTo(cx, y-h*0.5);
+        ctx.quadraticCurveTo(cx+half*0.5, y-h*0.1, cx+half*0.82, y+h*0.5);
+        ctx.quadraticCurveTo(cx+half*1.02, y+h*1.15, cx+half*1.16, y+h*0.35); // curl up
+        ctx.quadraticCurveTo(cx+half*0.7, y+h*1.35, cx, y+h*1.15);
+        ctx.quadraticCurveTo(cx-half*0.7, y+h*1.35, cx-half*1.16, y+h*0.35);
+        ctx.quadraticCurveTo(cx-half*1.02, y+h*1.15, cx-half*0.82, y+h*0.5);
+        ctx.quadraticCurveTo(cx-half*0.5, y-h*0.1, cx, y-h*0.5);
+        ctx.closePath(); ctx.fill();
+        // ridge
+        ctx.fillRect(cx-half*0.9, y-h*0.5, half*1.8, h*0.14);
+      }
+      // soft glow under eave
+      ctx.globalAlpha = 0.16*glow;
+      const rg = ctx.createRadialGradient(cx, this.eaveY, 4, cx, this.eaveY, roofW*0.9);
+      rg.addColorStop(0, `rgba(${a.r},${a.g},${a.b},1)`);
+      rg.addColorStop(1, `rgba(${a.r},${a.g},${a.b},0)`);
+      ctx.fillStyle = rg;
+      ctx.fillRect(0, this.eaveY-roofW*0.4, this.w, roofW);
+      ctx.restore();
+    }
+
+    render(t){
+      const ctx = this.ctx;
+      ctx.clearRect(0,0,this.w,this.h);
+      const glow = this.intro;
+      this.drawRoof(ctx, glow);
+
+      const a = this.accent, ink = this.ink;
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.font = `${this.fontPx}px var(--font-serif)`;
+
+      const startX = this.cx - (this.cols-1)*this.colGap/2;
+      const introCap = this.intro; // 0..1 reveal
+      for (let c=0; c<this.cols; c++){
+        const baseX = startX + c*this.colGap;
+        // distance from center for curtain arc (slightly shorter at edges)
+        const edge = Math.abs(baseX-this.cx)/(this.motifW/2);
+        const colLen = this.bottom - this.eaveY - edge*edge*this.h*0.12;
+        const beads = Math.floor(colLen/this.beadGap * introCap);
+        // pointer parting
+        let part = 0, shorten = 0;
+        if (this.px > -9000){
+          const dx = baseX - this.px;
+          const d = Math.hypot(dx, 0); // horizontal influence
+          const R = 150;
+          if (Math.abs(dx) < R && this.py > this.eaveY-40){
+            const f = (1 - Math.abs(dx)/R);
+            part = Math.sign(dx||1) * f*f * 46;
+            shorten = f*f * 0.28;
+          }
+        }
+        const colPhase = c*0.55;
+        for (let b=0; b<beads; b++){
+          const depth = b/ (colLen/this.beadGap);
+          let y = this.eaveY + this.beadGap*(b+0.6);
+          if (y > this.bottom) break;
+          // sway grows toward the bottom, like a hanging chain
+          const sway = Math.sin(t*0.0011 + colPhase + b*0.16) * (4 + depth*14);
+          const shimmer = 0.5 + 0.5*Math.sin(t*0.004 - b*0.5 + colPhase);
+          let x = baseX + sway + part*(0.35+depth*0.9);
+          const fade = (1-depth)**1.35;
+          const bright = fade * (0.5 + 0.5*shimmer) * introCap * (1-shorten*(depth>0.2?1:0));
+          if (bright <= 0.02) continue;
+          // color: mostly ink, shimmer beads catch accent
+          const acc = Math.min(1, shimmer*shimmer*0.9);
+          const r = ink.r+(a.r-ink.r)*acc, g = ink.g+(a.g-ink.g)*acc, bl = ink.b+(a.b-ink.b)*acc;
+          ctx.fillStyle = `rgba(${r|0},${g|0},${bl|0},${(0.14+0.6*bright).toFixed(3)})`;
+          const gi = (b*7 + c*3) % this.glyphs.length;
+          ctx.fillText(this.glyphs[gi], x, y);
+        }
+      }
+    }
+  }
+
+  const sections = [...document.querySelectorAll('.hall[data-roof]')];
+  const curtains = sections.map(s => new Curtain(s));
+
+  // pointer feeds active curtain
+  addEventListener('pointermove', e => {
+    curtains.forEach(c => { if (c.active) c.setPointer(e.clientX, e.clientY); });
+  });
+
+  // rAF driver — only active curtains animate; intro eases in
+  let last = 0;
+  function frame(t){
+    for (const c of curtains){
+      if (c.active && c.intro < 1) c.intro = Math.min(1, c.intro + 0.02);
+      if (!c.active && c.intro > 0) c.intro = Math.max(0, c.intro - 0.05);
+      if (c.active || c.intro > 0) c.render(reduce ? 0 : t);
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  addEventListener('resize', () => curtains.forEach(c => c.resize()));
+
+  /* ---------- active hall tracking + reveals + rail ---------- */
+  const railNo = document.getElementById('railNo');
+  const railName = document.getElementById('railName');
+  const railFill = document.getElementById('railFill');
+  const navLinks = [...document.querySelectorAll('#hallnav a')];
+  const allSections = [...document.querySelectorAll('[data-hall]')];
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      const c = curtains.find(x => x.sec === en.target);
+      if (c) c.active = en.isIntersecting && en.intersectionRatio > 0.4;
+      if (en.isIntersecting) en.target.classList.add('in-view');
+    });
+  }, {threshold:[0, .4, .6]});
+  sections.forEach(s => io.observe(s));
+  document.querySelectorAll('.hall, #atlas').forEach(s => io.observe(s));
+
+  // which section is centered -> update nav/rail/accent
+  const centerIO = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      const id = en.target.dataset.hall;
+      const acc = en.target.dataset.accent;
+      if (acc) root.style.setProperty('--accent', acc);
+      railNo.textContent = en.target.dataset.rno || '00';
+      railName.textContent = en.target.dataset.rname || '';
+      navLinks.forEach(a => a.classList.toggle('active', a.dataset.hall === id));
+    });
+  }, {rootMargin:'-45% 0px -45% 0px', threshold:0});
+  allSections.forEach(s => centerIO.observe(s));
+
+  // scroll progress on rail
+  addEventListener('scroll', () => {
+    const p = scrollY / Math.max(1,(document.body.scrollHeight - innerHeight));
+    railFill.style.height = (p*100).toFixed(1) + '%';
+  }, {passive:true});
+
+  syncTheme();
+})();
+</script>
+</body>
+</html>

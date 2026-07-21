@@ -1,0 +1,511 @@
+<style>/*FONTS*/</style>
+<style>
+:root{
+  --teal:#5BC4BF; --gold:#FFE355; --orange:#F6863A; --deep:#257496; --mist:#E2F3F5;
+  --ink:#061318; --ink2:#0b2028; --paper:#f6fbfb;
+  --e:cubic-bezier(.22,.61,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+html{overflow-x:clip}
+body{font-family:"Work Sans",system-ui,sans-serif;background:var(--ink);color:var(--mist);overflow-x:clip;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.dp{font-family:"Phudu",system-ui,sans-serif;font-weight:800;line-height:.98;letter-spacing:-.01em}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--gold);color:var(--ink)}
+.up{text-transform:uppercase}
+
+/* atmosphere: grain + vignette */
+#atmos{position:fixed;inset:0;z-index:200;pointer-events:none;mix-blend-mode:overlay;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E")}
+#vig{position:fixed;inset:0;z-index:199;pointer-events:none;
+  box-shadow:inset 0 0 240px 60px rgba(0,0,0,.55), inset 0 0 60px rgba(0,0,0,.4)}
+
+/* micro label */
+.kick{display:inline-flex;align-items:center;gap:12px;font-size:11px;font-weight:700;letter-spacing:.34em;color:var(--gold)}
+.kick::before{content:"";width:30px;height:1px;background:var(--gold);opacity:.8}
+.kick.c::before{display:none}
+
+/* progress + nav */
+.bar{position:fixed;top:0;left:0;height:2px;width:0;z-index:210;background:linear-gradient(90deg,var(--teal),var(--gold),var(--orange))}
+.nav{position:fixed;top:0;left:0;right:0;z-index:150;display:flex;align-items:center;justify-content:space-between;
+  padding:20px clamp(16px,4vw,56px);transition:.45s var(--e)}
+.nav.solid{background:rgba(6,19,24,.66);backdrop-filter:blur(14px);padding:13px clamp(16px,4vw,56px)}
+.brand{display:flex;align-items:center;gap:10px;font-family:"Phudu";font-weight:800;font-size:19px;letter-spacing:.14em;color:#fff}
+.brand .d{width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(255,227,85,.22)}
+.nav a.lk{color:rgba(255,255,255,.72);font-size:13px;font-weight:500;letter-spacing:.08em;transition:.2s}
+.nav a.lk:hover{color:var(--gold)}
+.nav-mid{display:flex;gap:30px;align-items:center}
+.cta{background:var(--orange);color:#fff;padding:11px 20px;border-radius:100px;font-weight:600;font-size:13px;letter-spacing:.03em;
+  box-shadow:0 10px 30px -10px rgba(246,134,58,.8);transition:transform .2s var(--e)}
+.cta:hover{transform:translateY(-2px)}
+@media(max-width:900px){.nav-mid a.lk{display:none}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:9px;padding:15px 30px;border-radius:100px;font-weight:600;font-size:14px;letter-spacing:.02em;cursor:pointer;border:none;transition:transform .2s var(--e),box-shadow .2s var(--e)}
+.btn-gold{background:var(--gold);color:var(--ink);box-shadow:0 16px 40px -14px rgba(255,227,85,.7)}
+.btn-line{background:rgba(255,255,255,.04);color:#fff;border:1px solid rgba(255,255,255,.34)}
+.btn:hover{transform:translateY(-3px)}
+
+/* ---------------- HERO ---------------- */
+.hero{position:relative;min-height:100svh;overflow:hidden;display:flex;align-items:flex-end;perspective:1400px}
+.hero-rig{position:absolute;inset:-4%;transform-style:preserve-3d;transition:transform .35s ease-out}
+.hero-rig .pl{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-rig .back{transform:translateZ(-200px) scale(1.4)}
+.hero-rig .mid{transform:translateZ(-90px) scale(1.18)}
+.hero-rig .fore{transform:translateZ(30px)}
+.hero-shade{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(6,19,24,.25) 0%,rgba(6,19,24,.15) 45%,rgba(6,19,24,.82) 100%)}
+.hero-in{position:relative;z-index:5;width:100%;max-width:1320px;margin:0 auto;padding:clamp(100px,15vh,150px) clamp(20px,5vw,64px) clamp(46px,8vh,96px)}
+.hero h1{color:#fff;font-size:clamp(3.2rem,10.5vw,9.2rem);letter-spacing:-.02em;text-shadow:0 30px 80px rgba(0,0,0,.4)}
+.hero h1 .g{color:var(--gold)}
+.hero h1 .out{color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.7)}
+.hero .sub{max-width:540px;color:rgba(255,255,255,.85);font-size:clamp(1rem,1.5vw,1.2rem);line-height:1.65;margin:26px 0 0}
+.hero-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+.hero-trust{display:flex;gap:20px;align-items:center;flex-wrap:wrap;margin-top:36px;color:rgba(255,255,255,.8);font-size:13.5px}
+.hero-trust .st{color:var(--gold);letter-spacing:2px}
+.hero-trust b{color:#fff}
+.cue{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:6;color:rgba(255,255,255,.75);font-size:10px;letter-spacing:.3em;text-align:center}
+.cue .m{width:22px;height:36px;border:2px solid rgba(255,255,255,.5);border-radius:12px;margin:0 auto 9px;position:relative}
+.cue .m::after{content:"";position:absolute;top:7px;left:50%;transform:translateX(-50%);width:3px;height:7px;background:#fff;border-radius:2px;animation:wh 1.6s infinite}
+@keyframes wh{0%{opacity:0;transform:translate(-50%,0)}40%{opacity:1}100%{opacity:0;transform:translate(-50%,13px)}}
+
+/* ---------------- EXPEDITION (fly-through) ---------------- */
+.exped{position:relative;background:#03080a;height:600vh}
+.stage{position:sticky;top:0;height:100svh;overflow:hidden;perspective:1200px;perspective-origin:50% 46%}
+.rig{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .4s ease-out}
+.scene3d{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform,opacity,filter}
+.depth{position:absolute;inset:-7%;transform-style:preserve-3d}
+.plane{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.plane.back{transform:translateZ(-180px) scale(1.36)}
+.plane.mid{transform:translateZ(-72px) scale(1.16)}
+.plane.fore{transform:translateZ(52px)}
+.scene3d .glow{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 30%,transparent 40%,rgba(0,0,0,.5) 100%)}
+/* caption */
+.caption{position:absolute;left:clamp(20px,6vw,90px);bottom:clamp(70px,13vh,140px);z-index:6;max-width:640px;will-change:transform,opacity}
+.caption .no{font-family:"Phudu";font-weight:800;font-size:clamp(5rem,13vw,11rem);line-height:.8;color:transparent;-webkit-text-stroke:2px rgba(255,227,85,.55);opacity:.9;margin-bottom:-10px;letter-spacing:-.03em}
+.caption .rg{color:var(--teal);font-weight:700;letter-spacing:.28em;font-size:12px;margin:8px 0 6px}
+.caption h2{color:#fff;font-size:clamp(2.8rem,8vw,6.6rem);text-shadow:0 24px 60px rgba(0,0,0,.5)}
+.caption .nm{color:var(--gold);font-family:"Work Sans";font-weight:500;letter-spacing:.18em;text-transform:uppercase;font-size:clamp(.8rem,1.5vw,1rem);margin-top:12px}
+.caption .ds{color:rgba(255,255,255,.82);line-height:1.65;font-size:clamp(.95rem,1.3vw,1.08rem);max-width:460px;margin:18px 0 22px;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+.caption .facts{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:24px}
+.caption .fact b{display:block;font-family:"Phudu";font-size:clamp(1.3rem,2.4vw,1.9rem);color:#fff}
+.caption .fact span{font-size:11px;letter-spacing:.05em;color:rgba(255,255,255,.6);text-transform:uppercase}
+.caption .fact{border-left:2px solid var(--orange);padding-left:12px}
+.tourchip{display:inline-flex;align-items:center;gap:14px;background:rgba(6,19,24,.6);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.16);border-radius:100px;padding:10px 12px 10px 22px}
+.tourchip .ti b{font-family:"Phudu";font-size:1rem;color:#fff;display:block}
+.tourchip .ti span{font-size:11.5px;color:rgba(255,255,255,.62)}
+.tourchip .pr{color:var(--gold);font-family:"Phudu";font-size:1.15rem;margin-left:6px}
+.tourchip .bk{background:var(--teal);color:var(--ink);border:none;border-radius:100px;padding:10px 16px;font-weight:700;font-size:12px;cursor:pointer;white-space:nowrap;transition:transform .2s}
+.tourchip .bk:hover{transform:scale(1.05)}
+/* HUD */
+.hud{position:absolute;top:0;right:0;height:100%;z-index:7;display:flex;flex-direction:column;justify-content:center;align-items:flex-end;
+  padding:0 clamp(18px,4vw,54px);pointer-events:none;gap:18px}
+.hud .hno{font-family:"Phudu";font-weight:800;font-size:clamp(2rem,4vw,3.4rem);color:var(--gold);line-height:1}
+.hud .htot{color:rgba(255,255,255,.4);font-size:13px}
+.hud .track{width:2px;height:min(46vh,340px);background:rgba(255,255,255,.16);position:relative;border-radius:2px;overflow:hidden}
+.hud .fill{position:absolute;top:0;left:0;width:100%;height:0;background:linear-gradient(var(--gold),var(--orange))}
+.hud .hnm{writing-mode:vertical-rl;color:rgba(255,255,255,.7);letter-spacing:.3em;font-size:12px;text-transform:uppercase}
+.spark{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--gold);opacity:.0;animation:flt linear infinite}
+@keyframes flt{0%{opacity:0;transform:translateY(20px)}20%{opacity:.7}80%{opacity:.5}100%{opacity:0;transform:translateY(-120px)}}
+
+/* section frame */
+.sec{padding:clamp(76px,11vh,140px) clamp(20px,5vw,70px);position:relative}
+.head{max-width:800px;margin:0 auto clamp(44px,6vh,74px);text-align:center}
+.head h2{font-size:clamp(2.2rem,5vw,3.8rem);color:#fff;margin-top:16px}
+.head p{color:rgba(226,243,245,.62);margin-top:16px;line-height:1.65;font-size:1.05rem}
+.head .kick{justify-content:center}
+
+/* two tiers */
+.tiers{background:linear-gradient(180deg,#03080a,#07171c)}
+.tgrid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1140px;margin:0 auto}
+@media(max-width:760px){.tgrid{grid-template-columns:1fr}}
+.tile{position:relative;border-radius:24px;overflow:hidden;min-height:440px;display:flex;align-items:flex-end;padding:36px;isolation:isolate;
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.7);border:1px solid rgba(255,255,255,.06)}
+.tile .tbg{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;transition:transform .9s var(--e)}
+.tile::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,transparent 10%,rgba(3,8,10,.86) 100%)}
+.tile:hover .tbg{transform:scale(1.08)}
+.tile .bdg{position:absolute;top:24px;left:24px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(6px);padding:7px 14px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:.1em}
+.tile h3{font-size:2.2rem;color:#fff;margin-bottom:10px}
+.tile p{color:rgba(255,255,255,.82);font-size:.98rem;line-height:1.55;max-width:380px;margin-bottom:20px}
+.tile .go{color:var(--gold);font-weight:600;display:inline-flex;gap:8px}
+
+/* experiences */
+.exp{background:var(--paper);color:var(--ink)}
+.exp .head h2{color:var(--ink)}.exp .head p{color:#4b6a72}.exp .kick{color:var(--deep)}.exp .kick::before{background:var(--deep)}
+.filters{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;max-width:840px;margin:0 auto clamp(34px,5vh,52px)}
+.chip{padding:9px 18px;border-radius:100px;border:1.5px solid #cde6e8;background:#fff;color:var(--deep);font-weight:600;font-size:13px;cursor:pointer;transition:.2s var(--e)}
+.chip.on,.chip:hover{background:var(--deep);color:#fff;border-color:var(--deep)}
+.egrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;max-width:1240px;margin:0 auto}
+.card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 20px 44px -26px rgba(6,19,24,.4);display:flex;flex-direction:column;transition:transform .35s var(--e),box-shadow .35s var(--e)}
+.card:hover{transform:translateY(-8px);box-shadow:0 40px 66px -30px rgba(6,19,24,.5)}
+.cmedia{position:relative;aspect-ratio:16/11;overflow:hidden;background:#0b2028}
+.cmedia img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--e)}
+.card:hover .cmedia img{transform:scale(1.09)}
+.cbadge{position:absolute;top:12px;left:12px;display:flex;gap:6px;flex-wrap:wrap}
+.tg{padding:5px 10px;border-radius:8px;font-size:11px;font-weight:700}
+.tg.best{background:var(--gold);color:var(--ink)}.tg.free{background:rgba(255,255,255,.92);color:var(--deep)}.tg.inst{background:var(--teal);color:#fff}
+.heart{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.9);display:grid;place-items:center;cursor:pointer;font-size:15px;transition:transform .2s}
+.heart:hover{transform:scale(1.14)}
+.cbody{padding:16px 18px 20px;display:flex;flex-direction:column;flex:1}
+.cloc{font-size:11.5px;color:var(--orange);font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px}
+.cbody h3{font-size:1.1rem;color:var(--ink);line-height:1.24;margin-bottom:10px}
+.crate{display:flex;align-items:center;gap:6px;font-size:13px;margin-bottom:12px}
+.crate .rr{background:var(--deep);color:#fff;padding:2px 7px;border-radius:6px;font-weight:700;font-size:12px}
+.crate .cn{color:#6b8790}
+.cmeta{display:flex;gap:14px;font-size:12.5px;color:#6b8790;margin-bottom:16px;flex-wrap:wrap}
+.cfoot{display:flex;align-items:flex-end;justify-content:space-between;margin-top:auto}
+.cprice small{display:block;font-size:11px;color:#8aa2a9}.cprice b{font-family:"Phudu";font-size:1.5rem;color:var(--ink)}
+.book{background:var(--orange);color:#fff;border:none;padding:11px 18px;border-radius:100px;font-weight:700;font-size:13px;cursor:pointer;box-shadow:0 10px 22px -10px rgba(246,134,58,.7);transition:transform .2s}
+.book:hover{transform:translateY(-2px)}
+.card.hide{display:none}
+
+/* concierge */
+.con{background:linear-gradient(160deg,#07171c,#0d3340);color:#fff}
+.cwrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(34px,5vw,70px);max-width:1180px;margin:0 auto;align-items:center}
+@media(max-width:880px){.cwrap{grid-template-columns:1fr}}
+.ephoto{position:relative}
+.ephoto .pf{border-radius:24px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 40px 80px -30px rgba(0,0,0,.7)}
+.ecard{position:absolute;bottom:-22px;left:-10px;background:#fff;color:var(--ink);border-radius:18px;padding:18px 20px;box-shadow:0 30px 60px -24px rgba(0,0,0,.5);max-width:290px}
+.ecard .nm{font-family:"Phudu";font-size:1.15rem}
+.ecard .rl{color:var(--orange);font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin:2px 0 8px}
+.ecard .bio{font-size:12.5px;color:#516a72;line-height:1.5}
+.con h2{font-size:clamp(2rem,4vw,3.3rem);margin:14px 0 16px;color:#fff}
+.con .lead{color:rgba(255,255,255,.78);line-height:1.7;margin-bottom:22px;max-width:460px}
+.enq{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:22px}
+.enq .row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+@media(max-width:520px){.enq .row{grid-template-columns:1fr}}
+.enq label{display:block;font-size:11.5px;color:rgba(255,255,255,.6);margin-bottom:6px;letter-spacing:.03em}
+.enq input,.enq select{width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:12px 14px;color:#fff;font-family:inherit;font-size:14px}
+.enq input::placeholder{color:rgba(255,255,255,.4)}.enq select option{color:var(--ink)}
+.enq .btn-gold{width:100%;justify-content:center;margin-top:4px}
+.lm{display:flex;align-items:center;gap:14px;margin-top:16px;background:rgba(255,227,85,.1);border:1px dashed rgba(255,227,85,.4);border-radius:14px;padding:14px}
+.lm .ic{font-size:26px}.lm div{font-size:13px;color:rgba(255,255,255,.82)}.lm b{color:var(--gold)}
+
+/* markets */
+.mk{background:#07171c}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;max-width:1180px;margin:0 auto}
+.mkc{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:26px}
+.mkc .fl{font-size:30px;margin-bottom:14px}
+.mkc h4{font-family:"Phudu";font-size:1.2rem;color:#fff;margin-bottom:12px}
+.mkc ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.mkc li{font-size:13.5px;color:rgba(226,243,245,.72);display:flex;gap:8px}
+.mkc li::before{content:"✦";color:var(--teal)}
+
+/* trust */
+.tr{background:var(--paper);color:var(--ink)}
+.tr .head h2{color:var(--ink)}.tr .kick{color:var(--deep)}.tr .kick::before{background:var(--deep)}
+.stats{display:flex;justify-content:center;gap:clamp(24px,6vw,80px);flex-wrap:wrap;margin-bottom:clamp(44px,6vh,66px)}
+.stat{text-align:center}.stat b{font-family:"Phudu";font-size:clamp(2.4rem,5vw,3.6rem);color:var(--deep);display:block;line-height:1}
+.stat span{color:#6b8790;font-size:12.5px;letter-spacing:.04em;text-transform:uppercase}
+.revs{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;max-width:1180px;margin:0 auto}
+.rev{background:#fff;border-radius:20px;padding:26px;box-shadow:0 18px 44px -28px rgba(6,19,24,.35)}
+.rev .st{color:var(--orange);font-size:15px;margin-bottom:14px}
+.rev p{color:#33565f;line-height:1.65;margin-bottom:18px}
+.rev .who{display:flex;align-items:center;gap:12px}.rev .who img{width:46px;height:46px;border-radius:50%}
+.rev .who b{display:block;font-size:14px;color:var(--ink)}.rev .who span{font-size:12px;color:#8aa2a9}
+.awards{display:flex;gap:26px;flex-wrap:wrap;justify-content:center;margin-top:clamp(40px,5vh,60px)}
+.awards div{font-family:"Phudu";font-weight:800;color:var(--deep);font-size:13px;letter-spacing:.04em;border:1.5px solid #cde6e8;padding:10px 18px;border-radius:100px}
+
+/* cta + footer */
+.ctab{position:relative;padding:clamp(80px,12vh,160px) clamp(20px,5vw,70px);text-align:center;color:#fff;overflow:hidden;background:#03080a}
+.ctab .cbg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;opacity:.5}
+.ctab::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(3,8,10,.4),rgba(3,8,10,.8))}
+.ctab .in{position:relative;z-index:2}
+.ctab h2{font-size:clamp(2.2rem,5.4vw,4.4rem);max-width:820px;margin:0 auto 18px}
+.ctab p{color:rgba(255,255,255,.85);max-width:520px;margin:0 auto 30px;font-size:1.08rem}
+footer{background:#03080a;color:rgba(226,243,245,.66);padding:clamp(52px,7vh,80px) clamp(20px,5vw,70px) 40px}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;max-width:1180px;margin:0 auto clamp(36px,5vh,54px)}
+@media(max-width:760px){.fg{grid-template-columns:1fr 1fr}}
+.fg .brand{margin-bottom:14px}.fg p{font-size:13.5px;line-height:1.6;max-width:280px}
+footer h5{color:#fff;font-family:"Phudu";font-size:15px;margin-bottom:16px}
+footer ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+footer ul a{font-size:13.5px;transition:.2s}footer ul a:hover{color:var(--gold)}
+.fb{border-top:1px solid rgba(255,255,255,.1);padding-top:24px;max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12.5px}
+
+/* whatsapp */
+.wa{position:fixed;right:20px;bottom:20px;z-index:180;display:flex;align-items:center;gap:12px;background:#25D366;color:#fff;padding:12px 18px 12px 14px;border-radius:100px;box-shadow:0 18px 40px -14px rgba(37,211,102,.7);font-weight:600;font-size:14px;transition:transform .25s var(--e)}
+.wa:hover{transform:translateY(-3px) scale(1.03)}
+.wa .ic{width:26px;height:26px;border-radius:50%;background:#fff;color:#25D366;display:grid;place-items:center;font-weight:800}
+.wa .sb{display:block;font-size:10px;font-weight:500;opacity:.9}
+@media(max-width:520px){.wa .tx{display:none}.wa{padding:14px}}
+
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s var(--e),transform .8s var(--e)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.001s!important}.reveal{opacity:1!important;transform:none!important}}
+</style>
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"TravelAgency","name":"Meetup Travel","description":"Bespoke inbound Vietnam — Concierge tailor-made and instant-book Experiences.","areaServed":["Vietnam"],"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"1280"}}
+</script>
+
+<div id="atmos"></div><div id="vig"></div>
+<div class="bar" id="bar"></div>
+
+<nav class="nav" id="nav">
+  <a href="#top" class="brand"><span class="d"></span>MEETUP&nbsp;<span style="color:var(--teal)">TRAVEL</span></a>
+  <div class="nav-mid">
+    <a class="lk" href="#exped">The Expedition</a>
+    <a class="lk" href="#experiences">Experiences</a>
+    <a class="lk" href="#concierge">Concierge</a>
+    <a class="lk" href="#trust">Why Meetup</a>
+    <a class="cta" href="#concierge">Plan my trip</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-rig" id="heroRig">
+    <img class="pl back" id="hB" alt=""><img class="pl mid" id="hM" alt=""><img class="pl fore" id="hF" alt="">
+  </div>
+  <div class="hero-shade"></div>
+  <div class="hero-in">
+    <span class="kick">Bespoke Vietnam · Inbound Concierge</span>
+    <h1 style="margin-top:20px">Đi bộ qua<br>Việt Nam,<br><span class="g">từng khung cảnh.</span></h1>
+    <p class="sub">Không phải một danh sách tour — một cuộc thám hiểm. Mỗi lần cuộn, một vùng đất mới lao về phía bạn trong không gian 3D, với chuyên gia bản địa thật đứng sau từng hành trình.</p>
+    <div class="hero-row">
+      <a href="#exped" class="btn btn-gold">Bắt đầu thám hiểm ↓</a>
+      <a href="#experiences" class="btn btn-line">Xem Experiences</a>
+    </div>
+    <div class="hero-trust">
+      <span class="st">★★★★★</span><span><b>4.9/5</b> · 1,280+ đánh giá TripAdvisor</span><span>·</span><span>Phản hồi <b>trong 2 giờ</b></span>
+    </div>
+  </div>
+  <div class="cue"><div class="m"></div>CUỘN ĐỂ ĐI</div>
+</header>
+
+<!-- EXPEDITION -->
+<section class="exped" id="exped">
+  <div class="stage" id="stage">
+    <div class="rig" id="rig"></div>
+    <div class="hud">
+      <div><span class="hno" id="hno">01</span><span class="htot"> / 04</span></div>
+      <div class="track"><div class="fill" id="hfill"></div></div>
+      <div class="hnm" id="hnm">HẠ LONG</div>
+    </div>
+  </div>
+</section>
+
+<!-- TWO TIERS -->
+<section class="sec tiers">
+  <div class="head reveal"><span class="kick c">Hai cách để đi cùng Meetup</span><h2>Chọn nhịp độ hành trình</h2><p>Một hành trình may đo cùng chuyên gia, hay một trải nghiệm trong ngày đặt tức thì — cả hai đều giữ chuẩn premium, có người thật đứng sau.</p></div>
+  <div class="tgrid">
+    <a href="#concierge" class="tile reveal"><span class="bdg">TAILOR-MADE</span><div class="tbg" id="tbg1"></div><div><h3>Concierge</h3><p>Hành trình thiết kế riêng theo phong cách, ngân sách và thời gian của bạn. Chốt bằng một cuộc trò chuyện với chuyên gia bản địa.</p><span class="go">Plan with a local expert →</span></div></a>
+    <a href="#experiences" class="tile reveal d1"><span class="bdg">BOOK INSTANTLY</span><div class="tbg" id="tbg2"></div><div><h3>Experiences</h3><p>Tour trong ngày đóng gói sẵn: giá minh bạch, xác nhận tức thì, huỷ miễn phí. Chọn ngày, chọn khách, lên đường.</p><span class="go">Browse day tours →</span></div></a>
+  </div>
+</section>
+
+<!-- EXPERIENCES -->
+<section class="sec exp" id="experiences">
+  <div class="head reveal"><span class="kick c">Experiences · Đặt ngay</span><h2>Day tours, xác nhận tức thì</h2><p>Giá minh bạch, huỷ miễn phí, xác nhận ngay. Lọc theo phong cách — kể cả lựa chọn halal & private cho khách GCC.</p></div>
+  <div class="filters reveal" id="filters">
+    <button class="chip on" data-f="all">Tất cả</button><button class="chip" data-f="food">Ẩm thực</button><button class="chip" data-f="nature">Thiên nhiên</button><button class="chip" data-f="culture">Văn hoá</button><button class="chip" data-f="halal">Halal-friendly</button><button class="chip" data-f="family">Family</button>
+  </div>
+  <div class="egrid" id="egrid"></div>
+</section>
+
+<!-- CONCIERGE -->
+<section class="sec con" id="concierge">
+  <div class="cwrap">
+    <div class="ephoto reveal"><div class="pf"><img id="expertImg" alt="Chuyên gia Linh Phạm"></div>
+      <div class="ecard"><div class="nm">Linh Phạm</div><div class="rl">Lead Travel Designer · North Vietnam</div><p class="bio">12 năm thiết kế hành trình riêng cho khách US, UK & GCC. Chuyên Hà Giang, Hạ Long và trải nghiệm ẩm thực halal-friendly.</p></div>
+    </div>
+    <div class="reveal d1">
+      <span class="kick">Concierge · Tailor-made</span>
+      <h2>Kể chúng tôi nghe giấc mơ, chúng tôi vẽ nên hành trình.</h2>
+      <p class="lead">Không có nút "book now". Chỉ có một chuyên gia bản địa thật, lắng nghe phong cách và ngân sách của bạn, rồi thiết kế từng ngày. Phản hồi trong 2 giờ.</p>
+      <div class="enq">
+        <form onsubmit="event.preventDefault();this.querySelector('button').textContent='Đã gửi ✓ — phản hồi trong 2 giờ'">
+          <div class="row"><div><label>Điểm đến quan tâm</label><input placeholder="Hạ Long, Hà Giang..." required></div><div><label>Số ngày</label><input type="number" min="1" placeholder="10" required></div></div>
+          <div class="row"><div><label>Phong cách</label><select><option>Luxury / Premium</option><option>Adventure</option><option>Family</option><option>Halal & private</option><option>Honeymoon</option></select></div><div><label>Ngân sách / khách</label><select><option>$1,500 – $3,000</option><option>$3,000 – $6,000</option><option>$6,000+</option></select></div></div>
+          <div class="row"><div><label>Email</label><input type="email" placeholder="you@email.com" required></div><div><label>Thời gian đi</label><input placeholder="Tháng 10, 2026"></div></div>
+          <button type="submit" class="btn btn-gold">Plan with a local expert</button>
+        </form>
+        <div class="lm"><span class="ic">📕</span><div><b>Miễn phí:</b> Cẩm nang Việt Nam 40 trang (PDF) — để lại email để nhận ngay.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKETS -->
+<section class="sec mk">
+  <div class="head reveal"><span class="kick c">Thiết kế theo thị trường</span><h2>Hiểu bạn đến từ đâu</h2></div>
+  <div class="mgrid">
+    <div class="mkc reveal"><div class="fl">🕌</div><h4>Khách GCC</h4><ul><li>Ẩm thực halal được xác nhận</li><li>Hướng dẫn & phòng riêng biệt</li><li>Lịch tôn trọng giờ cầu nguyện</li><li>Family-friendly, private car</li></ul></div>
+    <div class="mkc reveal d1"><div class="fl">🇺🇸</div><h4>US / UK / AU</h4><ul><li>Giá minh bạch, không phí ẩn</li><li>Thanh toán an toàn OnePay</li><li>Chính sách huỷ rõ ràng</li><li>Copy tiếng Anh bản ngữ</li></ul></div>
+    <div class="mkc reveal d2"><div class="fl">💬</div><h4>Mọi khách</h4><ul><li>WhatsApp phản hồi trong 2 giờ</li><li>Chuyên gia bản địa thật</li><li>Hỗ trợ 24/7 suốt hành trình</li><li>Không qua giỏ hàng cho Concierge</li></ul></div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="sec tr" id="trust">
+  <div class="head reveal"><span class="kick c">Why choose Meetup</span><h2>Người thật, đánh giá thật</h2></div>
+  <div class="stats">
+    <div class="stat reveal"><b>4.9★</b><span>TripAdvisor</span></div><div class="stat reveal d1"><b>1,280+</b><span>Verified reviews</span></div><div class="stat reveal d2"><b>38</b><span>Quốc gia khách</span></div><div class="stat reveal d3"><b>2h</b><span>Phản hồi</span></div>
+  </div>
+  <div class="revs">
+    <div class="rev reveal"><div class="st">★★★★★</div><p>"Chuyến Hà Giang được thiết kế đến từng chi tiết. Tài xế Easy Rider tuyệt vời, đồ ăn halal luôn sắp xếp trước. Không OTA nào làm được điều này."</p><div class="who"><img id="av1" alt=""><div><b>Ahmed R.</b><span>Dubai, UAE 🇦🇪</span></div></div></div>
+    <div class="rev reveal d1"><div class="st">★★★★★</div><p>"We felt like we had a friend in Vietnam. Linh replied within an hour every time. The Ha Long overnight cruise was the highlight of our year."</p><div class="who"><img id="av2" alt=""><div><b>Sarah & Tom</b><span>London, UK 🇬🇧</span></div></div></div>
+    <div class="rev reveal d2"><div class="st">★★★★★</div><p>"Booked three day-tours instantly, free cancellation gave us peace of mind. Saigon Vespa night tour — unreal food, unreal guide."</p><div class="who"><img id="av3" alt=""><div><b>James K.</b><span>Sydney, AU 🇦🇺</span></div></div></div>
+  </div>
+  <div class="awards"><div>★ TripAdvisor Travellers' Choice</div><div>Lonely Planet Recommended</div><div>Halal Travel Certified</div><div>OnePay Secure</div></div>
+</section>
+
+<!-- CTA -->
+<section class="ctab"><div class="cbg" id="ctabg"></div><div class="in"><h2 class="reveal">Chuyến đi của bạn xứng đáng một người bản địa đứng sau.</h2><p class="reveal d1">Bắt đầu bằng một tin nhắn. Chúng tôi lo phần còn lại.</p><div class="hero-row reveal d2" style="justify-content:center"><a href="#concierge" class="btn btn-gold">Plan my trip</a><a href="#experiences" class="btn btn-line">Đặt tour ngay</a></div></div></section>
+
+<footer>
+  <div class="fg">
+    <div><div class="brand"><span class="d"></span>MEETUP&nbsp;<span style="color:var(--teal)">TRAVEL</span></div><p>Bespoke inbound Vietnam. Premium tailor-made journeys & instant-book experiences, với chuyên gia bản địa thật đứng sau từng hành trình.</p></div>
+    <div><h5>Expedition</h5><ul><li><a href="#exped">Hạ Long</a></li><li><a href="#exped">Hà Giang</a></li><li><a href="#exped">Hội An</a></li><li><a href="#exped">Sài Gòn</a></li></ul></div>
+    <div><h5>Company</h5><ul><li><a href="#trust">Why Meetup</a></li><li><a href="#concierge">Local Experts</a></li><li><a href="#experiences">Experiences</a></li><li><a href="#concierge">Concierge</a></li></ul></div>
+    <div><h5>Liên hệ</h5><ul><li><a href="#concierge">WhatsApp · reply 2h</a></li><li><a href="#concierge">hello@meetup.travel</a></li><li><a href="#concierge">Hà Nội · Việt Nam</a></li></ul></div>
+  </div>
+  <div class="fb"><span>© 2026 Meetup Travel. Bespoke inbound Vietnam.</span><span>Concierge = Lead · Experiences = Instant book · Secured by OnePay</span></div>
+</footer>
+
+<a href="#concierge" class="wa"><span class="ic">✆</span><span class="tx">Chat với chuyên gia<span class="sb">Trả lời trong 2 giờ</span></span></a>
+
+<script>
+/*DIOJS*/
+
+/* avatars via inline svg */
+function avatar(t,c1,c2){return 'data:image/svg+xml;base64,'+btoa('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><defs><linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+c1+'"/><stop offset="1" stop-color="'+c2+'"/></linearGradient></defs><rect width="120" height="120" fill="url(#a)"/><text x="60" y="82" font-family="Phudu,sans-serif" font-size="60" font-weight="800" fill="#fff" text-anchor="middle">'+t+'</text></svg>');}
+document.getElementById('expertImg').src=avatar('LP','#257496','#5BC4BF');
+document.getElementById('av1').src=avatar('A','#257496','#5BC4BF');
+document.getElementById('av2').src=avatar('S','#F6863A','#FFE355');
+document.getElementById('av3').src=avatar('J','#5BC4BF','#257496');
+
+/* hero + tiles + cta backgrounds from dioramas */
+document.getElementById('hB').src=DIO.halong_back;
+document.getElementById('hM').src=DIO.halong_mid;
+document.getElementById('hF').src=DIO.halong_fore;
+document.getElementById('tbg1').style.backgroundImage='url('+DIO.hoian_back+'),url('+DIO.hoian_fore+')';
+document.getElementById('tbg1').style.backgroundBlendMode='normal';
+document.getElementById('tbg1').style.backgroundImage='url('+DIO.hoian_fore+')';
+document.getElementById('tbg2').style.backgroundImage='url('+DIO.saigon_fore+')';
+document.getElementById('ctabg').style.backgroundImage='url('+DIO.hagiang_back+')';
+
+/* ---------- expedition scenes ---------- */
+const SCENES=[
+ {k:'halong',no:'01',rg:'Northeast Coast',nm:'Hạ Long',sub:'Kỳ quan của đá và nước',
+  ds:'Gần 2.000 hòn đảo đá vôi nhô lên từ mặt nước ngọc bích. Ngủ đêm trên du thuyền, chèo kayak vào hang động giấu kín.',
+  facts:[['2N1Đ','Cruise'],['1,969','Đảo đá'],['UNESCO','Di sản']],
+  tour:{t:'Overnight Luxury Junk Cruise',m:'★ 4.9 (612) · 2 ngày',p:'$189'}},
+ {k:'hagiang',no:'02',rg:'Far North',nm:'Hà Giang',sub:'Con đường trên mây',
+  ds:'Cung đèo huyền thoại vắt qua cao nguyên đá Đồng Văn — ruộng bậc thang, chợ phiên và hẻm vực Tu Sản sâu nhất Đông Nam Á.',
+  facts:[['3N2Đ','Loop'],['350km','Cung đèo'],['Easy Rider','Tài xế riêng']],
+  tour:{t:'Ha Giang Loop · Private Easy Rider',m:'★ 5.0 (438) · 3 ngày',p:'$245'}},
+ {k:'hoian',no:'03',rg:'Central Coast',nm:'Hội An',sub:'Thành phố của ánh đèn',
+  ds:'Phố cổ vàng nghệ soi bóng bên sông Hoài, hàng nghìn đèn lồng lụa thắp lên mỗi tối. Học nấu ăn, thả đèn hoa đăng.',
+  facts:[['Cả ngày','Food + văn hoá'],['200+','Năm tuổi'],['Halal','Lựa chọn ẩm thực']],
+  tour:{t:'Lantern & Street Food Night Walk',m:'★ 4.8 (521) · 4 giờ',p:'$59'}},
+ {k:'saigon',no:'04',rg:'The South',nm:'Sài Gòn',sub:'Nhịp đập không ngủ',
+  ds:'Thành phố của cà phê, xe máy và những con hẻm ẩm thực bất tận. Sau lưng người lái Vespa, kết bằng cocktail trên tầng thượng.',
+  facts:[['Tối','4.5 giờ'],['Vespa','Guide riêng'],['Private','Family friendly']],
+  tour:{t:'Saigon After Dark · Vespa Food Tour',m:'★ 4.9 (703) · 4.5 giờ',p:'$79'}},
+];
+const rig=document.getElementById('rig');
+SCENES.forEach((s,i)=>{
+  const el=document.createElement('div'); el.className='scene3d'; el.dataset.i=i;
+  el.innerHTML='<div class="depth">'
+    +'<img class="plane back" src="'+DIO[s.k+'_back']+'" alt="">'
+    +'<img class="plane mid" src="'+DIO[s.k+'_mid']+'" alt="">'
+    +'<img class="plane fore" src="'+DIO[s.k+'_fore']+'" alt=""></div>'
+    +'<div class="glow"></div>'
+    +'<div class="caption"><div class="no">'+s.no+'</div><div class="rg">'+s.rg+'</div>'
+    +'<h2>'+s.nm+'</h2><div class="nm">'+s.sub+'</div><p class="ds">'+s.ds+'</p>'
+    +'<div class="facts">'+s.facts.map(f=>'<div class="fact"><b>'+f[0]+'</b><span>'+f[1]+'</span></div>').join('')+'</div>'
+    +'<div class="tourchip"><div class="ti"><b>'+s.tour.t+'</b><span>'+s.tour.m+'</span></div><span class="pr">'+s.tour.p+'</span><button class="bk">Book →</button></div>'
+    +'</div>';
+  rig.appendChild(el);
+});
+const scenes=[...document.querySelectorAll('.scene3d')];
+const N=scenes.length, exped=document.getElementById('exped');
+const hno=document.getElementById('hno'),hfill=document.getElementById('hfill'),hnm=document.getElementById('hnm');
+const DEPTH=880, PER=0.5; // half a scene half-window
+
+function clamp(v,a,b){return Math.min(b,Math.max(a,v));}
+function smooth(x){return clamp(1-Math.abs(x),0,1);}
+
+let camX=0,camY=0,tX=0,tY=0;
+function raf(){
+  const r=exped.getBoundingClientRect();
+  const total=exped.offsetHeight-innerHeight;
+  let p=clamp((-r.top)/total,0,1);
+  // mouse tilt easing
+  camX+=(tX-camX)*.08; camY+=(tY-camY)*.08;
+  rig.style.transform='rotateY('+(camX*7)+'deg) rotateX('+(-camY*5)+'deg)';
+  let near=0,best=9;
+  scenes.forEach((el,i)=>{
+    let q=(p-(i+0.5)/N)*N;
+    if(i===0&&q<0)q=0; if(i===N-1&&q>0)q=0;
+    const az=Math.abs(q);
+    const z=q*DEPTH;
+    const op=clamp(1-az*0.95,0,1);           // overlapping cross-dissolve (no dead-zone)
+    const blur=clamp((az-0.22)*26,0,13);      // receding/incoming scenes blur for depth
+    const sc=1+Math.max(0,q)*0.05;
+    el.style.transform='translateZ('+z+'px) scale('+sc+')';
+    el.style.opacity=op;
+    el.style.filter=blur>0.4?'blur('+blur.toFixed(1)+'px)':'none';
+    el.style.zIndex=String(200-Math.round(az*80));
+    const cap=el.querySelector('.caption');
+    const cop=clamp(1-az/0.28,0,1);
+    cap.style.opacity=cop; cap.style.transform='translateY('+((1-cop)*46).toFixed(1)+'px)';
+    if(az<best){best=az;near=i;}
+  });
+  hno.textContent=SCENES[near].no; hnm.textContent=SCENES[near].nm.toUpperCase(); hfill.style.height=(p*100)+'%';
+  raf.t=requestAnimationFrame(raf);
+}
+raf.t=requestAnimationFrame(raf);
+
+/* mouse tilt on stage + hero (hover devices only) */
+if(matchMedia('(hover:hover)').matches){
+  const stage=document.getElementById('stage');
+  stage.addEventListener('pointermove',e=>{const b=stage.getBoundingClientRect();tX=(e.clientX-b.left)/b.width-0.5;tY=(e.clientY-b.top)/b.height-0.5;});
+  stage.addEventListener('pointerleave',()=>{tX=0;tY=0;});
+  const hero=document.getElementById('top'),hr=document.getElementById('heroRig');
+  hero.addEventListener('pointermove',e=>{const b=hero.getBoundingClientRect();const mx=(e.clientX-b.left)/b.width-0.5,my=(e.clientY-b.top)/b.height-0.5;hr.style.transform='rotateY('+(mx*6)+'deg) rotateX('+(-my*4)+'deg)';});
+  hero.addEventListener('pointerleave',()=>hr.style.transform='');
+}
+/* hero parallax on scroll */
+addEventListener('scroll',()=>{const y=scrollY;if(y<innerHeight){document.getElementById('hB').style.transform='translateZ(-200px) scale(1.4) translateY('+(y*0.06)+'px)';document.getElementById('hF').style.transform='translateZ(30px) translateY('+(-y*0.04)+'px)';}},{passive:true});
+
+/* nav + bar */
+const bar=document.getElementById('bar'),nav=document.getElementById('nav');
+addEventListener('scroll',()=>{const h=document.documentElement,sc=h.scrollTop,mx=h.scrollHeight-h.clientHeight;bar.style.width=(sc/mx*100)+'%';nav.classList.toggle('solid',sc>60);},{passive:true});
+
+/* reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.16,rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* experiences */
+const EXP=[
+ {loc:'Hạ Long',t:'Overnight Luxury Junk Cruise',cat:['nature','family'],img:'halong',price:189,dur:'2 ngày',rate:4.9,cnt:612,b:[['inst','Instant confirm']]},
+ {loc:'Hà Giang',t:'Ha Giang Loop · Private Easy Rider',cat:['nature'],img:'hagiang',price:245,dur:'3 ngày',rate:5.0,cnt:438,b:[['best','Best seller']]},
+ {loc:'Hội An',t:'Lantern & Street Food Night Walk',cat:['food','culture','halal'],img:'hoian',price:59,dur:'4 giờ',rate:4.8,cnt:521,b:[['free','Free cancel']]},
+ {loc:'Sài Gòn',t:'Saigon After Dark · Vespa Food Tour',cat:['food','culture'],img:'saigon',price:79,dur:'4.5 giờ',rate:4.9,cnt:703,b:[['best','Best seller'],['free','Free cancel']]},
+ {loc:'Hội An',t:'Private Cooking Class + Market',cat:['food','culture','family','halal'],img:'hoian',price:65,dur:'5 giờ',rate:4.9,cnt:389,b:[['inst','Instant confirm']]},
+ {loc:'Hà Nội',t:'Old Quarter Halal Food Crawl',cat:['food','halal'],img:'hoian',price:49,dur:'3.5 giờ',rate:4.8,cnt:274,b:[['free','Free cancel']]},
+ {loc:'Ninh Bình',t:'Trang An Boat & Bamboo Ride',cat:['nature','family'],img:'halong',price:72,dur:'Cả ngày',rate:4.9,cnt:501,b:[['best','Best seller']]},
+ {loc:'Sa Pa',t:'Terraced Fields Trek + Homestay',cat:['nature','culture'],img:'hagiang',price:135,dur:'2 ngày',rate:4.7,cnt:318,b:[['free','Free cancel']]},
+];
+const egrid=document.getElementById('egrid');
+egrid.innerHTML=EXP.map(e=>{
+ const stars='★'.repeat(Math.round(e.rate));
+ const bd=e.b.map(x=>'<span class="tg '+x[0]+'">'+x[1]+'</span>').join('');
+ return '<article class="card reveal" data-cat="'+e.cat.join(' ')+'"><div class="cmedia"><img src="'+DIO[e.img+'_fore']+'" alt="'+e.t+'"><div class="cbadge">'+bd+'</div><div class="heart">♡</div></div>'
+ +'<div class="cbody"><div class="cloc">'+e.loc+'</div><h3>'+e.t+'</h3><div class="crate"><span class="rr">'+e.rate.toFixed(1)+'</span><span style="color:var(--orange)">'+stars+'</span><span class="cn">('+e.cnt+')</span></div>'
+ +'<div class="cmeta"><span>⏱ '+e.dur+'</span><span>✓ Xác nhận nhanh</span></div>'
+ +'<div class="cfoot"><div class="cprice"><small>Giá từ</small><b>$'+e.price+'</b></div><button class="book">Book now</button></div></div></article>';
+}).join('');
+egrid.querySelectorAll('.card').forEach((c,i)=>{const dl=['','d1','d2','d3'][i%4];if(dl)c.classList.add(dl);io.observe(c);});
+document.getElementById('filters').addEventListener('click',ev=>{const b=ev.target.closest('.chip');if(!b)return;document.querySelectorAll('#filters .chip').forEach(c=>c.classList.remove('on'));b.classList.add('on');const f=b.dataset.f;egrid.querySelectorAll('.card').forEach(c=>c.classList.toggle('hide',f!=='all'&&!c.dataset.cat.split(' ').includes(f)));});
+
+/* interactivity */
+document.body.addEventListener('click',ev=>{const h=ev.target.closest('.heart');if(h){h.textContent=h.textContent==='♡'?'♥':'♡';h.style.color=h.textContent==='♥'?'#F6863A':'';}const bk=ev.target.closest('.book,.bk');if(bk&&!bk.dataset.d){bk.dataset.d=1;const o=bk.textContent;bk.textContent='Đang mở lịch…';setTimeout(()=>bk.textContent=o,1400);}});
+
+/* floating sparks in stage */
+(function(){const st=document.getElementById('stage');for(let i=0;i<14;i++){const s=document.createElement('span');s.className='spark';s.style.left=(Math.random()*100)+'%';s.style.top=(Math.random()*100)+'%';s.style.animationDuration=(4+Math.random()*5)+'s';s.style.animationDelay=(-Math.random()*6)+'s';st.appendChild(s);}})();
+</script>

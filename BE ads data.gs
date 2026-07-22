@@ -67,7 +67,7 @@ function getDashboardData() {
       country || "(trống)",                                      // 4: tên quốc gia
       dedupKey(cell(r, CFG.LEAD_COL.name), cell(r, CFG.LEAD_COL.phone)),   // 5: khoá lọc trùng
       normLevelFull(cell(r, CFG.LEAD_COL.stage)),                // 6: level đầy đủ L2a/L3/L4/L5/L6/Khác
-      normYesNo(cell(r, CFG.LEAD_COL.yesNo)),                    // 7: 'yes'/'no'/'notsure'/'' (chỉ có ý nghĩa với L2A)
+      normYesNo(cell(r, CFG.LEAD_COL.yesNo)),                    // 7: 'yes'/'no'/'notsure'/'' — cột W, áp cho MỌI lead (level trên cũng từng là L2A)
       (cell(r, CFG.LEAD_COL.priority) || "").toString().trim()   // 8: Priority (L3P1 khi === '1')
     ];
   });

@@ -160,9 +160,9 @@ input[type=date]:focus{border-color:var(--teal)}
   <div class="grid">
     <!-- ===== MỚI: bảng chỉ số L2A + biểu đồ Yes/No/Not Sure ===== -->
     <div class="card w">
-      <span class="info" tabindex="0" data-tip="Chỉ số tính trên lead L2A trong khoảng đang xem. Yes/No/Not Sure lấy từ cột W, Level từ cột AB, L3P1 = lead L3 có Priority (cột Z) = 1. Logic khớp báo cáo lead hàng ngày (Discord/Zalo). 'Chưa rõ' = lead L2A chưa gắn trạng thái Yes/No/Not Sure."></span>
-      <h2>Thống kê L2A · Yes / No / Not Sure &amp; tỷ lệ chuyển đổi</h2>
-      <div class="desc">Cột chồng theo thị trường · tỷ lệ tính trên L2A · logic khớp báo cáo hàng ngày</div>
+      <span class="info" tabindex="0" data-tip="Yes/No/Not Sure (cột W) đếm trên MỌI lead — các level L3/L4/L5/L6 cũng từng là L2A nên vẫn giữ trạng thái. Tỷ lệ Yes/No/Not Sure tính trên TỔNG lead trong khoảng đang xem. L3P1 = lead L3 có Priority (cột Z)=1, tỷ lệ L3P1/L2a tính trên số lead đang ở L2A. Logic khớp báo cáo lead hàng ngày (Discord/Zalo). 'Chưa rõ' = lead chưa gắn trạng thái."></span>
+      <h2>Yes / No / Not Sure &amp; tỷ lệ chuyển đổi</h2>
+      <div class="desc">Cột chồng theo thị trường · Yes/No/Not Sure trên toàn bộ lead · tỷ lệ trên tổng lead</div>
       <div class="statgrid" id="l2aStats"></div>
       <div class="canvas-box" style="height:280px"><canvas id="c5"></canvas></div>
     </div>
@@ -264,27 +264,28 @@ function aggSourceStage(rows){
   return Object.keys(map).map(src=>({src,vals:map[src],total:map[src].reduce((a,b)=>a+b,0)}))
     .sort((a,b)=>b.total-a.total).slice(0,12);
 }
-// ===== MỚI: chỉ số L2A (Yes/No/Not Sure, L3P1) — logic khớp báo cáo hàng ngày =====
+// ===== MỚI: chỉ số Yes/No/Not Sure + L3P1 — logic khớp báo cáo hàng ngày =====
 // rows: đã dedup + lọc theo khoảng ngày.
+// Yes/No/Not Sure (cột W) ĐẾM TRÊN MỌI LEAD: các level trên (L3/L4/L5/L6) cũng từng là
+// L2A nên vẫn mang trạng thái. Mẫu số các tỷ lệ = TỔNG LEAD trong khoảng đang xem.
 function aggL2aStats(rows){
   const M=DATA.markets;
   const lv={L2a:0,L3:0,L4:0,L5:0,L6:0,'Khác':0};
   let l3p1=0;
-  const blank=()=>({yes:0,no:0,notsure:0,chuaRo:0,l2a:0});
+  const blank=()=>({yes:0,no:0,notsure:0,chuaRo:0,total:0});
   const mk=M.map(blank), other=blank(), all=blank();
   rows.forEach(r=>{
     const lvl=r[6];
     if(lv[lvl]!==undefined)lv[lvl]++; else lv['Khác']++;
     if(lvl==='L3' && String(r[8]).trim()==='1') l3p1++;
-    if(lvl==='L2a'){
-      const yn=r[7];
-      const b=(r[1]>=0)?mk[r[1]]:other;
-      b.l2a++; all.l2a++;
-      if(yn==='yes'){b.yes++;all.yes++;}
-      else if(yn==='no'){b.no++;all.no++;}
-      else if(yn==='notsure'){b.notsure++;all.notsure++;}
-      else {b.chuaRo++;all.chuaRo++;}
-    }
+    // đếm trạng thái cho MỌI lead, gom theo thị trường
+    const yn=r[7];
+    const b=(r[1]>=0)?mk[r[1]]:other;
+    b.total++; all.total++;
+    if(yn==='yes'){b.yes++;all.yes++;}
+    else if(yn==='no'){b.no++;all.no++;}
+    else if(yn==='notsure'){b.notsure++;all.notsure++;}
+    else {b.chuaRo++;all.chuaRo++;}
   });
   const total=rows.length, l2a=lv.L2a;
   const pct=(v,d)=>d>0?v/d*100:0;
@@ -292,13 +293,12 @@ function aggL2aStats(rows){
   M.forEach((m,i)=>groups.push(Object.assign({label:m},mk[i])));
   groups.push(Object.assign({label:'Khác'},other));
   // bỏ nhóm rỗng (giữ 'Tất cả')
-  groups=groups.filter((g,i)=>i===0||g.l2a>0);
+  groups=groups.filter((g,i)=>i===0||g.total>0);
   return {total,l2a,lv,l3p1,
     yes:all.yes,no:all.no,notsure:all.notsure,chuaRo:all.chuaRo,
     rL3P1_L2a:pct(l3p1,l2a),
-    rYes_L2a:pct(all.yes,l2a),rNo_L2a:pct(all.no,l2a),rNotSure_L2a:pct(all.notsure,l2a),
-    rYNN_L2a:pct(all.yes+all.no+all.notsure,l2a),
-    rYes_total:pct(all.yes,total),rNo_total:pct(all.no,total),rNotSure_total:pct(all.notsure,total),
+    rYes:pct(all.yes,total),rNo:pct(all.no,total),rNotSure:pct(all.notsure,total),
+    rYNN:pct(all.yes+all.no+all.notsure,total),
     groups:groups};
 }
 function aggMarket(leadRows,spendRows){
@@ -397,9 +397,9 @@ function drawYesNo(st){
       datasets:segs.map(s=>({label:s.label,data:g.map(x=>x[s.key]),backgroundColor:s.color,
         borderRadius:3,categoryPercentage:0.62,barPercentage:0.9,maxBarThickness:90}))},
     options:baseOpts({stacked:true,interaction:{mode:'index',intersect:false},
-      tipTitle:items=>{const gi=g[items[0].dataIndex];return gi.label+' · '+fm(gi.l2a)+' lead L2A';},
-      tip:c=>{const gi=g[c.dataIndex],v=c.parsed.y,p=gi.l2a>0?Math.round(v/gi.l2a*100):0;
-        return ' '+c.dataset.label+': '+fm(v)+' ('+p+'% L2A)';}})});
+      tipTitle:items=>{const gi=g[items[0].dataIndex];return gi.label+' · '+fm(gi.total)+' lead';},
+      tip:c=>{const gi=g[c.dataIndex],v=c.parsed.y,p=gi.total>0?Math.round(v/gi.total*100):0;
+        return ' '+c.dataset.label+': '+fm(v)+' ('+p+'%)';}})});
 }
 function drawGroup(arr){
   // cột nhóm: barPercentage 1.0 => các cột DÍNH nhau trong cùng nguồn; categoryPercentage chừa khe giữa các nhóm
@@ -441,12 +441,12 @@ function drawVol(arr){
 /* ===== bảng chỉ số L2A ===== */
 function renderL2aStats(st){
   const tiles=[
-    {lbl:'Lead L2A',              val:fm(st.l2a),          sub:(st.total>0?pct1(st.l2a/st.total*100)+' tổng lead':'—')},
-    {lbl:'L3P1',                  val:fm(st.l3p1),         sub:'L3P1/L2a: '+pct1(st.rL3P1_L2a), o:1},
-    {lbl:'Yes / L2A',             val:pct1(st.rYes_L2a),   sub:fm(st.yes)+' lead'},
-    {lbl:'No / L2A',              val:pct1(st.rNo_L2a),    sub:fm(st.no)+' lead', o:1},
-    {lbl:'Not Sure / L2A',        val:pct1(st.rNotSure_L2a), sub:fm(st.notsure)+' lead'},
-    {lbl:'(Yes+No+NotSure)/L2A',  val:pct1(st.rYNN_L2a),   sub:'đã có trạng thái', o:1}
+    {lbl:'Yes / tổng',            val:pct1(st.rYes),       sub:fm(st.yes)+' lead'},
+    {lbl:'No / tổng',             val:pct1(st.rNo),        sub:fm(st.no)+' lead', o:1},
+    {lbl:'Not Sure / tổng',       val:pct1(st.rNotSure),   sub:fm(st.notsure)+' lead'},
+    {lbl:'(Yes+No+NotSure)/tổng', val:pct1(st.rYNN),       sub:'đã có trạng thái', o:1},
+    {lbl:'L3P1 / L2A',            val:pct1(st.rL3P1_L2a),  sub:fm(st.l3p1)+' lead L3P1'},
+    {lbl:'Lead L2A hiện tại',     val:fm(st.lv.L2a),       sub:(st.total>0?pct1(st.lv.L2a/st.total*100)+' tổng lead':'—'), o:1}
   ];
   $('l2aStats').innerHTML=tiles.map(t=>
     '<div class="stat'+(t.o?' o':'')+'"><div class="s-lbl">'+t.lbl+'</div>'+
@@ -535,9 +535,10 @@ function demo(){
     const lr=Math.random();
     const levelFull = lr<.55?'L2a':lr<.75?'L3':lr<.83?'L4':lr<.88?'L5':'L6';
     const si = levelFull==='L2a'?0:levelFull==='L3'?1:levelFull==='L6'?2:-1;   // stageIdx cho chart c2 (chỉ L2A/L3/L6)
-    // Yes/No/Not Sure chỉ cho L2A (cột W); còn lại 'Chưa rõ'
-    let yn='';
-    if(levelFull==='L2a'){const yr=Math.random();yn=yr<.4?'yes':yr<.62?'no':yr<.78?'notsure':'';}
+    // Yes/No/Not Sure (cột W) áp cho MỌI lead; level trên đã chốt nên ít 'Chưa rõ' hơn
+    const yr=Math.random();
+    const yn = levelFull==='L2a' ? (yr<.4?'yes':yr<.6?'no':yr<.75?'notsure':'')
+                                 : (yr<.6?'yes':yr<.8?'no':yr<.95?'notsure':'');
     const priority=(levelFull==='L3'&&Math.random()<.45)?'1':'';   // L3P1 khi Priority=1 (cột Z)
     const src=srcPool[Math.floor(Math.random()*srcPool.length)];
     leads.push([dayStr(t),m,si,src,country,'',levelFull,yn,priority]);}

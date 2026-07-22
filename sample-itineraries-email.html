@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="x-apple-disable-message-reformatting">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>Your Sample Vietnam Itineraries Are On The Way</title>
+<style>
+:root { color-scheme: light dark; }
+@import url('https://fonts.googleapis.com/css2?family=Phudu:wght@700;900&family=Work+Sans:wght@400;500;600&display=swap');
+
+body { margin:0; padding:0; background:#E2F3F5; font-family:'Work Sans',Arial,sans-serif; -webkit-text-size-adjust:100%; }
+
+/* ── DARK MODE ── */
+@media (prefers-color-scheme: dark) {
+  body, .outer    { background:#111820 !important; }
+  .wrap           { background:#1a2530 !important; }
+  .sec-body       { background:#1a2530 !important; }
+  .sec-contact    { background:#1e2d3a !important; border-color:#2a3d50 !important; }
+  .t-primary      { color:#ddeef5 !important; }
+  .t-secondary    { color:#8bb5c8 !important; }
+  .t-accent       { color:#5BC4BF !important; }
+  .t-muted        { color:#607a8a !important; }
+  .guide-card     { background:#1e3040 !important; border-color:#2e4a5a !important; }
+  .itin-row       { background:#1e2d3a !important; border-color:#2a3d50 !important; }
+  .itin-num       { background:#0f2233 !important; }
+  .path-card      { background:#1e2d3a !important; border-color:#2a3d50 !important; }
+  .tip-strip      { background:#0f2233 !important; }
+  .ta-card        { background:#162818 !important; border-color:#1e4028 !important; }
+  .ta-divider     { background:#1e4028 !important; }
+  .ta-brand       { color:#e8f8f0 !important; }
+  .ta-body        { color:#a8c8b4 !important; }
+  .ta-platform    { color:#6a8a78 !important; }
+  .ta-micro       { color:#6a8a78 !important; }
+  .ta-score-label { color:#8bb5c8 !important; }
+  .footer-wrap    { background:#0d1820 !important; }
+  .footer-text    { color:#4a6878 !important; }
+  .footer-link    { color:#5BC4BF !important; }
+  .footer-copy    { color:#2e4050 !important; }
+}
+
+/* ── RESPONSIVE ── */
+@media only screen and (max-width:600px) {
+  .wrap           { width:100% !important; }
+  .hdr-title      { font-size:32px !important; }
+  .hdr-sub        { font-size:14px !important; }
+  .sec-pad        { padding-left:20px !important; padding-right:20px !important; }
+  .path-td        { display:block !important; width:100% !important; padding:0 0 10px 0 !important; }
+  .contact-td     { display:block !important; width:100% !important; padding-bottom:10px !important; }
+  .ta-header-td   { display:block !important; width:100% !important; text-align:left !important; padding:0 0 12px 0 !important; }
+  .ta-badge-td    { display:block !important; width:100% !important; text-align:left !important; padding:0 !important; }
+}
+</style>
+</head>
+<body style="margin:0;padding:0;background:#E2F3F5;">
+<table role="presentation" class="outer" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#E2F3F5;">
+<tr><td align="center" style="padding:0;">
+
+<table role="presentation" class="wrap" width="580" cellpadding="0" cellspacing="0" border="0" style="max-width:580px;background:#ffffff;">
+
+  <!-- ══ HEADER ══ -->
+  <tr><td style="background:#5BC4BF;padding:28px 36px 0;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+      <tr><td style="padding-bottom:20px;">
+        <img src="https://img.mailinblue.com/11231253/images/content_library/original/6a13bdb26a0ea0cc263af2e2.png" alt="Meetup Travel" width="110" style="display:block;width:110px;height:auto;max-width:110px;border:0;outline:none;text-decoration:none;">
+      </td></tr>
+      <tr><td>
+        <h1 class="hdr-title" style="font-family:'Phudu',Arial,sans-serif;font-size:38px;font-weight:900;color:#ffffff;line-height:1.08;margin:0 0 10px;">
+          Your Sample Itineraries<br><span style="color:#FFE355;">Are On The Way</span>
+        </h1>
+        <p class="hdr-sub" style="font-size:14px;color:#ffffff;line-height:1.6;margin:0 0 26px;max-width:390px;">
+          As requested, we are putting together 4–5 of our most-loved Vietnam itineraries for you to explore and get inspired by.
+        </p>
+      </td></tr>
+      <tr><td style="height:5px;background:linear-gradient(to right,#FFE355,#F6863A,#5BC4BF);font-size:1px;line-height:5px;">&nbsp;</td></tr>
+    </table>
+  </td></tr>
+
+  <!-- ══ GREETING + INTRO ══ -->
+  <tr><td class="sec-body sec-pad" style="padding:26px 36px 18px;background:#ffffff;">
+    <p style="font-family:'Phudu',Arial,sans-serif;font-size:18px;font-weight:700;color:#257496;margin:0 0 12px;" class="t-accent">Dear {{ contact.FIRSTNAME | default: "Friend" }},</p>
+    <p style="font-size:14px;line-height:1.78;color:#3a3a3a;margin:0;" class="t-primary">
+      Thank you for reaching out — we would be delighted to send you some sample itineraries. Over the next short while we will share <strong style="color:#5BC4BF;" class="t-accent">4–5 of our most representative trips</strong>, covering different regions, trip lengths and travel styles, so you can picture exactly what your journey through Vietnam could look like.
+    </p>
+  </td></tr>
+
+  <!-- ══ HIGHLIGHT CARD ══ -->
+  <tr><td class="sec-body sec-pad" style="padding:0 36px 20px;background:#ffffff;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="guide-card" style="background:#E2F3F5;border-radius:11px;border-left:5px solid #5BC4BF;">
+      <tr><td style="padding:18px 18px 18px 16px;">
+        <p style="font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#5BC4BF;margin:0 0 6px;" class="t-accent">Handpicked · 2026 Season</p>
+        <p style="font-family:'Phudu',Arial,sans-serif;font-size:20px;font-weight:900;color:#257496;margin:0 0 7px;" class="t-accent">Sample Itineraries, Curated For You</p>
+        <p style="font-size:13px;color:#555;line-height:1.68;margin:0;" class="t-secondary">
+          Real trips our travelers have taken and loved — not generic templates. Use them as a starting point, then we will shape the details around your dates, pace and interests.
+        </p>
+      </td></tr>
+    </table>
+  </td></tr>
+
+  <!-- ══ THE ITINERARIES LIST ══ -->
+  <tr><td class="sec-body sec-pad" style="padding:0 36px 6px;background:#ffffff;">
+    <p style="font-family:'Phudu',Arial,sans-serif;font-size:17px;font-weight:700;color:#257496;margin:0 0 12px;" class="t-accent">What You Will Receive</p>
+  </td></tr>
+
+  <!-- Itinerary 1 -->
+  <tr><td class="sec-body sec-pad" style="padding:0 36px 8px;background:#ffffff;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="itin-row" style="background:#ffffff;border:1px solid #d6eeee;border-radius:10px;">
+      <tr>
+        <td valign="top" style="padding:13px 6px 13px 13px;width:40px;">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td class="itin-num" align="center" style="width:30px;height:30px;background:#E2F3F5;border-radius:7px;font-family:'Phudu',Arial,sans-serif;font-size:15px;font-weight:900;color:#5BC4BF;line-height:30px;">1</td></tr></table>
+        </td>
+        <td valign="middle" style="padding:11px 14px 11px 4px;">
+          <p style="font-family:'Work Sans',Arial,sans-serif;font-size:14px;font-weight:700;color:#257496;margin:0 0 2px;line-height:1.3;" class="t-accent">Classic North — Hanoi, Ninh Binh &amp; Ha Long</p>
+          <p style="font-size:12px;color:#777;line-height:1.5;margin:0;" class="t-secondary">🗓️ 5–6 days · culture, karst scenery &amp; an overnight cruise</p>
+        </td>
+      </tr>
+    </table>
+  </td></tr>
+
+  <!-- Itinerary 2 -->
+  <tr><td class="sec-body sec-pad" style="padding:0 36px 8px;background:#ffffff;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="itin-row" style="background:#ffffff;border:1px solid #d6eeee;border-radius:10px;">
+      <tr>
+        <td valign="top" style="padding:13px 6px 13px 13px;width:40px;">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td class="itin-num" align="center" style="width:30px;height:30px;background:#E2F3F5;border-radius:7px;font-family:'Phudu',Arial,sans-serif;font-size:15px;font-weight:900;color:#5BC4BF;line-height:30px;">2</td></tr></table>
+        </td>
+        <td valign="middle" style="padding:11px 14px 11px 4px;">
+          <p style="font-family:'Work Sans',Arial,sans-serif;font-size:14px;font-weight:700;color:#257496;margin:0 0 2px;line-height:1.3;" class="t-accent">Ha Giang Loop Adventure</p>
+          <p style="font-size:12px;color:#777;line-height:1.5;margin:0;" class="t-secondary">🏍️ 4 days · mountain passes, ethnic villages &amp; epic viewpoints</p>
+        </td>
+      </tr>
+    </table>
+  </td></tr>
+
+  <!-- Itinerary 3 -->
+  <tr><td class="sec-body sec-pad" style="padding:0 36px 8px;background:#ffffff;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="itin-row" style="background:#ffffff;border:1px solid #d6eeee;border-radius:10px;">
+      <tr>
+        <td valign="top" style="padding:13px 6px 13px 13px;width:40px;">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td class="itin-num" align="center" style="width:30px;height:30px;background:#E2F3F5;border-radius:7px;font-family:'Phudu',Arial,sans-serif;font-size:15px;font-weight:900;color:#5BC4BF;line-height:30px;">3</td></tr></table>
+        </td>
+        <td valign="middle" style="padding:11px 14px 11px 4px;">
+          <p style="font-family:'Work Sans',Arial,sans-serif;font-size:14px;font-weight:700;color:#257496;margin:0 0 2px;line-height:1.3;" class="t-accent">Central Heritage — Hue, Da Nang &amp; Hoi An</p>
+          <p style="font-size:12px;color:#777;line-height:1.5;margin:0;" class="t-secondary">🏮 4–5 days · imperial history, coastline &amp; lantern-lit old town</p>
+        </td>
+      </tr>
+    </table>
+  </td></tr>
+
+  <!-- Itinerary 4 -->
+  <tr><td class="sec-body sec-pad" style="padding:0 36px 8px;background:#ffffff;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="itin-row" style="background:#ffffff;border:1px solid #d6eeee;border-radius:10px;">
+      <tr>
+        <td valign="top" style="padding:13px 6px 13px 13px;width:40px;">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td class="itin-num" align="center" style="width:30px;height:30px;background:#E2F3F5;border-radius:7px;font-family:'Phudu',Arial,sans-serif;font-size:15px;font-weight:900;color:#5BC4BF;line-height:30px;">4</td></tr></table>
+        </td>
+        <td valign="middle" style="padding:11px 14px 11px 4px;">
+          <p style="font-family:'Work Sans',Arial,sans-serif;font-size:14px;font-weight:700;color:#257496;margin:0 0 2px;line-height:1.3;" class="t-accent">Southern Delta &amp; Islands — Saigon to Phu Quoc</p>
+          <p style="font-size:12px;color:#777;line-height:1.5;margin:0;" class="t-secondary">🌴 5 days · Mekong life, city energy &amp; beach time</p>
+        </td>
+      </tr>
+    </table>
+  </td></tr>
+
+  <!-- Itinerary 5 -->
+  <tr><td class="sec-body sec-pad" style="padding:0 36px 20px;background:#ffffff;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="itin-row" style="background:#ffffff;border:1px solid #d6eeee;border-radius:10px;">
+      <tr>
+        <td valign="top" style="padding:13px 6px 13px 13px;width:40px;">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td class="itin-num" align="center" style="width:30px;height:30px;background:#E2F3F5;border-radius:7px;font-family:'Phudu',Arial,sans-serif;font-size:15px;font-weight:900;color:#5BC4BF;line-height:30px;">5</td></tr></table>
+        </td>
+        <td valign="middle" style="padding:11px 14px 11px 4px;">
+          <p style="font-family:'Work Sans',Arial,sans-serif;font-size:14px;font-weight:700;color:#257496;margin:0 0 2px;line-height:1.3;" class="t-accent">The Grand Tour — North to South in 12–14 Days</p>
+          <p style="font-size:12px;color:#777;line-height:1.5;margin:0;" class="t-secondary">🇻🇳 the full journey · all three regions at a comfortable pace</p>
+        </td>
+      </tr>
+    </table>
+  </td></tr>
+
+  <!-- ══ TWO PATHS ══ -->
+  <tr><td class="sec-body sec-pad" style="padding:0 36px 6px;background:#ffffff;">
+    <p style="font-family:'Phudu',Arial,sans-serif;font-size:17px;font-weight:700;color:#257496;margin:0 0 4px;" class="t-accent">Ready For The Next Step?</p>
+    <p style="font-size:13px;line-height:1.7;color:#555;margin:0 0 12px;" class="t-secondary">
+      Found one you love — or want something entirely your own? You have two easy options:
+    </p>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;border-spacing:0;">
+      <tr>
+        <td class="path-td" width="50%" valign="top" style="width:50%;vertical-align:top;padding-right:5px;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="path-card" style="background:#F4FBFF;border:1px solid #c8e8f5;border-radius:10px;">
+            <tr><td style="padding:15px 15px 16px;">
+              <p style="font-size:22px;margin:0 0 6px;line-height:1;">✅</p>
+              <p style="font-family:'Phudu',Arial,sans-serif;font-size:15px;font-weight:900;color:#257496;margin:0 0 4px;line-height:1.2;" class="t-accent">Book It Right Away</p>
+              <p style="font-size:12px;color:#666;line-height:1.6;margin:0;" class="t-secondary">Love one of these as-is? Reply and we will lock in your dates and get everything confirmed.</p>
+            </td></tr>
+          </table>
+        </td>
+        <td class="path-td" width="50%" valign="top" style="width:50%;vertical-align:top;padding-left:5px;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="path-card" style="background:#F4FBFF;border:1px solid #c8e8f5;border-radius:10px;">
+            <tr><td style="padding:15px 15px 16px;">
+              <p style="font-size:22px;margin:0 0 6px;line-height:1;">📞</p>
+              <p style="font-family:'Phudu',Arial,sans-serif;font-size:15px;font-weight:900;color:#257496;margin:0 0 4px;line-height:1.2;" class="t-accent">Call A Local Expert</p>
+              <p style="font-size:12px;color:#666;line-height:1.6;margin:0;" class="t-secondary">Want it tailored? Hop on a free call and we will customize an itinerary just for you.</p>
+            </td></tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </td></tr>
+
+  <!-- ══ CTA ══ -->
+  <tr><td class="sec-body sec-pad" align="center" style="padding:16px 36px 24px;background:#ffffff;">
+    <a href="mailto:hello@meetup.travel?subject=I'd%20like%20to%20talk%20about%20my%20Vietnam%20itinerary" style="display:inline-block;background:#5BC4BF;color:#ffffff;font-family:'Phudu',Arial,sans-serif;font-size:16px;font-weight:700;padding:14px 40px;border-radius:6px;text-decoration:none;letter-spacing:0.5px;text-transform:uppercase;">
+      Reply To Get Started
+    </a>
+    <p style="font-size:11px;color:#aaa;margin:9px 0 0;" class="t-muted">Just reply to this email — tell us your dates and what you love, and a local expert will take it from there.</p>
+  </td></tr>
+
+  <!-- ══ TRIPADVISOR ══ -->
+  <tr><td class="sec-body sec-pad" style="padding:0 36px 20px;background:#ffffff;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="ta-card" style="background:#ffffff;border:1.5px solid #d4f0e4;border-radius:14px;">
+      <tr><td style="padding:20px;">
+
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:14px;">
+          <tr>
+            <td class="ta-header-td" style="vertical-align:middle;padding-right:10px;">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/TripAdvisor_Logo.svg" alt="Tripadvisor" width="130" style="display:block;height:auto;max-width:130px;">
+              <p class="ta-platform" style="font-size:10px;color:#888;margin:4px 0 0;font-weight:500;letter-spacing:0.2px;">Verified Reviews Platform</p>
+            </td>
+            <td class="ta-badge-td" align="right" style="vertical-align:middle;width:130px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="display:inline-block;"><tr><td style="background:#34E0A1;border-radius:18px;padding:5px 11px;">
+                <p style="font-size:9.5px;font-weight:700;color:#003a20;margin:0;white-space:nowrap;letter-spacing:0.3px;">⭐ Travelers' Choice</p>
+              </td></tr></table>
+            </td>
+          </tr>
+        </table>
+
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+          <td class="ta-divider" style="height:1px;background:#e8f8f0;line-height:1px;font-size:1px;">&nbsp;</td>
+        </tr></table>
+
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:14px;margin-bottom:12px;"><tr><td>
+          <p class="ta-brand" style="font-family:'Phudu',Arial,sans-serif;font-size:18px;font-weight:900;color:#1a1a1a;margin:0 0 8px;line-height:1.2;letter-spacing:0.2px;">Meetup Travel</p>
+
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+            <td style="padding-right:4px;"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="width:14px;height:14px;background:#34E0A1;border-radius:50%;font-size:1px;line-height:14px;">&nbsp;</td></tr></table></td>
+            <td style="padding-right:4px;"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="width:14px;height:14px;background:#34E0A1;border-radius:50%;font-size:1px;line-height:14px;">&nbsp;</td></tr></table></td>
+            <td style="padding-right:4px;"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="width:14px;height:14px;background:#34E0A1;border-radius:50%;font-size:1px;line-height:14px;">&nbsp;</td></tr></table></td>
+            <td style="padding-right:4px;"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="width:14px;height:14px;background:#34E0A1;border-radius:50%;font-size:1px;line-height:14px;">&nbsp;</td></tr></table></td>
+            <td style="padding-right:8px;"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="width:14px;height:14px;background:linear-gradient(to right,#34E0A1 0%,#34E0A1 80%,#d8f0e4 80%,#d8f0e4 100%);border-radius:50%;font-size:1px;line-height:14px;">&nbsp;</td></tr></table></td>
+            <td style="vertical-align:middle;">
+              <span style="font-size:13px;color:#00AA6C;font-weight:800;">4.9</span>
+              <span class="ta-score-label" style="font-size:11px;color:#666;font-weight:500;margin-left:4px;">· Excellent</span>
+            </td>
+          </tr></table>
+        </td></tr></table>
+
+        <p class="ta-body" style="font-size:13px;color:#444;line-height:1.70;margin:0 0 16px;">
+          Hundreds of international travelers have shared their honest experience with us on Tripadvisor. Read their reviews before you decide — so you know exactly what to expect.
+        </p>
+
+        <a href="https://www.tripadvisor.com/Attraction_Review-g293924-d28222088-Reviews-Meetup_Travel-Hanoi.html" style="display:inline-block;background:linear-gradient(135deg,#00AA6C 0%,#00C97D 100%);color:#ffffff;font-family:'Phudu',Arial,sans-serif;font-size:14px;font-weight:900;padding:13px 26px;border-radius:8px;text-decoration:none;letter-spacing:0.4px;text-transform:uppercase;">
+          See Why Travelers Trust Us →
+        </a>
+        <p class="ta-micro" style="font-size:11px;color:#888;margin:8px 0 0;font-weight:500;">⭐ Read real reviews before you decide</p>
+
+      </td></tr>
+    </table>
+  </td></tr>
+
+  <!-- ══ TIP STRIP ══ -->
+  <tr><td class="tip-strip" style="background:#257496;padding:18px 36px;">
+    <p style="font-size:13px;color:#ddeef5;line-height:1.75;margin:0;">
+      💬 <strong style="color:#FFE355;">Tip from our team:</strong> The more you tell us — your dates, budget, must-sees and travel pace — the better we can tailor these itineraries to you. Prefer to chat live? Message us anytime on WhatsApp.
+    </p>
+  </td></tr>
+
+  <!-- ══ CONTACT ══ -->
+  <tr><td class="sec-contact sec-pad" style="padding:20px 36px 20px;background:#f4fbfb;border-top:2px solid #d6eeee;">
+    <p style="font-family:'Phudu',Arial,sans-serif;font-size:16px;font-weight:700;color:#257496;margin:0 0 14px;" class="t-accent">Get in Touch</p>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+      <tr>
+        <td class="contact-td" width="50%" style="padding-bottom:11px;vertical-align:top;">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+            <td align="center" style="vertical-align:middle;padding-right:6px;width:44px;">
+              <a href="https://wa.me/+84948113345" style="display:inline-block;text-decoration:none;">
+                <img src="https://img.mailinblue.com/11231253/images/content_library/original/6a13ee2a22ad5dba11c9edfb.jpg" alt="WhatsApp" width="44" style="display:block;margin:0 auto;width:44px;height:auto;border:0;outline:none;mix-blend-mode:multiply;border-radius:8px;">
+              </a>
+            </td>
+            <td style="vertical-align:top;">
+              <p style="font-size:10px;color:#999;margin:0 0 1px;font-family:'Work Sans',Arial,sans-serif;" class="t-muted">WhatsApp / Hotline</p>
+              <a href="https://wa.me/+84948113345" style="font-size:13px;color:#257496;font-weight:600;text-decoration:none;font-family:'Work Sans',Arial,sans-serif;" class="t-accent">+84 948 113 345</a>
+            </td>
+          </tr></table>
+        </td>
+        <td class="contact-td" width="50%" style="padding-bottom:11px;vertical-align:top;">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+            <td align="center" style="vertical-align:middle;padding-right:6px;width:44px;">
+              <a href="https://meetup.travel/" style="display:inline-block;text-decoration:none;">
+                <img src="https://img.mailinblue.com/11231253/images/content_library/original/6a13faba12dea963655f2e39.png" alt="Website" width="34" style="display:block;margin:0 auto;width:34px;height:auto;border:0;outline:none;mix-blend-mode:multiply;">
+              </a>
+            </td>
+            <td style="vertical-align:top;">
+              <p style="font-size:10px;color:#999;margin:0 0 1px;font-family:'Work Sans',Arial,sans-serif;" class="t-muted">Website</p>
+              <a href="https://meetup.travel/" style="font-size:13px;color:#257496;font-weight:600;text-decoration:none;font-family:'Work Sans',Arial,sans-serif;" class="t-accent">meetup.travel</a>
+            </td>
+          </tr></table>
+        </td>
+      </tr>
+      <tr>
+        <td class="contact-td" width="50%" style="vertical-align:top;">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+            <td align="center" style="vertical-align:middle;padding-right:6px;width:44px;">
+              <a href="https://www.instagram.com/meetup_vietnam" style="display:inline-block;text-decoration:none;">
+                <img src="https://img.mailinblue.com/11231253/images/content_library/original/6a13bf94d78d8673b77eb47f.png" alt="Instagram" width="34" style="display:block;margin:0 auto;width:34px;height:auto;border:0;outline:none;">
+              </a>
+            </td>
+            <td style="vertical-align:top;">
+              <p style="font-size:10px;color:#999;margin:0 0 1px;font-family:'Work Sans',Arial,sans-serif;" class="t-muted">Instagram</p>
+              <a href="https://www.instagram.com/meetup_vietnam" style="font-size:13px;color:#257496;font-weight:600;text-decoration:none;font-family:'Work Sans',Arial,sans-serif;" class="t-accent">@meetup_vietnam</a>
+            </td>
+          </tr></table>
+        </td>
+        <td class="contact-td" width="50%" style="vertical-align:top;">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+            <td align="center" style="vertical-align:middle;padding-right:6px;width:44px;">
+              <a href="https://www.facebook.com/meetuptravelvn" style="display:inline-block;text-decoration:none;">
+                <img src="https://img.mailinblue.com/11231253/images/content_library/original/6a13bf2ed78d8673b77eb47e.png" alt="Facebook" width="34" style="display:block;margin:0 auto;width:34px;height:auto;border:0;outline:none;">
+              </a>
+            </td>
+            <td style="vertical-align:top;">
+              <p style="font-size:10px;color:#999;margin:0 0 1px;font-family:'Work Sans',Arial,sans-serif;" class="t-muted">Facebook</p>
+              <a href="https://www.facebook.com/meetuptravelvn" style="font-size:13px;color:#257496;font-weight:600;text-decoration:none;font-family:'Work Sans',Arial,sans-serif;" class="t-accent">Meetup Travel</a>
+            </td>
+          </tr></table>
+        </td>
+      </tr>
+    </table>
+  </td></tr>
+
+  <!-- ══ FOOTER ══ -->
+  <tr><td class="footer-wrap" style="background:#5BC4BF;padding:16px 36px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+      <tr><td style="padding-bottom:8px;">
+        <img src="https://img.mailinblue.com/11231253/images/content_library/original/6a13bdb26a0ea0cc263af2e2.png" alt="Meetup Travel" width="90" style="display:block;width:90px;height:auto;max-width:90px;border:0;outline:none;text-decoration:none;">
+      </td></tr>
+      <tr><td>
+        <p class="footer-text" style="font-size:11px;color:#ffffff;line-height:1.6;margin:0 0 8px;">
+          Travel Like a Local &middot; Curated Experiences &middot; Highly Rated Tours
+        </p>
+        <p style="font-size:12px;margin:0 0 6px;">
+          <a href="https://meetup.travel/" class="footer-link" style="color:#FFE355;text-decoration:none;margin-right:14px;font-weight:600;">Our Tours</a>
+          <a href="https://meetup.travel/" class="footer-link" style="color:#FFE355;text-decoration:none;margin-right:14px;font-weight:600;">About Us</a>
+          <a href="https://wa.me/+84948113345" class="footer-link" style="color:#FFE355;text-decoration:none;margin-right:14px;font-weight:600;">Contact</a>
+          <a href="{{ unsubscribe }}" class="footer-link" style="color:#FFE355;text-decoration:none;font-weight:600;">Unsubscribe</a>
+        </p>
+        <p class="footer-copy" style="font-size:10px;color:#ffffff;margin:8px 0 0;border-top:1px solid rgba(255,255,255,0.25);padding-top:8px;line-height:1.5;">
+          &copy; 2026 Meetup Travel &middot; Hanoi, Vietnam &middot; You received this because you asked us for sample Vietnam itineraries.
+        </p>
+      </td></tr>
+    </table>
+  </td></tr>
+
+</table>
+
+</td></tr>
+</table>
+</body>
+</html>
